@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../components/LandingPage/logo_section.dart';
+import '../components/LandingPage/logo_button_section.dart';
 import '../components/LandingPage/divider_section.dart';
 import '../components/LandingPage/sign_up_button_section.dart';
 import '../components/LandingPage/existing_account_section.dart';
@@ -26,7 +26,7 @@ class LandingPage extends StatelessWidget {
             HeaderSection(),
             ImageSection(),
             DescriptionSection(),
-            LogoSection(),
+            LogoButtonSection(),
             DividerSection(),
             SignUpButtonSection(),
             ExistingAccountSection(),

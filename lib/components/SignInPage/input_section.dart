@@ -3,14 +3,7 @@ import 'package:flutter/material.dart';
 import './input_field.dart';
 import './remember_forget_section.dart';
 
-class InputSection extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _InputSectionState();
-  }
-}
-
-class _InputSectionState extends State<InputSection> {
+class InputSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

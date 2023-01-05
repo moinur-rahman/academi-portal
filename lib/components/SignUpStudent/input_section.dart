@@ -8,11 +8,12 @@ class InputSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 340,
-      height: 390,
+      height: 470,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           InputField("email"),
+          InputField("id"),
           InputField("name"),
           InputField("password"),
           InputField("repeat-password"),

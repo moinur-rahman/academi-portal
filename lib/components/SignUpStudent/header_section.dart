@@ -5,9 +5,9 @@ class HeaderSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Text(
-        "Sign In",
+        "Sign up as a student",
         style: TextStyle(
-            color: Colors.black, fontSize: 35, fontWeight: FontWeight.bold),
+            color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),
       ),
     );
   }

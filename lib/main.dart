@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import './view/landing_page.dart';
 import './view/sign_in_page.dart';
-import './view/sing_up_teacher.dart';
+import 'view/sign_up_teacher.dart';
+import './view/sign_up_student.dart';
 
 void main() {
   runApp(App());
@@ -18,6 +19,7 @@ class App extends StatelessWidget {
         '/': (context) => LandingPage(),
         '/login': (context) => SignInPage(),
         '/sign-up-teacher': (context) => SignUpTeacher(),
+        '/sign-up-student':(context) => SignUpStudent(),
       },
     );
   }

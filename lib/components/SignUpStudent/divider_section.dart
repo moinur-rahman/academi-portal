@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-class HeaderSection extends StatelessWidget {
+class DividerSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Text(
-        "Sign In",
+        "OR",
         style: TextStyle(
-            color: Colors.black, fontSize: 35, fontWeight: FontWeight.bold),
+            color: Color(0xff6B6B6B),
+            fontSize: 20,
+            fontWeight: FontWeight.bold),
       ),
     );
   }

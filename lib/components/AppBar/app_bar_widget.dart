@@ -10,6 +10,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Color(0xFF00005C),
       title: Text("AcademiPortal"),
+      centerTitle: true,
     );
   }
 }

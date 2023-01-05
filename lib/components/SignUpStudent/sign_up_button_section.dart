@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class SignInButtonSection extends StatelessWidget {
+class SignUpButtonSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
+      width: 200,
       height: 50,
       child: ElevatedButton(
         onPressed: () {},
         child: Text(
-          "Sign In",
+          "Create Account",
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         style: ElevatedButton.styleFrom(
