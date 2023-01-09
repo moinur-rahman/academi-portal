@@ -31,8 +31,8 @@ class _DropdownButtonSingleState extends State<DropdownButtonSingle> {
           ),
           DropdownButton(
             hint: Text("Select ${widget.dropdownName.toLowerCase()}"),
-            items: _dropdownName[widget.dropdownName]!
-                .map<DropdownMenuItem<String>>((String department) {
+          items: _dropdownName[widget.dropdownName]
+                ?.map<DropdownMenuItem<String>>((String department) {
               return DropdownMenuItem<String>(
                 child: Text(department),
                 value: department,

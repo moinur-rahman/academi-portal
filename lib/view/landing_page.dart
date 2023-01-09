@@ -18,7 +18,9 @@ class LandingPage extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(0, 40, 0, 10),
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('images/Landing-Page.jpg'), fit: BoxFit.cover),
+            image: AssetImage('images/Landing-Page.jpg'),
+            fit: BoxFit.cover,
+          ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
