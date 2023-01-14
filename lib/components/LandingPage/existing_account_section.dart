@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../view/sign_in_page.dart';
 class ExistingAccountSection extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -15,7 +17,7 @@ class ExistingAccountSection extends StatelessWidget {
             ),
           ),
           TextButton(
-            onPressed: () => {Navigator.pushNamed(context, '/login')},
+            onPressed: () => {Navigator.pushNamed(context, SignInPage.routeName)},
             child: Text(
               "Login",
               style: TextStyle(

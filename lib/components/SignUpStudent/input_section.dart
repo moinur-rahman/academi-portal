@@ -1,24 +1,159 @@
 import 'package:flutter/material.dart';
 
-import 'dropdown_section.dart';
-import 'input_field.dart';
+import '../../view/student_dashboard.dart';
+import './terms_conditions_section.dart';
 
-class InputSection extends StatelessWidget {
+class InputSection extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _InputSectionState();
+  }
+}
+
+class _InputSectionState extends State<InputSection> {
+  final List<String> _departments = const <String>['CSE', 'EEE', 'ME', 'Civil'];
+  final List<String> _section = const <String>['A', 'B', 'C'];
+  String? _departmentValue, _sectionValue;
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 340,
-      height: 470,
+      height: 650,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          InputField("email"),
-          InputField("id"),
-          InputField("name"),
-          InputField("password"),
-          InputField("repeat-password"),
-          DropdownSection(),
-          // items: [DropdownMenuItem(child: Text('CSE'))], onChanged: null)
+          TextFormField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Enter your email',
+              prefixIcon: Icon(
+                Icons.email,
+                color: Colors.grey,
+              ),
+            ),
+          ),
+          TextFormField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Your name',
+              prefixIcon: Icon(
+                Icons.person,
+                color: Colors.grey,
+              ),
+            ),
+          ),
+          TextFormField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Enter your password',
+              prefixIcon: Icon(
+                Icons.lock,
+                color: Colors.grey,
+              ),
+            ),
+          ),
+          TextFormField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Repeat password',
+              prefixIcon: Icon(
+                Icons.lock,
+                color: Colors.grey,
+              ),
+            ),
+          ),
+          TextFormField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'ID (e.g. 1704037)',
+              prefixIcon: Icon(
+                Icons.wallet_membership,
+                color: Colors.grey,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 340,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  "Department",
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                DropdownButton(
+                  hint: Text("Select Department"),
+                  items: _departments
+                      .map<DropdownMenuItem<String>>((String department) {
+                    return DropdownMenuItem<String>(
+                      child: Text(department),
+                      value: department,
+                    );
+                  }).toList(),
+                  value: _departmentValue,
+                  onChanged: (String? value) {
+                    setState(() {
+                      _departmentValue = value;
+                    });
+                  },
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            width: 340,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  "Section",
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                DropdownButton(
+                  hint: Text("Select Section"),
+                  items: _section
+                      .map<DropdownMenuItem<String>>((String department) {
+                    return DropdownMenuItem<String>(
+                      child: Text(department),
+                      value: department,
+                    );
+                  }).toList(),
+                  value: _sectionValue,
+                  onChanged: (String? value) {
+                    setState(() {
+                      _sectionValue = value;
+                    });
+                  },
+                ),
+              ],
+            ),
+          ),
+          TermsConditionsSection(),
+          SizedBox(
+            width: 200,
+            height: 50,
+            child: ElevatedButton(
+              onPressed: () => {
+                Navigator.pushReplacementNamed(
+                  context,
+                  StudentDashboard.routeName,
+                )
+              },
+              child: Text(
+                "Create Account",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20))),
+            ),
+          )
         ],
       ),
     );

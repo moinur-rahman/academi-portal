@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../components/common/app_bar_widget.dart';
 import '../components/SignInPage/description_section.dart';
 import '../components/SignInPage/logo_button_section.dart';
 import '../components/SignInPage/divider_section.dart';
 import '../components/SignInPage/input_section.dart';
-import '../components//AppBar/app_bar_widget.dart';
-import '../components/SignInPage/sign_in_button_section.dart';
 import '../components/SignInPage/header_section.dart';
 import '../components/SignInPage/footer_image.dart';
 
 class SignInPage extends StatelessWidget {
+  static const routeName = '/login';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +29,6 @@ class SignInPage extends StatelessWidget {
             LogoButtonSection(),
             DividerSection(),
             InputSection(),
-            SignInButtonSection(),
             FooterImage(),
           ],
         ),

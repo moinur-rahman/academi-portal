@@ -5,7 +5,7 @@ import './logo_button.dart';
 class LogoButtonSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

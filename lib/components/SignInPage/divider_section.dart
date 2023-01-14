@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DividerSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Text(
         "OR",
         style: TextStyle(

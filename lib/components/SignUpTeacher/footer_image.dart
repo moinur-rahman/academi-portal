@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class FooterImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Image(
         image: AssetImage('images/footer_image.png'),
         width: double.infinity,

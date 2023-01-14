@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../view/sign_up_student.dart';
+import '../../view/sign_up_teacher.dart';
+
 class SignUpButton extends StatelessWidget {
   final String buttonName;
 
@@ -7,12 +10,16 @@ class SignUpButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 120,
       height: 40,
       child: ElevatedButton(
         onPressed: () => Navigator.pushNamed(
-            context, '/sign-up-' + buttonName.toLowerCase()),
+          context,
+          buttonName == 'Student'
+              ? SignUpStudent.routeName
+              : SignUpTeacher.routeName,
+        ),
         child: Text(
           buttonName,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
