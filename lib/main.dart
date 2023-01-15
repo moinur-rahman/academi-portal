@@ -5,6 +5,7 @@ import './view/sign_in_page.dart';
 import 'view/sign_up_teacher.dart';
 import './view/sign_up_student.dart';
 import './view/student_dashboard.dart';
+import './view/post_details.dart';
 
 void main() {
   runApp(App());
@@ -22,6 +23,7 @@ class App extends StatelessWidget {
         SignUpTeacher.routeName: (context) => SignUpTeacher(),
         SignUpStudent.routeName: (context) => SignUpStudent(),
         StudentDashboard.routeName: (context) => StudentDashboard(),
+        PostDetails.routeName: (context) => PostDetails(),
       },
     );
   }

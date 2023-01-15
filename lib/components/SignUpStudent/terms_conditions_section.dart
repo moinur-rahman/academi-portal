@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class TermsConditionsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 260,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

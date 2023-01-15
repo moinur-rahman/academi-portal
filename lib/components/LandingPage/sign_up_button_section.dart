@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './sign_up_button.dart';
+import '../../view/sign_up_student.dart';
+import '../../view/sign_up_teacher.dart';
 
 class SignUpButtonSection extends StatelessWidget {
   @override
@@ -22,7 +23,25 @@ class SignUpButtonSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SignUpButton("Teacher"),
+              SizedBox(
+                width: 120,
+                height: 40,
+                child: ElevatedButton(
+                  onPressed: () => Navigator.pushNamed(
+                    context,
+                    SignUpTeacher.routeName,
+                  ),
+                  child: Text(
+                    "Teacher",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                ),
+              ),
               Text(
                 "OR",
                 style: TextStyle(
@@ -30,7 +49,25 @@ class SignUpButtonSection extends StatelessWidget {
                     fontSize: 20,
                     fontWeight: FontWeight.bold),
               ),
-              SignUpButton("Student"),
+              SizedBox(
+                width: 120,
+                height: 40,
+                child: ElevatedButton(
+                  onPressed: () => Navigator.pushNamed(
+                    context,
+                    SignUpStudent.routeName,
+                  ),
+                  child: Text(
+                    "Student",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                ),
+              ),
             ],
           ),
         ],

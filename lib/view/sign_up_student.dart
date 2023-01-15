@@ -14,7 +14,7 @@ class SignUpStudent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFFAFAFA),
       appBar: AppBarWidget(),
       body: SingleChildScrollView(
         child: Container(

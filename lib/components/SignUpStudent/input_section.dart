@@ -16,7 +16,7 @@ class _InputSectionState extends State<InputSection> {
   String? _departmentValue, _sectionValue;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 340,
       height: 650,
       child: Column(
