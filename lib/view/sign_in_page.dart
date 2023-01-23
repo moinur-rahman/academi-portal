@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 import '../components/common/app_bar_widget.dart';
 import '../components/SignInPage/description_section.dart';
@@ -16,21 +17,23 @@ class SignInPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xFFFAFAFA),
-      appBar: AppBarWidget(),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            HeaderSection(),
-            DescriptionSection(),
-            LogoButtonSection(),
-            DividerSection(),
-            InputSection(),
-            FooterImage(),
-          ],
+      appBar: AppBarWidget("Sign In"),
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          height: max(731, MediaQuery.of(context).size.height),
+          padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              HeaderSection(),
+              DescriptionSection(),
+              LogoButtonSection(),
+              DividerSection(),
+              InputSection(),
+              FooterImage(),
+            ],
+          ),
         ),
       ),
     );

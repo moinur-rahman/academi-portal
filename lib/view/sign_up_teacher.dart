@@ -16,7 +16,7 @@ class SignUpTeacher extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xFFFAFAFA),
-      appBar: AppBarWidget(),
+      appBar: AppBarWidget("Sign up as a teacher"),
       body: SingleChildScrollView(
         child: Container(
           width: double.infinity,

@@ -47,6 +47,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   flutter_launcher_icons: "^0.11.0"
+  carousel_slider: ^4.2.1
 flutter_icons:
   android: "launcher_icon"
   ios: true
@@ -62,7 +63,10 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - images/Landing-Page.jpg
+    - images/landing_page_image1.png
+    - images/landing_page_image2.png
+    - images/landing_page_image3.png
+    - images/landing_page_image4.png
     - images/student.png
     - images/fb_logo.png
     - images/google_logo.png

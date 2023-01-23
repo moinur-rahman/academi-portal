@@ -44,7 +44,7 @@ class _InputSectionState extends State<InputSection> {
                 children: [
                   Checkbox(
                       checkColor: Colors.white,
-                      fillColor: MaterialStateProperty.all(Colors.blue),
+                      fillColor: MaterialStateProperty.all(Colors.green),
                       value: isChecked,
                       onChanged: (bool? value) {
                         setState(() {
@@ -72,17 +72,20 @@ class _InputSectionState extends State<InputSection> {
           SizedBox(
             width: 150,
             height: 50,
-            child: ElevatedButton(
+            child: OutlinedButton(
               onPressed: () {},
               child: Text(
                 "Sign In",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  foregroundColor: Colors.white,
+              style: OutlinedButton.styleFrom(
+                  foregroundColor: Colors.green,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20))),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  side: BorderSide(
+                    color: Colors.green,
+                  )),
             ),
           )
         ],
