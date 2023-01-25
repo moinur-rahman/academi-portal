@@ -6,7 +6,6 @@ import '../view/sign_up_student.dart';
 
 class CreateAccount extends StatelessWidget {
   static const routeName = 'create-account';
-  const CreateAccount({super.key});
 
   @override
   Widget build(BuildContext context) {
