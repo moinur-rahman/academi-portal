@@ -6,7 +6,6 @@ import '../components/SignUpStudent/logo_button_section.dart';
 import '../components/SignUpStudent/divider_section.dart';
 import '../components/SignUpStudent/header_section.dart';
 import '../components/SignUpStudent/input_section.dart';
-import '../components/SignUpStudent/footer_image.dart';
 
 class SignUpStudent extends StatelessWidget {
   static const routeName = '/sign-up-student';
@@ -20,16 +19,14 @@ class SignUpStudent extends StatelessWidget {
         child: Container(
           width: double.infinity,
           height: 1060,
-          padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               HeaderSection(),
               DescriptionSection(),
               LogoButtonSection(),
               DividerSection(),
               InputSection(),
-              FooterImage(),
             ],
           ),
         ),

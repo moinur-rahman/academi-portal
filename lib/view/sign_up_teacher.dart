@@ -7,7 +7,6 @@ import '../components/SignUpTeacher/divider_section.dart';
 import '../components/SignUpTeacher/header_section.dart';
 import '../components/SignUpTeacher/input_section.dart';
 import '../components/SignUpTeacher/terms_conditions_section.dart';
-import '../components/SignUpTeacher/footer_image.dart';
 
 class SignUpTeacher extends StatelessWidget {
   static const routeName = '/sign-up-teacher';
@@ -21,16 +20,14 @@ class SignUpTeacher extends StatelessWidget {
         child: Container(
           width: double.infinity,
           height: 900,
-          padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               HeaderSection(),
               DescriptionSection(),
               LogoButtonSection(),
               DividerSection(),
               InputSection(),
-              FooterImage(),
             ],
           ),
         ),

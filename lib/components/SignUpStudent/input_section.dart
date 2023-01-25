@@ -136,7 +136,7 @@ class _InputSectionState extends State<InputSection> {
           SizedBox(
             width: 200,
             height: 50,
-            child: ElevatedButton(
+            child: OutlinedButton(
               onPressed: () => {
                 Navigator.pushReplacementNamed(
                   context,
@@ -147,9 +147,11 @@ class _InputSectionState extends State<InputSection> {
                 "Create Account",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  foregroundColor: Colors.white,
+              style: OutlinedButton.styleFrom(
+                  foregroundColor: Colors.green,
+                  side: BorderSide(
+                    color: Colors.green,
+                  ),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20))),
             ),

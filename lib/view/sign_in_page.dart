@@ -7,7 +7,6 @@ import '../components/SignInPage/logo_button_section.dart';
 import '../components/SignInPage/divider_section.dart';
 import '../components/SignInPage/input_section.dart';
 import '../components/SignInPage/header_section.dart';
-import '../components/SignInPage/footer_image.dart';
 
 class SignInPage extends StatelessWidget {
   static const routeName = '/login';
@@ -22,16 +21,14 @@ class SignInPage extends StatelessWidget {
         child: Container(
           width: double.infinity,
           height: max(731, MediaQuery.of(context).size.height),
-          padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               HeaderSection(),
               DescriptionSection(),
               LogoButtonSection(),
               DividerSection(),
               InputSection(),
-              FooterImage(),
             ],
           ),
         ),

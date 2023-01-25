@@ -25,6 +25,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
       resizeToAvoidBottomInset: false,
       appBar: StudentAppBar(),
       drawer: StudentDrawer(),
+      bottomNavigationBar: StudentBottomBar(),
       body: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -139,7 +140,6 @@ class _StudentDashboardState extends State<StudentDashboard> {
           ),
         ),
       ),
-      bottomNavigationBar: StudentBottomBar(),
     );
   }
 }
