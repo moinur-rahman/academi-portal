@@ -2,6 +2,29 @@ import 'package:flutter/material.dart';
 
 import '../../view/student_dashboard.dart';
 import './terms_conditions_section.dart';
+import './Sign_Up_Alert.dart';
+
+String createUser = """
+  mutation CreateUser(
+  \$email: String!
+  \$name: String!
+  \$password: String!
+  \$ID: Int!
+  \$department: String!
+  \$section: String!
+) {
+  createUser(
+    email: \$email
+    name: \$name
+    password: \$password
+    ID: \$ID
+    department: \$department
+    section: \$section
+  ) {
+    email
+  }
+}
+""";
 
 class InputSection extends StatefulWidget {
   @override
@@ -14,8 +37,26 @@ class _InputSectionState extends State<InputSection> {
   final List<String> _departments = const <String>['CSE', 'EEE', 'ME', 'Civil'];
   final List<String> _section = const <String>['A', 'B', 'C'];
   String? _departmentValue, _sectionValue;
+
+  Map<String?, dynamic> data = {
+    "email": String,
+    "name": String,
+    "password": String,
+    "repeatPassword": String,
+    "ID": num,
+    "department": String,
+    "section": String,
+  };
+
+  void _updateValue(String name, var value) {
+    setState(() {
+      data[name] = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    
     return SizedBox(
       width: 340,
       height: 650,
@@ -31,6 +72,9 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
+            onChanged: (value) {
+              _updateValue("email", value);
+            },
           ),
           TextFormField(
             decoration: InputDecoration(
@@ -41,6 +85,9 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
+            onChanged: (value) {
+              _updateValue("name", value);
+            },
           ),
           TextFormField(
             decoration: InputDecoration(
@@ -51,6 +98,9 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
+            onChanged: (value) {
+              _updateValue("password", value);
+            },
           ),
           TextFormField(
             decoration: InputDecoration(
@@ -61,6 +111,9 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
+            onChanged: (value) {
+              _updateValue("repeatPassword", value);
+            },
           ),
           TextFormField(
             decoration: InputDecoration(
@@ -71,6 +124,9 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
+            onChanged: (value) {
+              _updateValue("ID", value);
+            },
           ),
           SizedBox(
             width: 340,
@@ -93,10 +149,9 @@ class _InputSectionState extends State<InputSection> {
                     );
                   }).toList(),
                   value: _departmentValue,
-                  onChanged: (String? value) {
-                    setState(() {
-                      _departmentValue = value;
-                    });
+                  onChanged: (value) {
+                    _updateValue("department", value);
+                    _departmentValue = value;
                   },
                 ),
               ],
@@ -123,10 +178,9 @@ class _InputSectionState extends State<InputSection> {
                     );
                   }).toList(),
                   value: _sectionValue,
-                  onChanged: (String? value) {
-                    setState(() {
-                      _sectionValue = value;
-                    });
+                  onChanged: (value) {
+                    _updateValue("section", value);
+                    _sectionValue = value;
                   },
                 ),
               ],
@@ -137,11 +191,12 @@ class _InputSectionState extends State<InputSection> {
             width: 200,
             height: 50,
             child: OutlinedButton(
-              onPressed: () => {
-                Navigator.pushReplacementNamed(
-                  context,
-                  StudentDashboard.routeName,
-                )
+              onPressed: () {
+                
+                // Navigator.pushReplacementNamed(
+                //   context,
+                //   StudentDashboard.routeName,
+                // )
               },
               child: Text(
                 "Create Account",
@@ -155,7 +210,7 @@ class _InputSectionState extends State<InputSection> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20))),
             ),
-          )
+          ),
         ],
       ),
     );

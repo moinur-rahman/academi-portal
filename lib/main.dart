@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 import './view/landing_page.dart';
 import './view/sign_in_page.dart';
@@ -9,8 +10,26 @@ import './view/post_details.dart';
 import './view/create_account_section.dart';
 import './view/teacher_list.dart';
 
-void main() {
-  runApp(App());
+void main() async {
+  await initHiveForFlutter();
+  final HttpLink httpLink = HttpLink(
+    'http://10.0.3.2:5000/graphql',
+  );
+
+  ValueNotifier<GraphQLClient> client = ValueNotifier(
+    GraphQLClient(
+      link: httpLink,
+      // The default store is the InMemoryStore, which does NOT persist to disk
+      cache: GraphQLCache(store: HiveStore()),
+    ),
+  );
+
+  var app = GraphQLProvider(
+    client: client,
+    child: App(),
+  );
+
+  runApp(app);
 }
 
 class App extends StatelessWidget {

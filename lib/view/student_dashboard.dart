@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../components/common/student_drawer.dart';
 import '../components/StudentDashboard/most_important_data.dart';
 import '../components/StudentDashboard/most_recent_data.dart';
-import '../components/common/student_app_bar.dart';
+import '../components/common/app_bar_widget.dart';
 import '../components/StudentDashboard/post_widget.dart';
 import '../components/common/student_bottom_bar.dart';
 
@@ -23,7 +23,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: StudentAppBar(),
+      appBar: AppBarWidget("Student Feed"),
       drawer: StudentDrawer(),
       bottomNavigationBar: StudentBottomBar(),
       body: SingleChildScrollView(
