@@ -40,25 +40,25 @@ class _LandingPageState extends State<LandingPage> {
               ),
               items: [
                 CarouselItem(
-                  imageURL: 'images/landing_page_image1.png',
+                  imageURL: 'assets/images/landing_page_image1.png',
                   heading: "Student Progress",
                   description:
                       "Student and teacher can easily interact with each other and get update in a instant.",
                 ),
                 CarouselItem(
-                  imageURL: 'images/landing_page_image2.png',
+                  imageURL: 'assets/images/landing_page_image2.png',
                   heading: "Student Teacher Collaboration",
                   description:
                       "Student and teacher can easily interact with each  other and get update in a instant.",
                 ),
                 CarouselItem(
-                  imageURL: 'images/landing_page_image3.png',
+                  imageURL: 'assets/images/landing_page_image3.png',
                   heading: "Student Feed",
                   description:
                       "Student and teacher can easily interact with each other and get update in a instant.",
                 ),
                 CarouselItem(
-                  imageURL: 'images/landing_page_image4.png',
+                  imageURL: 'assets/images/landing_page_image4.png',
                   heading: "Student Teacher Interaction",
                   description:
                       "Student and teacher can easily interact with each other and get update in a instant.",

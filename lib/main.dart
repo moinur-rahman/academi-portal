@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import './view/landing_page.dart';
 import './view/sign_in_page.dart';
@@ -11,25 +11,8 @@ import './view/create_account_section.dart';
 import './view/teacher_list.dart';
 
 void main() async {
-  await initHiveForFlutter();
-  final HttpLink httpLink = HttpLink(
-    'http://10.0.3.2:5000/graphql',
-  );
-
-  ValueNotifier<GraphQLClient> client = ValueNotifier(
-    GraphQLClient(
-      link: httpLink,
-      // The default store is the InMemoryStore, which does NOT persist to disk
-      cache: GraphQLCache(store: HiveStore()),
-    ),
-  );
-
-  var app = GraphQLProvider(
-    client: client,
-    child: App(),
-  );
-
-  runApp(app);
+  await dotenv.load(fileName: "assets/config/dev.env");
+  runApp(App());
 }
 
 class App extends StatelessWidget {

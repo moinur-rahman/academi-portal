@@ -1,30 +1,10 @@
+import 'package:academi_portal/models/student.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../view/student_dashboard.dart';
 import './terms_conditions_section.dart';
-import './Sign_Up_Alert.dart';
-
-String createUser = """
-  mutation CreateUser(
-  \$email: String!
-  \$name: String!
-  \$password: String!
-  \$ID: Int!
-  \$department: String!
-  \$section: String!
-) {
-  createUser(
-    email: \$email
-    name: \$name
-    password: \$password
-    ID: \$ID
-    department: \$department
-    section: \$section
-  ) {
-    email
-  }
-}
-""";
+import '../../graphql/student_request.dart';
 
 class InputSection extends StatefulWidget {
   @override
@@ -34,29 +14,18 @@ class InputSection extends StatefulWidget {
 }
 
 class _InputSectionState extends State<InputSection> {
-  final List<String> _departments = const <String>['CSE', 'EEE', 'ME', 'Civil'];
-  final List<String> _section = const <String>['A', 'B', 'C'];
-  String? _departmentValue, _sectionValue;
-
-  Map<String?, dynamic> data = {
-    "email": String,
-    "name": String,
-    "password": String,
-    "repeatPassword": String,
-    "ID": num,
-    "department": String,
-    "section": String,
-  };
-
-  void _updateValue(String name, var value) {
-    setState(() {
-      data[name] = value;
-    });
-  }
+  final List<String> _departmentsList = const <String>[
+    'CSE',
+    'EEE',
+    'ME',
+    'Civil'
+  ];
+  final List<String> _sectionList = const <String>['A', 'B', 'C'];
+  String? _email, _name, _password, _repeatPassword, _department, _section;
+  int? _ID;
 
   @override
   Widget build(BuildContext context) {
-    
     return SizedBox(
       width: 340,
       height: 650,
@@ -72,8 +41,8 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
-            onChanged: (value) {
-              _updateValue("email", value);
+            onChanged: (String value) {
+              _email = value;
             },
           ),
           TextFormField(
@@ -85,8 +54,8 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
-            onChanged: (value) {
-              _updateValue("name", value);
+            onChanged: (String value) {
+              _name = value;
             },
           ),
           TextFormField(
@@ -98,8 +67,8 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
-            onChanged: (value) {
-              _updateValue("password", value);
+            onChanged: (String value) {
+              _password = value;
             },
           ),
           TextFormField(
@@ -111,8 +80,8 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
-            onChanged: (value) {
-              _updateValue("repeatPassword", value);
+            onChanged: (String value) {
+              _repeatPassword = value;
             },
           ),
           TextFormField(
@@ -124,8 +93,10 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
+            keyboardType: TextInputType.name,
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             onChanged: (value) {
-              _updateValue("ID", value);
+              _ID = int.parse(value);
             },
           ),
           SizedBox(
@@ -141,17 +112,18 @@ class _InputSectionState extends State<InputSection> {
                 ),
                 DropdownButton(
                   hint: Text("Select Department"),
-                  items: _departments
+                  items: _departmentsList
                       .map<DropdownMenuItem<String>>((String department) {
                     return DropdownMenuItem<String>(
                       child: Text(department),
                       value: department,
                     );
                   }).toList(),
-                  value: _departmentValue,
+                  value: _department,
                   onChanged: (value) {
-                    _updateValue("department", value);
-                    _departmentValue = value;
+                    setState(() {
+                      _department = value;
+                    });
                   },
                 ),
               ],
@@ -170,17 +142,18 @@ class _InputSectionState extends State<InputSection> {
                 ),
                 DropdownButton(
                   hint: Text("Select Section"),
-                  items: _section
+                  items: _sectionList
                       .map<DropdownMenuItem<String>>((String department) {
                     return DropdownMenuItem<String>(
                       child: Text(department),
                       value: department,
                     );
                   }).toList(),
-                  value: _sectionValue,
+                  value: _section,
                   onChanged: (value) {
-                    _updateValue("section", value);
-                    _sectionValue = value;
+                    setState(() {
+                      _section = value;
+                    });
                   },
                 ),
               ],
@@ -191,12 +164,19 @@ class _InputSectionState extends State<InputSection> {
             width: 200,
             height: 50,
             child: OutlinedButton(
-              onPressed: () {
-                
-                // Navigator.pushReplacementNamed(
-                //   context,
-                //   StudentDashboard.routeName,
-                // )
+              onPressed: () async {
+                // String status = await StudentRequest().createUser(
+                //   Student(
+                //       email: _email,
+                //       name: _name,
+                //       password: _password,
+                //       ID: _ID,
+                //       department: _department,
+                //       section: _section),
+                // );
+                // if (status == 'Success') {
+                Navigator.pushNamed(context, StudentDashboard.routeName);
+                // }
               },
               child: Text(
                 "Create Account",

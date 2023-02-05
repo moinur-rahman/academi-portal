@@ -20,7 +20,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         onPressed: () => Scaffold.of(context).openDrawer(),
         icon: Image(
-          image: AssetImage('images/profile_avatar.png'),
+          image: AssetImage('assets/images/profile_avatar.png'),
           width: 40,
           height: 40,
         ),

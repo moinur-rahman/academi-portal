@@ -16,7 +16,7 @@ class StudentDrawer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Image(
-                    image: AssetImage('images/profile_avatar.png'),
+                    image: AssetImage('assets/images/profile_avatar.png'),
                     width: 60,
                     height: 60,
                   ),
