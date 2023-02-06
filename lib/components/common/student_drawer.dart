@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import './drawer_button.dart';
 import '../../view/student_dashboard.dart';
 import '../../view/student_result.dart';
+import '../../view/student_profile.dart';
 
 class StudentDrawer extends StatelessWidget {
   @override
@@ -54,7 +55,7 @@ class StudentDrawer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  height: 320,
+                  height: 340,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -93,6 +94,12 @@ class StudentDrawer extends StatelessWidget {
                         buttonName: "Notification",
                         color: 0xFF000000,
                         routeName: '',
+                      ),
+                      DrawerButton(
+                        icon: 0xefed,
+                        buttonName: "Profile",
+                        color: 0xFF000000,
+                        routeName: StudentProfile.r,
                       ),
                     ],
                   ),

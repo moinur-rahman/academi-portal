@@ -33,7 +33,7 @@ class StudentProfileImageWithEditButton extends StatelessWidget {
                       image: DecorationImage(
                         fit: BoxFit.contain,
                         image: AssetImage(
-                          'images/student_profile.jpeg',
+                          'assimages/student_profile.jpeg',
                         ),
                       ),
                     ),
