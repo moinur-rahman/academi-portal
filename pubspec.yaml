@@ -74,6 +74,7 @@ flutter:
     - images/apple_logo.png
     - images/launcher_icon.png
     - images/profile_avatar.png
+    - images/student_profile.jpeg
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

@@ -7,6 +7,9 @@ import '../components/common/student_bottom_bar.dart';
 import '../components/StudentResult/student_result_table.dart';
 
 class StudentResult extends StatefulWidget {
+  static const routeName = '/student-result';
+
+  const StudentResult({super.key});
   @override
   State<StatefulWidget> createState() {
     return _StudentResultState();
@@ -14,11 +17,10 @@ class StudentResult extends StatefulWidget {
 }
 
 class _StudentResultState extends State<StudentResult> {
-  static const routeName = '/student-result';
-
   final List<String> _terms = const ['1', '2', '3', '4'];
   final List<String> _levels = const ['1', '2', '3', '4'];
-  String? _dropdownValue;
+  String? _dropdownTermValue;
+  String? _dropdownLevelValue;
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +65,9 @@ class _StudentResultState extends State<StudentResult> {
                           [Color(0xff349053)],
                           [Color(0xff349053)]
                         ],
-                        onToggle: (index) {
-                          print('switched to: $index');
-                        },
+                        // onToggle: (index) {
+                        //   print('switched to: $index');
+                        // },
                       ),
                     ],
                   ),
@@ -76,63 +78,61 @@ class _StudentResultState extends State<StudentResult> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Container(
-                      child: Column(
-                        children: [
-                          Text(
-                            'Term',
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w700),
-                          ),
-                          DropdownButton(
-                            hint: const Text("Term"),
-                            items: _terms
-                                .map<DropdownMenuItem<String>>((String term) {
-                              return DropdownMenuItem<String>(
-                                child: Text(
-                                  term,
-                                ),
-                                value: term,
-                              );
-                            }).toList(),
-                            value: _dropdownValue,
-                            onChanged: (String? value) {
-                              setState(() {
-                                _dropdownValue = value;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
+                    Column(
+                      children: [
+                        const Text(
+                          'Term',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w700),
+                        ),
+                        DropdownButton(
+                          hint: const Text("Term"),
+                          items: _terms
+                              .map<DropdownMenuItem<String>>((String term) {
+                            return DropdownMenuItem<String>(
+                              // ignore: sort_child_properties_last
+                              child: Text(
+                                term,
+                              ),
+                              value: term,
+                            );
+                          }).toList(),
+                          value: _dropdownTermValue,
+                          onChanged: (String? value) {
+                            setState(() {
+                              _dropdownTermValue = value;
+                            });
+                          },
+                        ),
+                      ],
                     ),
-                    Container(
-                      child: Column(
-                        children: [
-                          Text(
-                            'Level',
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w700),
-                          ),
-                          DropdownButton(
-                            hint: const Text("Level"),
-                            items: _levels
-                                .map<DropdownMenuItem<String>>((String level) {
-                              return DropdownMenuItem<String>(
-                                child: Text(
-                                  level,
-                                ),
-                                value: level,
-                              );
-                            }).toList(),
-                            value: _dropdownValue,
-                            onChanged: (String? value) {
-                              setState(() {
-                                _dropdownValue = value;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
+                    Column(
+                      children: [
+                        const Text(
+                          'Level',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w700),
+                        ),
+                        DropdownButton(
+                          hint: const Text("Level"),
+                          items: _levels
+                              .map<DropdownMenuItem<String>>((String level) {
+                            return DropdownMenuItem<String>(
+                              // ignore: sort_child_properties_last
+                              child: Text(
+                                level,
+                              ),
+                              value: level,
+                            );
+                          }).toList(),
+                          value: _dropdownLevelValue,
+                          onChanged: (String? value) {
+                            setState(() {
+                              _dropdownLevelValue = value;
+                            });
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
