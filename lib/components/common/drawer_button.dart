@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 
 class DrawerButton extends StatelessWidget {
-  final String buttonName;
+  final String buttonName, routeName;
   final int icon;
   final int color;
-  DrawerButton({required this.icon, required this.buttonName,required this.color});
+  DrawerButton({
+    required this.icon,
+    required this.buttonName,
+    required this.color,
+    required this.routeName,
+  });
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => {},
+      onPressed: () => {Navigator.pushNamed(context, routeName)},
       child: Container(
         width: 200,
         child: Row(

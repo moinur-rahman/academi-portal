@@ -8,8 +8,6 @@ import '../components/StudentResult/student_result_table.dart';
 
 class StudentResult extends StatefulWidget {
   static const routeName = '/student-result';
-
-  const StudentResult({super.key});
   @override
   State<StatefulWidget> createState() {
     return _StudentResultState();
