@@ -9,11 +9,11 @@ class StudentRequest {
   GraphQLClient? client;
   AcademiPortalApi helper = AcademiPortalApi();
 
-  Future<String> getUsers() async {
+  Future<String> getAllStudents() async {
     client ??= helper.getClient();
     Map<String, dynamic>? response;
     try {
-      response = await helper.runQuery(client!, Queries.getAllUsers);
+      response = await helper.runQuery(client!, Queries.getAllStudents);
       print(response);
     } catch (e) {
       return e.toString();
@@ -25,7 +25,7 @@ class StudentRequest {
     return 'Success';
   }
 
-  Future<String> createUser(Student student) async {
+  Future<String> createStudent(Student student) async {
     client ??= helper.getClient();
     Map<String, dynamic> variables = {
       'email': student.email,
@@ -39,7 +39,7 @@ class StudentRequest {
     Map<String, dynamic>? response;
     try {
       response =
-          await helper.runMutation(client!, Mutations.createUser, variables);
+          await helper.runMutation(client!, Mutations.createStudent, variables);
     } catch (e) {
       return e.toString();
     }

@@ -165,18 +165,18 @@ class _InputSectionState extends State<InputSection> {
             height: 50,
             child: OutlinedButton(
               onPressed: () async {
-                // String status = await StudentRequest().createUser(
-                //   Student(
-                //       email: _email,
-                //       name: _name,
-                //       password: _password,
-                //       ID: _ID,
-                //       department: _department,
-                //       section: _section),
-                // );
-                // if (status == 'Success') {
-                Navigator.pushNamed(context, StudentDashboard.routeName);
-                // }
+                String status = await StudentRequest().createStudent(
+                  Student(
+                      email: _email,
+                      name: _name,
+                      password: _password,
+                      ID: _ID,
+                      department: _department,
+                      section: _section),
+                );
+                if (status == 'Success') {
+                  Navigator.pushNamed(context, StudentDashboard.routeName);
+                }
               },
               child: Text(
                 "Create Account",

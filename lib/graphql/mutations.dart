@@ -1,6 +1,6 @@
 class Mutations {
-  static String createUser = """
-  mutation CreateUser(
+  static String createStudent = """
+  mutation CreateStudent(
   \$email: String!
   \$name: String!
   \$password: String!
@@ -8,13 +8,30 @@ class Mutations {
   \$department: String!
   \$section: String!
 ) {
-  createUser(
+  createStudent(
     email: \$email
     name: \$name
     password: \$password
     ID: \$ID
     department: \$department
     section: \$section
+  ) {
+    email
+  }
+}
+""";
+  static String createTeacher = """
+  mutation CreateTeacher(
+  \$email: String!
+  \$name: String!
+  \$password: String!
+  \$department: String!
+) {
+  createTeacher(
+    email: \$email
+    name: \$name
+    password: \$password 
+    department: \$department
   ) {
     email
   }

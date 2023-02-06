@@ -1,6 +1,6 @@
 class Queries {
-  static String getAllUsers = """
-query GetAllUsers{
+  static String getAllStudents = """
+query GetAllStudents{
   getAllUsers{
     email
   }
