@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import './drawer_button.dart';
+import '../../view/student_dashboard.dart';
+import '../../view/student_result.dart';
 
 class StudentDrawer extends StatelessWidget {
   @override
@@ -16,7 +18,7 @@ class StudentDrawer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Image(
-                    image: AssetImage('images/profile_avatar.png'),
+                    image: AssetImage('assets/images/profile_avatar.png'),
                     width: 60,
                     height: 60,
                   ),
@@ -57,29 +59,41 @@ class StudentDrawer extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       DrawerButton(
-                          icon: 0xe1b1,
-                          buttonName: "Dashboard",
-                          color: 0xFF000000),
+                        icon: 0xe1b1,
+                        buttonName: "Dashboard",
+                        color: 0xFF000000,
+                        routeName: StudentDashboard.routeName,
+                      ),
                       DrawerButton(
-                          icon: 0xf85d,
-                          buttonName: "My Result",
-                          color: 0xFF000000),
+                        icon: 0xf85d,
+                        buttonName: "My Result",
+                        color: 0xFF000000,
+                        routeName: StudentResult.routeName,
+                      ),
                       DrawerButton(
-                          icon: 0xe491,
-                          buttonName: "My Supervisor",
-                          color: 0xFF000000),
+                        icon: 0xe491,
+                        buttonName: "My Supervisor",
+                        color: 0xFF000000,
+                        routeName: '',
+                      ),
                       DrawerButton(
-                          icon: 0xe491,
-                          buttonName: "My Course Teacher",
-                          color: 0xFF000000),
+                        icon: 0xe491,
+                        buttonName: "My Course Teacher",
+                        color: 0xFF000000,
+                        routeName: '',
+                      ),
                       DrawerButton(
-                          icon: 0xe2eb,
-                          buttonName: "Meeting",
-                          color: 0xFF000000),
+                        icon: 0xe2eb,
+                        buttonName: "Meeting",
+                        color: 0xFF000000,
+                        routeName: '',
+                      ),
                       DrawerButton(
-                          icon: 0xefed,
-                          buttonName: "Notification",
-                          color: 0xFF000000),
+                        icon: 0xefed,
+                        buttonName: "Notification",
+                        color: 0xFF000000,
+                        routeName: '',
+                      ),
                     ],
                   ),
                 ),
@@ -92,17 +106,23 @@ class StudentDrawer extends StatelessWidget {
                         thickness: 1,
                       ),
                       DrawerButton(
-                          icon: 0xe302,
-                          buttonName: "Help & Support",
-                          color: 0xFF000000),
+                        icon: 0xe302,
+                        buttonName: "Help & Support",
+                        color: 0xFF000000,
+                        routeName: '',
+                      ),
                       DrawerButton(
-                          icon: 0xe1c5,
-                          buttonName: "Developer Note",
-                          color: 0xFF000000),
+                        icon: 0xe1c5,
+                        buttonName: "Developer Note",
+                        color: 0xFF000000,
+                        routeName: '',
+                      ),
                       DrawerButton(
-                          icon: 0xe243,
-                          buttonName: "Log out",
-                          color: 0xFFFF0000),
+                        icon: 0xe243,
+                        buttonName: "Log out",
+                        color: 0xFFFF0000,
+                        routeName: '',
+                      ),
                     ],
                   ),
                 ),

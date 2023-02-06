@@ -14,7 +14,7 @@ class LogoButtonSection extends StatelessWidget {
             ),
             onPressed: () {},
             child: Image(
-              image: AssetImage('images/fb_logo.png'),
+              image: AssetImage('assets/images/fb_logo.png'),
               width: 50,
               height: 50,
               fit: BoxFit.cover,
@@ -27,7 +27,7 @@ class LogoButtonSection extends StatelessWidget {
             ),
             onPressed: () {},
             child: Image(
-              image: AssetImage('images/google_logo.png'),
+              image: AssetImage('assets/images/google_logo.png'),
               width: 50,
               height: 50,
               fit: BoxFit.cover,
@@ -40,7 +40,7 @@ class LogoButtonSection extends StatelessWidget {
             ),
             onPressed: () {},
             child: Image(
-              image: AssetImage('images/apple_logo.png'),
+              image: AssetImage('assets/images/apple_logo.png'),
               width: 50,
               height: 50,
               fit: BoxFit.cover,

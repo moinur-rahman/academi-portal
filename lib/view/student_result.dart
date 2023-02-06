@@ -7,6 +7,7 @@ import '../components/common/student_bottom_bar.dart';
 import '../components/StudentResult/student_result_table.dart';
 
 class StudentResult extends StatefulWidget {
+  static const routeName = '/student-result';
   @override
   State<StatefulWidget> createState() {
     return _StudentResultState();
@@ -14,8 +15,6 @@ class StudentResult extends StatefulWidget {
 }
 
 class _StudentResultState extends State<StudentResult> {
-  static const routeName = '/student-result';
-
   final List<String> _terms = const ['1', '2', '3', '4'];
   final List<String> _levels = const ['1', '2', '3', '4'];
   String? _dropdownValue;

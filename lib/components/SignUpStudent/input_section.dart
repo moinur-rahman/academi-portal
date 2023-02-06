@@ -1,7 +1,10 @@
+import 'package:academi_portal/models/student.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../view/student_dashboard.dart';
 import './terms_conditions_section.dart';
+import '../../graphql/student_request.dart';
 
 class InputSection extends StatefulWidget {
   @override
@@ -11,9 +14,16 @@ class InputSection extends StatefulWidget {
 }
 
 class _InputSectionState extends State<InputSection> {
-  final List<String> _departments = const <String>['CSE', 'EEE', 'ME', 'Civil'];
-  final List<String> _section = const <String>['A', 'B', 'C'];
-  String? _departmentValue, _sectionValue;
+  final List<String> _departmentsList = const <String>[
+    'CSE',
+    'EEE',
+    'ME',
+    'Civil'
+  ];
+  final List<String> _sectionList = const <String>['A', 'B', 'C'];
+  String? _email, _name, _password, _repeatPassword, _department, _section;
+  int? _ID;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -31,6 +41,9 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
+            onChanged: (String value) {
+              _email = value;
+            },
           ),
           TextFormField(
             decoration: InputDecoration(
@@ -41,6 +54,9 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
+            onChanged: (String value) {
+              _name = value;
+            },
           ),
           TextFormField(
             decoration: InputDecoration(
@@ -51,6 +67,9 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
+            onChanged: (String value) {
+              _password = value;
+            },
           ),
           TextFormField(
             decoration: InputDecoration(
@@ -61,6 +80,9 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
+            onChanged: (String value) {
+              _repeatPassword = value;
+            },
           ),
           TextFormField(
             decoration: InputDecoration(
@@ -71,6 +93,11 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
+            keyboardType: TextInputType.name,
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            onChanged: (value) {
+              _ID = int.parse(value);
+            },
           ),
           SizedBox(
             width: 340,
@@ -85,17 +112,17 @@ class _InputSectionState extends State<InputSection> {
                 ),
                 DropdownButton(
                   hint: Text("Select Department"),
-                  items: _departments
+                  items: _departmentsList
                       .map<DropdownMenuItem<String>>((String department) {
                     return DropdownMenuItem<String>(
                       child: Text(department),
                       value: department,
                     );
                   }).toList(),
-                  value: _departmentValue,
-                  onChanged: (String? value) {
+                  value: _department,
+                  onChanged: (value) {
                     setState(() {
-                      _departmentValue = value;
+                      _department = value;
                     });
                   },
                 ),
@@ -115,17 +142,17 @@ class _InputSectionState extends State<InputSection> {
                 ),
                 DropdownButton(
                   hint: Text("Select Section"),
-                  items: _section
+                  items: _sectionList
                       .map<DropdownMenuItem<String>>((String department) {
                     return DropdownMenuItem<String>(
                       child: Text(department),
                       value: department,
                     );
                   }).toList(),
-                  value: _sectionValue,
-                  onChanged: (String? value) {
+                  value: _section,
+                  onChanged: (value) {
                     setState(() {
-                      _sectionValue = value;
+                      _section = value;
                     });
                   },
                 ),
@@ -137,11 +164,19 @@ class _InputSectionState extends State<InputSection> {
             width: 200,
             height: 50,
             child: OutlinedButton(
-              onPressed: () => {
-                Navigator.pushReplacementNamed(
-                  context,
-                  StudentDashboard.routeName,
-                )
+              onPressed: () async {
+                String status = await StudentRequest().createStudent(
+                  Student(
+                      email: _email,
+                      name: _name,
+                      password: _password,
+                      ID: _ID,
+                      department: _department,
+                      section: _section),
+                );
+                if (status == 'Success') {
+                  Navigator.pushNamed(context, StudentDashboard.routeName);
+                }
               },
               child: Text(
                 "Create Account",
@@ -155,7 +190,7 @@ class _InputSectionState extends State<InputSection> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20))),
             ),
-          )
+          ),
         ],
       ),
     );
