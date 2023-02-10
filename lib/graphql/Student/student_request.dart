@@ -1,9 +1,9 @@
 import 'package:graphql/client.dart';
 
-import '../../api/academi_portal_api.dart';
-import './queries.dart';
-import './mutations.dart';
-import '../models/student.dart';
+import '../../../api/academi_portal_api.dart';
+import 'queries.dart';
+import 'mutations.dart';
+import '../../models/student.dart';
 
 class StudentRequest {
   GraphQLClient? client;
@@ -31,7 +31,7 @@ class StudentRequest {
       'email': student.email,
       'name': student.name,
       'password': student.password,
-      'ID': student.ID,
+      'ID': student.id,
       'department': student.department,
       'section': student.section
     };

@@ -1,9 +1,8 @@
 import 'package:graphql/client.dart';
 
-import '../../api/academi_portal_api.dart';
-import './queries.dart';
+import '../../../api/academi_portal_api.dart';
 import './mutations.dart';
-import '../models/teacher.dart';
+import '../../models/teacher.dart';
 
 class TeacherRequest {
   GraphQLClient? client;

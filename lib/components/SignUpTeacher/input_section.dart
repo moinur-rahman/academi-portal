@@ -1,9 +1,10 @@
-import '../../graphql/teacher_request.dart';
-import '../../models/teacher.dart';
 import 'package:flutter/material.dart';
 
 import './terms_conditions_section.dart';
 import '../../view/teacher_dashboard.dart';
+
+import '../../models/teacher.dart';
+import '../../graphql/Teacher/teacher_request.dart';
 
 class InputSection extends StatefulWidget {
   @override
@@ -20,13 +21,13 @@ class _InputSectionState extends State<InputSection> {
     'Civil'
   ];
 
-  String? _email, _name, _password, _repeatPassword, _department;
+  String? _email, _name, _password, _repeatPassword, _department,_phone;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 340,
-      height: 500,
+      height: 550,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -73,6 +74,17 @@ class _InputSectionState extends State<InputSection> {
               ),
             ),
             onChanged: (String value) => {_repeatPassword = value},
+          ),
+          TextFormField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Phone Number',
+              prefixIcon: Icon(
+                Icons.phone,
+                color: Colors.grey,
+              ),
+            ),
+            onChanged: (String value) => {_phone = value},
           ),
           SizedBox(
             width: 340,

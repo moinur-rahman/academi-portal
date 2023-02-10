@@ -4,48 +4,59 @@ import './drawer_button.dart';
 import '../../view/student_dashboard.dart';
 import '../../view/student_result.dart';
 import '../../view/student_profile.dart';
+import '../../view/teacher_list.dart';
 
 class StudentDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      width: 230,
+      width: 260,
       child: Column(
         children: [
           SizedBox(
-            height: 140,
+            height: 160,
+            width: 260,
             child: DrawerHeader(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Image(
-                    image: AssetImage('assets/images/profile_avatar.png'),
-                    width: 60,
-                    height: 60,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SizedBox(
-                        width: 130,
-                        child: Text(
-                          "Moinur Rahman",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+              child: OutlinedButton(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Image(
+                      image: AssetImage('assets/images/profile_avatar.png'),
+                      width: 60,
+                      height: 60,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(
+                          width: 130,
+                          child: Text(
+                            "Moinur Rahman",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 130,
-                        child: Text(
-                          "Student",
-                          textAlign: TextAlign.left,
+                        SizedBox(
+                          width: 130,
+                          child: Text(
+                            "Student",
+                            textAlign: TextAlign.left,
+                          ),
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                      ],
+                    )
+                  ],
+                ),
+                style: OutlinedButton.styleFrom(
+                  side: BorderSide(color: Colors.transparent),
+                  foregroundColor: Colors.black,
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, StudentProfile.routeName);
+                },
               ),
             ),
           ),
@@ -81,7 +92,7 @@ class StudentDrawer extends StatelessWidget {
                         icon: 0xe491,
                         buttonName: "My Course Teacher",
                         color: 0xFF000000,
-                        routeName: '',
+                        routeName: TeacherList.routeName,
                       ),
                       DrawerButton(
                         icon: 0xe2eb,
@@ -94,12 +105,6 @@ class StudentDrawer extends StatelessWidget {
                         buttonName: "Notification",
                         color: 0xFF000000,
                         routeName: '',
-                      ),
-                      DrawerButton(
-                        icon: 0xefed,
-                        buttonName: "Profile",
-                        color: 0xFF000000,
-                        routeName: StudentProfile.r,
                       ),
                     ],
                   ),

@@ -1,4 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+
+import '../../view/student_dashboard.dart';
+import '../../api/shared_preferences.dart';
+
+import '../../models/user.dart';
+import '../../graphql/user_login.dart';
 
 class InputSection extends StatefulWidget {
   @override
@@ -8,6 +16,8 @@ class InputSection extends StatefulWidget {
 }
 
 class _InputSectionState extends State<InputSection> {
+  String? _email, _password;
+
   bool isChecked = false;
   @override
   Widget build(BuildContext context) {
@@ -26,6 +36,9 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
+            onChanged: ((String? value) {
+              _email = value;
+            }),
           ),
           TextFormField(
             decoration: InputDecoration(
@@ -36,6 +49,9 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
+            onChanged: ((String? value) {
+              _password = value;
+            }),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,7 +89,13 @@ class _InputSectionState extends State<InputSection> {
             width: 150,
             height: 50,
             child: OutlinedButton(
-              onPressed: () {},
+              onPressed: () async {
+                // String status = await UserLogin().login(User(
+                //   email: _email,
+                //   password: _password,
+                // ));
+                Navigator.pushNamed(context, StudentDashboard.routeName);
+              },
               child: Text(
                 "Sign In",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),

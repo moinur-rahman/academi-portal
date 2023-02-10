@@ -10,9 +10,12 @@ class TeacherList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBarWidget("Student Feed"),
+      appBar: AppBarWidget("Respective Teacher"),
       drawer: StudentDrawer(),
       bottomNavigationBar: StudentBottomBar(),
+      body: Container(
+        
+      ),
     );
   }
 }

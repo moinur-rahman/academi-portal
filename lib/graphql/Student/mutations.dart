@@ -4,7 +4,7 @@ class Mutations {
   \$email: String!
   \$name: String!
   \$password: String!
-  \$ID: Int!
+  \$id: Int!
   \$department: String!
   \$section: String!
 ) {
@@ -12,7 +12,7 @@ class Mutations {
     email: \$email
     name: \$name
     password: \$password
-    ID: \$ID
+    id: \$id
     department: \$department
     section: \$section
   ) {
@@ -20,21 +20,5 @@ class Mutations {
   }
 }
 """;
-  static String createTeacher = """
-  mutation CreateTeacher(
-  \$email: String!
-  \$name: String!
-  \$password: String!
-  \$department: String!
-) {
-  createTeacher(
-    email: \$email
-    name: \$name
-    password: \$password 
-    department: \$department
-  ) {
-    email
-  }
-}
-""";
+
 }

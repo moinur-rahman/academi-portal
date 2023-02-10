@@ -1,10 +1,11 @@
-import 'package:academi_portal/models/student.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../view/student_dashboard.dart';
 import './terms_conditions_section.dart';
-import '../../graphql/student_request.dart';
+
+import '../../models/student.dart';
+import '../../graphql/Student/student_request.dart';
 
 class InputSection extends StatefulWidget {
   @override
@@ -21,14 +22,20 @@ class _InputSectionState extends State<InputSection> {
     'Civil'
   ];
   final List<String> _sectionList = const <String>['A', 'B', 'C'];
-  String? _email, _name, _password, _repeatPassword, _department, _section;
-  int? _ID;
+  String? _email,
+      _name,
+      _password,
+      _repeatPassword,
+      _department,
+      _section,
+      _phone;
+  int? _id;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 340,
-      height: 650,
+      height: 690,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -87,6 +94,19 @@ class _InputSectionState extends State<InputSection> {
           TextFormField(
             decoration: InputDecoration(
               border: OutlineInputBorder(),
+              labelText: 'Phone Number',
+              prefixIcon: Icon(
+                Icons.phone,
+                color: Colors.grey,
+              ),
+            ),
+            onChanged: (String value) {
+              _phone = value;
+            },
+          ),
+          TextFormField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
               labelText: 'ID (e.g. 1704037)',
               prefixIcon: Icon(
                 Icons.wallet_membership,
@@ -96,7 +116,7 @@ class _InputSectionState extends State<InputSection> {
             keyboardType: TextInputType.name,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             onChanged: (value) {
-              _ID = int.parse(value);
+              _id = int.parse(value);
             },
           ),
           SizedBox(
@@ -170,7 +190,7 @@ class _InputSectionState extends State<InputSection> {
                       email: _email,
                       name: _name,
                       password: _password,
-                      ID: _ID,
+                      id: _id,
                       department: _department,
                       section: _section),
                 );
