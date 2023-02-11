@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../components/common/student_drawer.dart';
-import '../components/StudentDashboard/most_important_data.dart';
-import '../components/StudentDashboard/most_recent_data.dart';
-import '../components/common/app_bar_widget.dart';
-import '../components/StudentDashboard/post_widget.dart';
 import '../components/common/student_bottom_bar.dart';
+import '../components/common/app_bar_widget.dart';
+import '../components/StudentDashboard/data.dart';
+import '../components/StudentDashboard/post_widget.dart';
 
 class StudentDashboard extends StatefulWidget {
   static const routeName = '/student-dashboard';

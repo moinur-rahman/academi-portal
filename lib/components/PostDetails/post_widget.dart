@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../models/post.dart';
 
 class PostWidget extends StatelessWidget {
-  final args;
+  final Post args;
 
   PostWidget(this.args);
 

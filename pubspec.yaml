@@ -78,6 +78,9 @@ flutter:
     - assets/images/launcher_icon.png
     - assets/images/profile_avatar.png
     - assets/images/student_profile.jpeg
+    - assets/images/saki_sir.png
+    - assets/images/asad_sir.png
+    - assets/images/tahmina_madam.png
     - assets/config/dev.env
   # To add assets to your application, add an assets section, like this:
   # assets:

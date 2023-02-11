@@ -86,7 +86,7 @@ class StudentDrawer extends StatelessWidget {
                         icon: 0xe491,
                         buttonName: "My Supervisor",
                         color: 0xFF000000,
-                        routeName: '',
+                        routeName: TeacherList.routeName,
                       ),
                       DrawerButton(
                         icon: 0xe491,

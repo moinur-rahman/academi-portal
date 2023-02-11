@@ -6,8 +6,11 @@ import '../../models/post.dart';
 class PostWidget extends StatelessWidget {
   final String heading, createdAt, text;
 
-  PostWidget(
-      {required this.heading, required this.createdAt, required this.text});
+  PostWidget({
+    required this.heading,
+    required this.createdAt,
+    required this.text,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +21,11 @@ class PostWidget extends StatelessWidget {
               Navigator.pushNamed(
                 context,
                 PostDetails.routeName,
-                arguments:
-                    Post(heading: heading, createdAt: createdAt, text: text),
+                arguments: Post(
+                  heading: heading,
+                  createdAt: createdAt,
+                  text: text,
+                ),
               ),
             }),
         style: TextButton.styleFrom(

@@ -12,6 +12,7 @@ import './view/teacher_list.dart';
 import './view/student_result.dart';
 import './view/student_profile.dart';
 import './view/teacher_dashboard.dart';
+import './view/teacher_details.dart';
 
 void main() async {
   await dotenv.load(fileName: "assets/config/dev.env");
@@ -34,8 +35,9 @@ class App extends StatelessWidget {
         PostDetails.routeName: (context) => PostDetails(),
         TeacherList.routeName: (context) => TeacherList(),
         TeacherDashboard.routeName: (context) => TeacherDashboard(),
+        TeacherDetails.routeName: (context) => TeacherDetails(),
         StudentResult.routeName: (context) => StudentResult(),
-        StudentProfile.routeName: ((context) => StudentProfile()),
+        StudentProfile.routeName: (context) => StudentProfile(),
       },
     );
   }

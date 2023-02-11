@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import '../../view/student_dashboard.dart';
+import '../../view/teacher_dashboard.dart';
 import '../../api/shared_preferences.dart';
 
 import '../../models/user.dart';
@@ -94,7 +95,7 @@ class _InputSectionState extends State<InputSection> {
                 //   email: _email,
                 //   password: _password,
                 // ));
-                Navigator.pushNamed(context, StudentDashboard.routeName);
+                Navigator.pushNamed(context, TeacherDashboard.routeName);
               },
               child: Text(
                 "Sign In",

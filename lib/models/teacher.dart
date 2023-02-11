@@ -4,9 +4,5 @@ class Teacher {
   String? password;
   String? department;
 
-  Teacher(
-      {required this.email,
-      required this.name,
-      required this.password,
-      required this.department});
+  Teacher({required this.email, this.name, this.password, this.department});
 }
