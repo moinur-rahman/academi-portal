@@ -2,8 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../components/common/app_bar_widget.dart';
 
-class TeacherDashboard extends StatelessWidget {
+class TeacherDashboard extends StatefulWidget {
   static const routeName = '/teacher-dashboard';
+
+  @override
+  State<StatefulWidget> createState() {
+    return _TeacherDashboardState();
+  }
+}
+
+class _TeacherDashboardState extends State<TeacherDashboard> {
+  String? title, description;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +55,9 @@ class TeacherDashboard extends StatelessWidget {
                           border: OutlineInputBorder(),
                           labelText: 'Title',
                         ),
-                        onChanged: ((String? value) {}),
+                        onChanged: ((String? value) {
+                          title = value;
+                        }),
                       ),
                     ),
                   ],
@@ -81,7 +93,9 @@ class TeacherDashboard extends StatelessWidget {
                           border: OutlineInputBorder(),
                           labelText: 'Description',
                         ),
-                        onChanged: ((String? value) {}),
+                        onChanged: ((String? value) {
+                          description = value;
+                        }),
                       ),
                     ),
                   ],
@@ -93,7 +107,7 @@ class TeacherDashboard extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () async {},
                   child: Text(
-                    "Sign In",
+                    "Submit",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   style: ElevatedButton.styleFrom(

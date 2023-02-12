@@ -1,3 +1,4 @@
+import 'package:academi_portal/graphql/Student/student_mutations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -5,7 +6,7 @@ import '../../view/student_dashboard.dart';
 import './terms_conditions_section.dart';
 
 import '../../models/student.dart';
-import '../../graphql/Student/student_request.dart';
+import '../../graphql/Student/student_queries.dart';
 
 class InputSection extends StatefulWidget {
   @override
@@ -29,13 +30,13 @@ class _InputSectionState extends State<InputSection> {
       _department,
       _section,
       _phone;
-  int? _id;
+  int? _studentId;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 340,
-      height: 690,
+      height: 750,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -116,7 +117,7 @@ class _InputSectionState extends State<InputSection> {
             keyboardType: TextInputType.name,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             onChanged: (value) {
-              _id = int.parse(value);
+              _studentId = int.parse(value);
             },
           ),
           SizedBox(
@@ -185,14 +186,16 @@ class _InputSectionState extends State<InputSection> {
             height: 50,
             child: OutlinedButton(
               onPressed: () async {
-                String status = await StudentRequest().createStudent(
+                String status = await StudentMutations().createStudent(
                   Student(
-                      email: _email,
-                      name: _name,
-                      password: _password,
-                      id: _id,
-                      department: _department,
-                      section: _section),
+                    email: _email,
+                    name: _name,
+                    password: _password,
+                    studentId: _studentId,
+                    department: _department,
+                    section: _section,
+                    phone: _phone,
+                  ),
                 );
                 if (status == 'Success') {
                   Navigator.pushNamed(context, StudentDashboard.routeName);

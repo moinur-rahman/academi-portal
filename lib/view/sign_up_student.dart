@@ -24,8 +24,8 @@ class SignUpStudent extends StatelessWidget {
             children: [
               HeaderSection(),
               DescriptionSection(),
-              LogoButtonSection(),
-              DividerSection(),
+              // LogoButtonSection(),
+              // DividerSection(),
               InputSection(),
             ],
           ),

@@ -26,8 +26,8 @@ class SignInPage extends StatelessWidget {
             children: [
               HeaderSection(),
               DescriptionSection(),
-              LogoButtonSection(),
-              DividerSection(),
+              // LogoButtonSection(),
+              // DividerSection(),
               InputSection(),
             ],
           ),

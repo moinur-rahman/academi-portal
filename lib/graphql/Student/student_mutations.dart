@@ -1,29 +1,14 @@
+import 'dart:convert';
+
 import 'package:graphql/client.dart';
 
 import '../../../api/academi_portal_api.dart';
-import 'queries.dart';
 import 'mutations.dart';
 import '../../models/student.dart';
 
-class StudentRequest {
+class StudentMutations {
   GraphQLClient? client;
   AcademiPortalApi helper = AcademiPortalApi();
-
-  Future<String> getAllStudents() async {
-    client ??= helper.getClient();
-    Map<String, dynamic>? response;
-    try {
-      response = await helper.runQuery(client!, Queries.getAllStudents);
-      print(response);
-    } catch (e) {
-      return e.toString();
-    }
-
-    if (response == null) {
-      return 'Query returned null';
-    }
-    return 'Success';
-  }
 
   Future<String> createStudent(Student student) async {
     client ??= helper.getClient();
@@ -31,22 +16,34 @@ class StudentRequest {
       'email': student.email,
       'name': student.name,
       'password': student.password,
-      'ID': student.id,
+      'studentId': student.studentId,
       'department': student.department,
-      'section': student.section
+      'section': student.section,
+      'phone': student.phone
     };
 
-    Map<String, dynamic>? response;
     try {
-      response =
+      Map<String, dynamic>? response =
           await helper.runMutation(client!, Mutations.createStudent, variables);
+      return jsonEncode(response);
     } catch (e) {
-      return e.toString();
-    }
-
-    if (response == null) {
       return "Failed";
     }
-    return 'Success';
+  }
+
+  Future<String> studentLogin(Student student) async {
+    client ??= helper.getClient();
+    Map<String, dynamic> variables = {
+      'email': student.email,
+      'password': student.password,
+    };
+
+    try {
+      Map<String, dynamic>? response =
+          await helper.runMutation(client!, Mutations.studentLogin, variables);
+      return jsonEncode(response);
+    } catch (e) {
+      return "Failed";
+    }
   }
 }
