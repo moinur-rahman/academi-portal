@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
 import '../../view/student_dashboard.dart';
 import '../../view/teacher_dashboard.dart';
+import '../../api/shared_preferences.dart';
 
 import '../../graphql/Teacher/teacher_mutations.dart';
 import '../../graphql/Student/student_mutations.dart';
@@ -134,7 +134,6 @@ class _InputSectionState extends State<InputSection> {
                     email: _email,
                     password: _password,
                   ));
-
                   if (status != 'Failed')
                     Navigator.pushNamed(context, StudentDashboard.routeName);
                 } else if (_role == UserType.Teacher) {
@@ -143,8 +142,10 @@ class _InputSectionState extends State<InputSection> {
                     password: _password,
                   ));
 
-                  if (status != 'Failed')
+                  if (status != 'Failed') {
+                    saveData("user", status);
                     Navigator.pushNamed(context, TeacherDashboard.routeName);
+                  }
                 }
               },
               child: Text(

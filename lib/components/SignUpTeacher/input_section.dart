@@ -133,8 +133,9 @@ class _InputSectionState extends State<InputSection> {
                     phone: _phone,
                   ),
                 );
-                if (status == 'Success')
+                if (status == 'Success') {
                   Navigator.pushNamed(context, TeacherDashboard.routeName);
+                }
               },
               child: Text(
                 "Create Account",

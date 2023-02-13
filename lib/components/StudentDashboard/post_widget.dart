@@ -4,12 +4,12 @@ import '../../view/post_details.dart';
 import '../../models/post.dart';
 
 class PostWidget extends StatelessWidget {
-  final String heading, createdAt, text;
+  final String title, created, description;
 
   PostWidget({
-    required this.heading,
-    required this.createdAt,
-    required this.text,
+    required this.title,
+    required this.created,
+    required this.description,
   });
 
   @override
@@ -22,9 +22,9 @@ class PostWidget extends StatelessWidget {
                 context,
                 PostDetails.routeName,
                 arguments: Post(
-                  heading: heading,
-                  createdAt: createdAt,
-                  text: text,
+                  title: title,
+                  created: created,
+                  description: description,
                 ),
               ),
             }),
@@ -41,7 +41,7 @@ class PostWidget extends StatelessWidget {
                 height: 45,
                 width: double.infinity,
                 child: Text(
-                  heading,
+                  title,
                   style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.bold,
@@ -52,7 +52,7 @@ class PostWidget extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: Text(
-                  createdAt,
+                  created,
                   style: TextStyle(
                     fontSize: 13,
                   ),
@@ -62,7 +62,7 @@ class PostWidget extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: Text(
-                  text,
+                  description,
                   style: TextStyle(
                     fontSize: 16,
                   ),

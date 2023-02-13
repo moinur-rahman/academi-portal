@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
 
 import '../components/common/app_bar_widget.dart';
+import '../api/shared_preferences.dart';
+import '../graphql/Post/post_mutations.dart';
+import '../models/post.dart';
 
 class TeacherDashboard extends StatefulWidget {
   static const routeName = '/teacher-dashboard';
@@ -12,7 +16,7 @@ class TeacherDashboard extends StatefulWidget {
 }
 
 class _TeacherDashboardState extends State<TeacherDashboard> {
-  String? title, description;
+  String? _title, _description;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +60,7 @@ class _TeacherDashboardState extends State<TeacherDashboard> {
                           labelText: 'Title',
                         ),
                         onChanged: ((String? value) {
-                          title = value;
+                          _title = value;
                         }),
                       ),
                     ),
@@ -94,7 +98,7 @@ class _TeacherDashboardState extends State<TeacherDashboard> {
                           labelText: 'Description',
                         ),
                         onChanged: ((String? value) {
-                          description = value;
+                          _description = value;
                         }),
                       ),
                     ),
@@ -105,7 +109,19 @@ class _TeacherDashboardState extends State<TeacherDashboard> {
                 width: 150,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () async {},
+                  onPressed: () async {
+                    var data = jsonDecode(await getData("user"));
+
+                    String status = await PostMutations().createPost(Post(
+                      title: _title,
+                      description: _description,
+                      teacherId: data["teacherLogin"]["id"],
+                    ));
+                    print(data["teacherLogin"]["id"]);
+                    print(status);
+                    if (status != 'Failed')
+                      Navigator.pushNamed(context, TeacherDashboard.routeName);
+                  },
                   child: Text(
                     "Submit",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
