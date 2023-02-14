@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../../view/teacher_list.dart';
 import '../../view/student_dashboard.dart';
 
-class StudentBottomBar extends StatefulWidget {
+class TeacherBottomBar extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _StudentBottomBarState();
+    return _TeacherBottomBarState();
   }
 }
 
-class _StudentBottomBarState extends State<StudentBottomBar> {
+class _TeacherBottomBarState extends State<TeacherBottomBar> {
   int _selectedIndex = 0;
 
   @override
