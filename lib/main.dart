@@ -1,3 +1,4 @@
+import 'package:academi_portal/view/create_post.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -25,17 +26,18 @@ class App extends StatelessWidget {
       // home: LandingPage(),
       initialRoute: '/',
       routes: {
-        '/': (context) => LandingPage(),
-        SignInPage.routeName: (context) => SignInPage(),
-        CreateAccount.routeName: (context) => CreateAccount(),
-        SignUpTeacher.routeName: (context) => SignUpTeacher(),
-        SignUpStudent.routeName: (context) => SignUpStudent(),
-        StudentDashboard.routeName: (context) => StudentDashboard(),
-        PostDetails.routeName: (context) => PostDetails(),
-        TeacherList.routeName: (context) => TeacherList(),
-        TeacherDashboard.routeName: (context) => TeacherDashboard(),
-        StudentResult.routeName: (context) => StudentResult(),
-        StudentProfile.routeName: ((context) => StudentProfile())
+        // '/': (context) => LandingPage(),
+        // SignInPage.routeName: (context) => SignInPage(),
+        // CreateAccount.routeName: (context) => CreateAccount(),
+        // SignUpTeacher.routeName: (context) => SignUpTeacher(),
+        // SignUpStudent.routeName: (context) => SignUpStudent(),
+        // StudentDashboard.routeName: (context) => StudentDashboard(),
+        // PostDetails.routeName: (context) => PostDetails(),
+        // TeacherList.routeName: (context) => TeacherList(),
+        // TeacherDashboard.routeName: (context) => TeacherDashboard(),
+        // StudentResult.routeName: (context) => StudentResult(),
+        // StudentProfile.routeName: (context) => StudentProfile()
+        '/': (context) => CreatePost()
       },
     );
   }
