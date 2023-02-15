@@ -99,7 +99,7 @@ class StudentDrawer extends StatelessWidget {
                         icon: 0xefed,
                         buttonName: "Profile",
                         color: 0xFF000000,
-                        routeName: StudentProfile.r,
+                        routeName: '',
                       ),
                     ],
                   ),
