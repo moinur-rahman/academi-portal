@@ -87,7 +87,7 @@ class _InputSectionState extends State<InputSection> {
                     color: Colors.green,
                   )),
             ),
-          )
+          ),
         ],
       ),
     );

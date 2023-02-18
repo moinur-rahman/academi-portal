@@ -15,15 +15,16 @@ class CreatePost extends StatelessWidget {
         child: Container(
           margin: EdgeInsets.only(left: 15, top: 20),
           width: double.infinity,
-          height: 500,
+          height: 650,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 alignment: Alignment.topLeft,
                 //margin: EdgeInsets.only(left: 15),
                 child: const Text(
                   'Title',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
               Container(
@@ -31,8 +32,8 @@ class CreatePost extends StatelessWidget {
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Provide Private Comment to the Course Teacher',
-                    hintText: 'Enter Your Name',
+                    labelText: 'Provide Post Title',
+                    hintText: 'Title Name',
                   ),
                 ),
               ),
@@ -41,7 +42,7 @@ class CreatePost extends StatelessWidget {
                 margin: EdgeInsets.only(top: 50),
                 child: const Text(
                   'Description',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
               Container(
@@ -50,10 +51,10 @@ class CreatePost extends StatelessWidget {
                   textAlign: TextAlign.start,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Provide Private Comment to the Course Teacher',
-                    hintText: 'Enter Your Name',
+                    labelText: 'Provide Post Description',
+                    hintText: 'Enter Description',
                   ),
-                  minLines: 5,
+                  minLines: 7,
                   maxLines: null,
                 ),
               ),
@@ -90,11 +91,11 @@ class CreatePost extends StatelessWidget {
                 ),
               ),
               Container(
-                alignment: Alignment.topLeft,
-                margin: EdgeInsets.only(top: 30),
+                width: 160,
+                height: 40,
+                margin: EdgeInsets.symmetric(vertical: 35),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      textStyle: const TextStyle(fontSize: 20),
                       backgroundColor: Color(0xff349053),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
@@ -103,8 +104,8 @@ class CreatePost extends StatelessWidget {
                     //Navigator.pushNamed(context, routeName)
                   },
                   child: const Text(
-                    'Submit Comment',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+                    'Post',
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
