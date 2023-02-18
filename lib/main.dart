@@ -37,7 +37,8 @@ class App extends StatelessWidget {
         // TeacherDashboard.routeName: (context) => TeacherDashboard(),
         // StudentResult.routeName: (context) => StudentResult(),
         // StudentProfile.routeName: (context) => StudentProfile()
-        '/': (context) => CreatePost()
+        // '/': (context) => CreatePost()
+        '/': (context) => PostDetails()
       },
     );
   }

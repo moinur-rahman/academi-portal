@@ -5,7 +5,15 @@ class Attachment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 100,
-      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+      decoration: const BoxDecoration(
+        border: Border.symmetric(
+          horizontal: BorderSide(
+              width: 2,
+              color: Color(0xffDBDBDB),
+              style: BorderStyle.solid), //BorderSide
+        ),
+      ),
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -23,9 +31,7 @@ class Attachment extends StatelessWidget {
             child: Row(children: [
               Icon(Icons.attachment),
               Text("2023-01-ct-result.pdf (552KB)",
-                  style: TextStyle(
-                    fontSize: 15,
-                  )),
+                  style: TextStyle(fontSize: 15, color: Color(0xff349053))),
             ]),
           )
         ],
