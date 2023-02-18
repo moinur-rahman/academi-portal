@@ -1,9 +1,10 @@
-import '../../graphql/teacher_request.dart';
-import '../../models/teacher.dart';
 import 'package:flutter/material.dart';
 
 import './terms_conditions_section.dart';
 import '../../view/teacher_dashboard.dart';
+
+import '../../models/teacher.dart';
+import '../../graphql/Teacher/teacher_mutations.dart';
 
 class InputSection extends StatefulWidget {
   @override
@@ -20,13 +21,13 @@ class _InputSectionState extends State<InputSection> {
     'Civil'
   ];
 
-  String? _email, _name, _password, _repeatPassword, _department;
+  String? _email, _name, _password, _repeatPassword, _department, _phone;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 340,
-      height: 500,
+      height: 620,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -74,6 +75,19 @@ class _InputSectionState extends State<InputSection> {
             ),
             onChanged: (String value) => {_repeatPassword = value},
           ),
+          TextFormField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Phone Number',
+              prefixIcon: Icon(
+                Icons.phone,
+                color: Colors.grey,
+              ),
+            ),
+            onChanged: (String value) => {
+              _phone = value,
+            },
+          ),
           SizedBox(
             width: 340,
             child: Row(
@@ -110,15 +124,18 @@ class _InputSectionState extends State<InputSection> {
             height: 50,
             child: OutlinedButton(
               onPressed: () async {
-                String status = await TeacherRequest().createTeacher(
+                String status = await TeacherMutations().createTeacher(
                   Teacher(
-                      email: _email,
-                      name: _name,
-                      password: _password,
-                      department: _department),
+                    email: _email,
+                    name: _name,
+                    password: _password,
+                    department: _department,
+                    phone: _phone,
+                  ),
                 );
-                if (status == 'Success')
+                if (status == 'Success') {
                   Navigator.pushNamed(context, TeacherDashboard.routeName);
+                }
               },
               child: Text(
                 "Create Account",

@@ -6,7 +6,7 @@ import '../../view/student_result.dart';
 import '../../view/student_profile.dart';
 import '../../view/teacher_list.dart';
 
-class StudentDrawer extends StatelessWidget {
+class TeacherDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(

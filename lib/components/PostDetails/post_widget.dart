@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../models/post.dart';
 
 class PostWidget extends StatelessWidget {
-  final args;
+  final Post args;
 
   PostWidget(this.args);
 
@@ -17,7 +17,7 @@ class PostWidget extends StatelessWidget {
             width: double.infinity,
             margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
             child: Text(
-              args.heading,
+              args.title!,
               style: TextStyle(
                 fontSize: 17,
                 fontWeight: FontWeight.bold,
@@ -29,7 +29,7 @@ class PostWidget extends StatelessWidget {
             width: double.infinity,
             margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
             child: Text(
-              args.createdAt,
+              args.created!,
               style: TextStyle(
                 fontSize: 13,
               ),
@@ -40,7 +40,7 @@ class PostWidget extends StatelessWidget {
             width: double.infinity,
             margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
             child: Text(
-              args.text,
+              args.description!,
               style: TextStyle(fontSize: 17, height: 1.5),
               textAlign: TextAlign.justify,
             ),

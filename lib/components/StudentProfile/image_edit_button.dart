@@ -21,19 +21,11 @@ class StudentProfileImageWithEditButton extends StatelessWidget {
                     width: 200,
                     height: 200,
                     decoration: const BoxDecoration(
-                      //border: Border.all(width: 4),
-                      // boxShadow: [
-                      //   BoxShadow(
-                      //     spreadRadius: 2,
-                      //     blurRadius: 10,
-                      //     color: Colors.black.withOpacity(0.1),
-                      //   )
-                      // ],
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         fit: BoxFit.contain,
                         image: AssetImage(
-                          'assimages/student_profile.jpeg',
+                          'assets/images/student_profile.jpeg',
                         ),
                       ),
                     ),

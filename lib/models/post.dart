@@ -1,8 +1,9 @@
 class Post {
-  final String heading, createdAt, text;
+  String? title, created, description,teacherId;
   Post({
-    required this.heading,
-    required this.createdAt,
-    required this.text,
+    required this.title,
+    required this.description,
+    this.created,
+    this.teacherId
   });
 }

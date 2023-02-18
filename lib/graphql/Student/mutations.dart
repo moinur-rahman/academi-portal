@@ -4,37 +4,37 @@ class Mutations {
   \$email: String!
   \$name: String!
   \$password: String!
-  \$ID: Int!
+  \$studentId: Int!
   \$department: String!
   \$section: String!
+  \$phone: String!
 ) {
   createStudent(
     email: \$email
     name: \$name
     password: \$password
-    ID: \$ID
+    studentId: \$studentId
     department: \$department
     section: \$section
+    phone: \$phone
   ) {
     email
   }
 }
 """;
-  static String createTeacher = """
-  mutation CreateTeacher(
-  \$email: String!
-  \$name: String!
+
+  static String studentLogin = """
+  mutation StudentLogin(
+   \$email: String!
   \$password: String!
-  \$department: String!
-) {
-  createTeacher(
-    email: \$email
-    name: \$name
-    password: \$password 
-    department: \$department
-  ) {
+  ){
+  studentLogin(
+    email:\$email,
+    password:\$password,
+    ){
     email
+    password
   }
-}
+  }
 """;
 }

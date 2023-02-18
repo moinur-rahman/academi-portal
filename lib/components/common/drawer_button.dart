@@ -13,7 +13,9 @@ class DrawerButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => {Navigator.pushNamed(context, routeName)},
+      onPressed: () {
+        Navigator.pushNamed(context, routeName);
+      },
       child: Container(
         width: 200,
         child: Row(
