@@ -1,11 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import '../components/common/student_drawer.dart';
-import '../components/StudentDashboard/most_important_data.dart';
-import '../components/StudentDashboard/most_recent_data.dart';
-import '../components/common/app_bar_widget.dart';
-import '../components/StudentDashboard/post_widget.dart';
 import '../components/common/student_bottom_bar.dart';
+import '../components/common/app_bar_widget.dart';
+import '../components/StudentDashboard/data.dart';
+import '../components/StudentDashboard/post_widget.dart';
+
+import '../graphql/Post/post_queries.dart';
 
 class StudentDashboard extends StatefulWidget {
   static const routeName = '/student-dashboard';
@@ -16,8 +19,23 @@ class StudentDashboard extends StatefulWidget {
 }
 
 class _StudentDashboardState extends State<StudentDashboard> {
-  List<Map<String, String>> _data = most_important_data;
+  List<dynamic> _data = [];
   bool _selectNavigation = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  void _loadData() async {
+    var posts = jsonDecode(await PostQueries().getAllPosts());
+
+    setState(() {
+      posts = posts["getAllPosts"];
+      _data = posts;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -131,9 +149,9 @@ class _StudentDashboardState extends State<StudentDashboard> {
               ),
               ..._data.map((element) {
                 return PostWidget(
-                  heading: element['heading']!,
-                  createdAt: element['createdAt']!,
-                  text: element['text']!,
+                  title: element['title']!,
+                  created: element['created']!,
+                  description: element['description']!,
                 );
               }).toList(),
             ],

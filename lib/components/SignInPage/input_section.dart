@@ -1,4 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+
+import '../../view/student_dashboard.dart';
+import '../../view/teacher_dashboard.dart';
+import '../../api/shared_preferences.dart';
+
+import '../../graphql/Teacher/teacher_mutations.dart';
+import '../../graphql/Student/student_mutations.dart';
+import '../../models/teacher.dart';
+import '../../models/student.dart';
 
 class InputSection extends StatefulWidget {
   @override
@@ -7,16 +18,54 @@ class InputSection extends StatefulWidget {
   }
 }
 
+enum UserType { Teacher, Student }
+
 class _InputSectionState extends State<InputSection> {
+  String? _email, _password;
+
+  UserType? _role = UserType.Student;
+
   bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 340,
-      height: 290,
+      width: 360,
+      height: 480,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+          SizedBox(
+            width: 200,
+            height: 150,
+            child: Column(
+              children: [
+                ListTile(
+                  title: Text("Student"),
+                  leading: Radio(
+                    value: UserType.Student,
+                    groupValue: _role,
+                    onChanged: ((UserType? value) {
+                      setState(() {
+                        _role = value;
+                      });
+                    }),
+                  ),
+                ),
+                ListTile(
+                  title: Text("Teacher"),
+                  leading: Radio(
+                    value: UserType.Teacher,
+                    groupValue: _role,
+                    onChanged: ((UserType? value) {
+                      setState(() {
+                        _role = value;
+                      });
+                    }),
+                  ),
+                ),
+              ],
+            ),
+          ),
           TextFormField(
             decoration: InputDecoration(
               border: OutlineInputBorder(),
@@ -26,6 +75,9 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
+            onChanged: ((String? value) {
+              _email = value;
+            }),
           ),
           TextFormField(
             decoration: InputDecoration(
@@ -36,6 +88,9 @@ class _InputSectionState extends State<InputSection> {
                 color: Colors.grey,
               ),
             ),
+            onChanged: ((String? value) {
+              _password = value;
+            }),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,20 +115,39 @@ class _InputSectionState extends State<InputSection> {
                   ),
                 ],
               ),
-              Text(
-                "Forgot Password",
-                style: TextStyle(
-                  color: Color(0xff6B6B6B),
-                  fontSize: 15,
-                ),
-              ),
+              // Text(
+              //   "Forgot Password",
+              //   style: TextStyle(
+              //     color: Color(0xff6B6B6B),
+              //     fontSize: 15,
+              //   ),
+              // ),
             ],
           ),
           SizedBox(
             width: 150,
             height: 50,
             child: OutlinedButton(
-              onPressed: () {},
+              onPressed: () async {
+                if (_role == UserType.Student) {
+                  String status = await StudentMutations().studentLogin(Student(
+                    email: _email,
+                    password: _password,
+                  ));
+                  if (status != 'Failed')
+                    Navigator.pushNamed(context, StudentDashboard.routeName);
+                } else if (_role == UserType.Teacher) {
+                  String status = await TeacherMutations().teacherLogin(Teacher(
+                    email: _email,
+                    password: _password,
+                  ));
+              
+                  if (status != 'Failed') {
+                    saveData("user", status);
+                    Navigator.pushNamed(context, TeacherDashboard.routeName);
+                  }
+                }
+              },
               child: Text(
                 "Sign In",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),

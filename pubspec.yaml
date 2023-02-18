@@ -51,6 +51,7 @@ dev_dependencies:
   flutter_launcher_icons: "^0.11.0"
   carousel_slider: ^4.2.1
   flutter_dotenv: ^5.0.2
+  shared_preferences: ^2.0.17
 flutter_icons:
   android: "launcher_icon"
   ios: true
@@ -77,6 +78,9 @@ flutter:
     - assets/images/launcher_icon.png
     - assets/images/profile_avatar.png
     - assets/images/student_profile.jpeg
+    - assets/images/saki_sir.png
+    - assets/images/asad_sir.png
+    - assets/images/tahmina_madam.png
     - assets/config/dev.env
   # To add assets to your application, add an assets section, like this:
   # assets:

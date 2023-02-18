@@ -63,9 +63,6 @@ class _StudentResultState extends State<StudentResult> {
                           [Color(0xff349053)],
                           [Color(0xff349053)]
                         ],
-                        // onToggle: (index) {
-                        //   print('switched to: $index');
-                        // },
                       ),
                     ],
                   ),
