@@ -1,10 +1,27 @@
+import 'dart:convert';
+
 import '../components/common/app_bar_widget.dart';
 import '../components/common/student_drawer.dart';
+import '../view/teacher_dashboard.dart';
 import '../components/common/student_bottom_bar.dart';
+import '../graphql/Post/post_mutations.dart';
+import '../api/shared_preferences.dart';
+import '../models/post.dart';
 
 import 'package:flutter/material.dart';
 
-class CreatePost extends StatelessWidget {
+class CreatePost extends StatefulWidget {
+  static const routeName = '/create-post';
+
+  @override
+  State<StatefulWidget> createState() {
+    return _CreatePostState();
+  }
+}
+
+class _CreatePostState extends State<CreatePost> {
+  String? _title, _description;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +52,9 @@ class CreatePost extends StatelessWidget {
                     labelText: 'Provide Post Title',
                     hintText: 'Title Name',
                   ),
+                  onChanged: (String? value) {
+                    _title = value;
+                  },
                 ),
               ),
               Container(
@@ -56,16 +76,13 @@ class CreatePost extends StatelessWidget {
                   ),
                   minLines: 7,
                   maxLines: null,
+                  onChanged: (String? value) {
+                    _description = value;
+                  },
                 ),
               ),
               // Container(
-              //   alignment: Alignment.topLeft,
-              //   margin: EdgeInsets.only(top: 15),
-              //   child: const Text(
-              //     'Attachment',
-              //     style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-              //   ),
-              // ),
+
               Container(
                 alignment: Alignment.topLeft,
                 margin: EdgeInsets.only(top: 30),
@@ -100,8 +117,17 @@ class CreatePost extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       )),
-                  onPressed: () {
-                    //Navigator.pushNamed(context, routeName)
+                  onPressed: () async {
+                    var data = jsonDecode(await getData("user"));
+              
+                    String status = await PostMutations().createPost(Post(
+                      title: _title,
+                      description: _description,
+                      teacherId: data["teacherLogin"]["id"],
+                    ));
+                    
+                    if (status != 'Failed')
+                      Navigator.pushNamed(context, TeacherDashboard.routeName);
                   },
                   child: const Text(
                     'Post',

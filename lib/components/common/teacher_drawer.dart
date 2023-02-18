@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 import './drawer_button.dart';
-import '../../view/student_dashboard.dart';
-import '../../view/student_result.dart';
-import '../../view/student_profile.dart';
-import '../../view/teacher_list.dart';
+import '../../view/teacher_dashboard.dart';
+import '../../view/create_post.dart';
+import '../../view/sign_in_page.dart';
 
 class TeacherDrawer extends StatelessWidget {
   @override
@@ -32,7 +31,7 @@ class TeacherDrawer extends StatelessWidget {
                         SizedBox(
                           width: 130,
                           child: Text(
-                            "Moinur Rahman",
+                            "Sakir sir",
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -42,7 +41,7 @@ class TeacherDrawer extends StatelessWidget {
                         SizedBox(
                           width: 130,
                           child: Text(
-                            "Student",
+                            "Teacher",
                             textAlign: TextAlign.left,
                           ),
                         ),
@@ -55,7 +54,7 @@ class TeacherDrawer extends StatelessWidget {
                   foregroundColor: Colors.black,
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, StudentProfile.routeName);
+                  Navigator.pushNamed(context, '');
                 },
               ),
             ),
@@ -74,37 +73,13 @@ class TeacherDrawer extends StatelessWidget {
                         icon: 0xe1b1,
                         buttonName: "Dashboard",
                         color: 0xFF000000,
-                        routeName: StudentDashboard.routeName,
+                        routeName: TeacherDashboard.routeName,
                       ),
                       DrawerButton(
                         icon: 0xf85d,
-                        buttonName: "My Result",
+                        buttonName: "Create Post",
                         color: 0xFF000000,
-                        routeName: StudentResult.routeName,
-                      ),
-                      DrawerButton(
-                        icon: 0xe491,
-                        buttonName: "My Supervisor",
-                        color: 0xFF000000,
-                        routeName: TeacherList.routeName,
-                      ),
-                      DrawerButton(
-                        icon: 0xe491,
-                        buttonName: "My Course Teacher",
-                        color: 0xFF000000,
-                        routeName: TeacherList.routeName,
-                      ),
-                      DrawerButton(
-                        icon: 0xe2eb,
-                        buttonName: "Meeting",
-                        color: 0xFF000000,
-                        routeName: '',
-                      ),
-                      DrawerButton(
-                        icon: 0xefed,
-                        buttonName: "Notification",
-                        color: 0xFF000000,
-                        routeName: '',
+                        routeName: CreatePost.routeName,
                       ),
                     ],
                   ),
@@ -133,7 +108,7 @@ class TeacherDrawer extends StatelessWidget {
                         icon: 0xe243,
                         buttonName: "Log out",
                         color: 0xFFFF0000,
-                        routeName: '',
+                        routeName: SignInPage.routeName,
                       ),
                     ],
                   ),
