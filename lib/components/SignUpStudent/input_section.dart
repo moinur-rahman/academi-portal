@@ -32,6 +32,23 @@ class _InputSectionState extends State<InputSection> {
       _phone;
   int? _studentId;
 
+  Future _onSubmit() async {
+    String status = await StudentMutations().createStudent(
+      Student(
+        email: _email,
+        name: _name,
+        password: _password,
+        studentId: _studentId,
+        department: _department,
+        section: _section,
+        phone: _phone,
+      ),
+    );
+    if (status == 'Success') {
+      Navigator.pushNamed(context, StudentDashboard.routeName);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -185,22 +202,7 @@ class _InputSectionState extends State<InputSection> {
             width: 200,
             height: 50,
             child: OutlinedButton(
-              onPressed: () async {
-                String status = await StudentMutations().createStudent(
-                  Student(
-                    email: _email,
-                    name: _name,
-                    password: _password,
-                    studentId: _studentId,
-                    department: _department,
-                    section: _section,
-                    phone: _phone,
-                  ),
-                );
-                if (status == 'Success') {
-                  Navigator.pushNamed(context, StudentDashboard.routeName);
-                }
-              },
+              onPressed: _onSubmit,
               child: Text(
                 "Create Account",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
