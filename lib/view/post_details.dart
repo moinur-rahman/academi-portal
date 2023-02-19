@@ -25,8 +25,8 @@ class PostDetails extends StatelessWidget {
           height: 880,
           child: Column(
             children: [
-              PostWidget(args),
-              Description(),
+              // PostWidget(args),
+              Description(args),
               Attachment(),
               PrivateComment(),
             ],

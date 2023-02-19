@@ -1,11 +1,11 @@
-import 'package:flutter/rendering.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
 import 'package:flutter/material.dart';
 
+import '../../models/post.dart';
+
 class Description extends StatelessWidget {
-  const Description({super.key});
+  final Post args;
+
+  Description(this.args);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class Description extends StatelessWidget {
             margin: EdgeInsets.only(top: 35),
             width: double.infinity,
             child: Text(
-              'Shamima Nasrin Mukta mam has published class test-1 result of CSE-435.  ',
+              args.title!,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
@@ -69,7 +69,7 @@ class Description extends StatelessWidget {
             margin: EdgeInsets.only(top: 60),
             width: double.infinity,
             child: Text(
-              'If anyone have any query regarding Shamima Nasrin Mukta has published class test-1 result of CSE-435. If anyone have any query regarding Shamima Nasrin Mukta has published class test-1 result of CSE-435....',
+              args.description!,
               style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w400,
