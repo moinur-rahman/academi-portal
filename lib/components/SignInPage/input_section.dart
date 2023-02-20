@@ -26,6 +26,30 @@ class _InputSectionState extends State<InputSection> {
   UserType? _role = UserType.Student;
 
   bool isChecked = false;
+
+  Future _onSubmit() async {
+    if (_role == UserType.Student) {
+      String status = await StudentMutations().studentLogin(Student(
+        email: _email,
+        password: _password,
+      ));
+      if (status != 'Failed') {
+        await saveData("user", status);
+        Navigator.pushNamed(context, StudentDashboard.routeName);
+      }
+    } else if (_role == UserType.Teacher) {
+      String status = await TeacherMutations().teacherLogin(Teacher(
+        email: _email,
+        password: _password,
+      ));
+
+      if (status != 'Failed') {
+        await saveData("user", status);
+        Navigator.pushNamed(context, TeacherDashboard.routeName);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -128,38 +152,20 @@ class _InputSectionState extends State<InputSection> {
             width: 150,
             height: 50,
             child: OutlinedButton(
-              onPressed: () async {
-                if (_role == UserType.Student) {
-                  String status = await StudentMutations().studentLogin(Student(
-                    email: _email,
-                    password: _password,
-                  ));
-                  if (status != 'Failed')
-                    Navigator.pushNamed(context, StudentDashboard.routeName);
-                } else if (_role == UserType.Teacher) {
-                  String status = await TeacherMutations().teacherLogin(Teacher(
-                    email: _email,
-                    password: _password,
-                  ));
-              
-                  if (status != 'Failed') {
-                    saveData("user", status);
-                    Navigator.pushNamed(context, TeacherDashboard.routeName);
-                  }
-                }
-              },
+              onPressed: _onSubmit,
               child: Text(
                 "Sign In",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.green,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  side: BorderSide(
-                    color: Colors.green,
-                  )),
+                foregroundColor: Colors.green,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                side: BorderSide(
+                  color: Colors.green,
+                ),
+              ),
             ),
           ),
         ],

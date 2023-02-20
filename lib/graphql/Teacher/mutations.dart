@@ -19,7 +19,7 @@ class Mutations {
 }
 """;
 
-static String teacherLogin = """
+  static String teacherLogin = """
   mutation TeacherLogin(
    \$email: String!
   \$password: String!
@@ -31,6 +31,7 @@ static String teacherLogin = """
     id
     email
     password
+    name
   }
   }
 """;

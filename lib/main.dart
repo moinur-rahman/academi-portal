@@ -1,3 +1,4 @@
+import 'package:academi_portal/view/help_and_support.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -15,6 +16,8 @@ import './view/teacher_dashboard.dart';
 import './view/teacher_details.dart';
 import './view/meeting_schedule.dart';
 import './view/create_post.dart';
+import './view/help_and_support.dart';
+import './view/developer_note.dart';
 
 void main() async {
   await dotenv.load(fileName: "assets/config/dev.env");
@@ -43,6 +46,9 @@ class App extends StatelessWidget {
         TeacherDetails.routeName: (context) => TeacherDetails(),
         StudentResult.routeName: (context) => StudentResult(),
         StudentProfile.routeName: (context) => StudentProfile(),
+        StudentProfile.routeName: (context) => StudentProfile(),
+        HelpAndSupport.routeName: (context) => HelpAndSupport(),
+        DeveloperNote.routeName: (context) => DeveloperNote(),
       },
     );
   }

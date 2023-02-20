@@ -1,60 +1,61 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
+import '../../view/post_details.dart';
 import '../../models/post.dart';
 
 class PostWidget extends StatelessWidget {
-  final Post args;
+  final String title, created, description;
 
-  PostWidget(this.args);
-
-  String convertDate(String unixTimestamp) {
-    print(unixTimestamp);
-    DateTime dateTime =
-        DateTime.fromMillisecondsSinceEpoch(int.parse(unixTimestamp) * 1000);
-    print(dateTime);
-    return dateTime.toString();
-  }
+  PostWidget({
+    required this.title,
+    required this.created,
+    required this.description,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 130,
       padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
+          Divider(color: Color(0xFFDBDBDB)),
+          SizedBox(
+            height: 30,
             width: double.infinity,
-            margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
             child: Text(
-              args.title!,
+              title,
               style: TextStyle(
-                fontSize: 17,
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.justify,
             ),
           ),
-          Container(
+          SizedBox(
             width: double.infinity,
-            margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
             child: Text(
-              convertDate(args.created!),
+              created,
               style: TextStyle(
                 fontSize: 13,
               ),
               textAlign: TextAlign.justify,
             ),
           ),
-          Container(
+          SizedBox(
             width: double.infinity,
-            margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
             child: Text(
-              args.description!,
-              style: TextStyle(fontSize: 17, height: 1.5),
+              description,
+              style: TextStyle(
+                fontSize: 16,
+              ),
               textAlign: TextAlign.justify,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
+          Divider(color: Color(0xFFDBDBDB)),
         ],
       ),
     );

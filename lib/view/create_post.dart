@@ -1,14 +1,15 @@
+import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
+import '../../api/shared_preferences.dart';
 import '../components/common/app_bar_widget.dart';
 import '../components/common/student_drawer.dart';
 import '../view/teacher_dashboard.dart';
 import '../components/common/student_bottom_bar.dart';
 import '../graphql/Post/post_mutations.dart';
-import '../api/shared_preferences.dart';
 import '../models/post.dart';
-
-import 'package:flutter/material.dart';
 
 class CreatePost extends StatefulWidget {
   static const routeName = '/create-post';
@@ -21,6 +22,27 @@ class CreatePost extends StatefulWidget {
 
 class _CreatePostState extends State<CreatePost> {
   String? _title, _description;
+  // File? _image;
+  List<XFile>? _imagefiles;
+  List<String> _imagepaths = [];
+  Future _onAttachFile() async {
+    final ImagePicker _picker = ImagePicker();
+
+    // final XFile? pickedFile =
+    //     await _picker.pickImage(source: ImageSource.gallery);
+    final List<XFile>? _pickedFiles = await _picker.pickMultiImage();
+    if (_pickedFiles != null) {
+      setState(() {
+        _imagefiles = _pickedFiles;
+      });
+    }
+    // if (pickedFile != null) {
+    //   setState(() {
+    //     _image = File(pickedFile.path);
+    //     print(_image);
+    //   });
+    // }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +54,7 @@ class _CreatePostState extends State<CreatePost> {
         child: Container(
           margin: EdgeInsets.only(left: 15, top: 20),
           width: double.infinity,
-          height: 650,
+          height: 800,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -92,7 +114,7 @@ class _CreatePostState extends State<CreatePost> {
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(30))),
                   ),
-                  onPressed: () => {},
+                  onPressed: _onAttachFile,
                   child: const Text(
                     "Attach File",
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
@@ -107,6 +129,36 @@ class _CreatePostState extends State<CreatePost> {
                   style: TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
                 ),
               ),
+              _imagefiles != null
+                  ? Wrap(
+                      children: _imagefiles!.map((imageone) {
+                        _imagepaths.add(imageone.path);
+                        // print(imageone.path);
+                        return Container(
+                            child: Card(
+                          child: Container(
+                            height: 100,
+                            width: 100,
+                            child: Image.file(File(imageone.path)),
+                          ),
+                        ));
+                      }).toList(),
+                    )
+                  : Container(),
+              // Builder(
+              //   builder: (BuildContext context) {
+              //     if (_image == null) {
+              //       return Container();
+              //     } else {
+              //       return SizedBox(
+              //         width: 200,
+              //         height: 200,
+              //         child: Image.file(_image!),
+              //       );
+              //     }
+              //   },
+              // ),
+
               Container(
                 width: 160,
                 height: 40,
@@ -119,15 +171,18 @@ class _CreatePostState extends State<CreatePost> {
                       )),
                   onPressed: () async {
                     var data = jsonDecode(await getData("user"));
-              
+
                     String status = await PostMutations().createPost(Post(
                       title: _title,
                       description: _description,
                       teacherId: data["teacherLogin"]["id"],
                     ));
-                    
-                    if (status != 'Failed')
+
+                    await saveData("post", jsonEncode(_imagepaths));
+                    print(await getData("post"));
+                    if (status != 'Failed') {
                       Navigator.pushNamed(context, TeacherDashboard.routeName);
+                    }
                   },
                   child: const Text(
                     'Post',

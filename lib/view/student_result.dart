@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
@@ -5,6 +7,7 @@ import '../components/common/app_bar_widget.dart';
 import '../components/common/student_drawer.dart';
 import '../components/common/student_bottom_bar.dart';
 import '../components/StudentResult/student_result_table.dart';
+import '../components/StudentResult/data.dart';
 
 class StudentResult extends StatefulWidget {
   static const routeName = '/student-result';
@@ -15,10 +18,43 @@ class StudentResult extends StatefulWidget {
 }
 
 class _StudentResultState extends State<StudentResult> {
-  final List<String> _terms = const ['1', '2', '3', '4'];
-  final List<String> _levels = const ['1', '2', '3', '4'];
-  String? _dropdownTermValue;
-  String? _dropdownLevelValue;
+  final List<String> _terms = ['1', '2'];
+  final List<String> _levels = ['1', '2', '3', '4'];
+  String? _dropdownTermValue = '1';
+  String? _dropdownLevelValue = '1';
+  String? _toggleResultType = 'course';
+  //print(stateIndex);
+  List<Map<String, String>> _tableData = l1_t1['course']!;
+
+  bool _selection = false;
+
+  void changeValue(String? level, String? term, String? resultType) {
+    if (level == '1') {
+      if (term == '1') {
+        _tableData = l1_t1[resultType]!;
+      } else {
+        _tableData = l1_t2[resultType]!;
+      }
+    } else if (level == '2') {
+      if (term == '1') {
+        _tableData = l2_t1[resultType]!;
+      } else {
+        _tableData = l2_t2[resultType]!;
+      }
+    } else if (level == '3') {
+      if (term == '1') {
+        _tableData = l3_t1[resultType]!;
+      } else {
+        _tableData = l3_t2[resultType]!;
+      }
+    } else if (level == '4') {
+      if (term == '1') {
+        _tableData = l4_t1[resultType]!;
+      } else {
+        _tableData = l4_t2[resultType]!;
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,26 +79,34 @@ class _StudentResultState extends State<StudentResult> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        "Sessional",
-                        style: TextStyle(
+                      Text(
+                        _selection ? "Sessional" : "Course",
+                        style: const TextStyle(
                             fontWeight: FontWeight.w700, fontSize: 18),
                       ),
-                      ToggleSwitch(
-                        minHeight: 20.0,
-                        minWidth: 20.0,
-                        initialLabelIndex: 1,
-                        cornerRadius: 1.0,
-                        activeFgColor: Colors.white,
-                        inactiveBgColor: Colors.grey,
-                        inactiveFgColor: Colors.white,
-                        totalSwitches: 2,
-                        //labels: ['Sessional', 'Non Sessional'],
-                        //icons: [FontAwesomeIcons.mars, FontAwesomeIcons.venus],
-                        activeBgColors: const [
-                          [Color(0xff349053)],
-                          [Color(0xff349053)]
-                        ],
+                      Switch(
+                        // This bool value toggles the switch.
+                        value: _selection,
+                        activeColor: Colors.green,
+                        onChanged: (bool value) {
+                          // This is called when the user toggles the switch.
+                          setState(
+                            () {
+                              if (_selection) {
+                                _toggleResultType = "course";
+                                changeValue(_dropdownLevelValue,
+                                    _dropdownTermValue, _toggleResultType);
+                                // _tableData = l1_t1['course']!;
+                              } else {
+                                // _tableData = l1_t1['sessional']!;
+                                _toggleResultType = "sessional";
+                                changeValue(_dropdownLevelValue,
+                                    _dropdownTermValue, _toggleResultType);
+                              }
+                              _selection = value;
+                            },
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -73,34 +117,6 @@ class _StudentResultState extends State<StudentResult> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Column(
-                      children: [
-                        const Text(
-                          'Term',
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w700),
-                        ),
-                        DropdownButton(
-                          hint: const Text("Term"),
-                          items: _terms
-                              .map<DropdownMenuItem<String>>((String term) {
-                            return DropdownMenuItem<String>(
-                              // ignore: sort_child_properties_last
-                              child: Text(
-                                term,
-                              ),
-                              value: term,
-                            );
-                          }).toList(),
-                          value: _dropdownTermValue,
-                          onChanged: (String? value) {
-                            setState(() {
-                              _dropdownTermValue = value;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
                     Column(
                       children: [
                         const Text(
@@ -124,6 +140,39 @@ class _StudentResultState extends State<StudentResult> {
                           onChanged: (String? value) {
                             setState(() {
                               _dropdownLevelValue = value;
+                              changeValue(_dropdownLevelValue,
+                                  _dropdownTermValue, _toggleResultType);
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        const Text(
+                          'Term',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w700),
+                        ),
+                        DropdownButton(
+                          hint: const Text("Term"),
+                          items: _terms
+                              .map<DropdownMenuItem<String>>((String term) {
+                            return DropdownMenuItem<String>(
+                              // ignore: sort_child_properties_last
+                              child: Text(
+                                term,
+                              ),
+                              value: term,
+                            );
+                          }).toList(),
+                          value: _dropdownTermValue,
+                          onChanged: (String? value) {
+                            setState(() {
+                              _dropdownTermValue = value;
+
+                              changeValue(_dropdownLevelValue,
+                                  _dropdownTermValue, _toggleResultType);
                             });
                           },
                         ),
@@ -132,7 +181,7 @@ class _StudentResultState extends State<StudentResult> {
                   ],
                 ),
               ),
-              StudentResultTable(),
+              StudentResultTable(_tableData),
               SizedBox(
                 height: 100,
                 child: Column(

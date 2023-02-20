@@ -1,13 +1,42 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:academi_portal/api/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
-class Attachment extends StatelessWidget {
+import '../../components/common/student_bottom_bar.dart';
+import '../../components/common/app_bar_widget.dart';
+import '../../components/common/student_drawer.dart';
+
+class Attachment extends StatefulWidget {
+  static const routeName = "/attachment-files";
+
+  @override
+  State<StatefulWidget> createState() => _AttachmentState();
+}
+
+class _AttachmentState extends State<Attachment> {
+  List<dynamic>? _imagefiles = [];
+
+  @override
+  void initState() {
+    _onInit();
+    super.initState();
+  }
+
+  Future _onInit() async {
+    List<dynamic>? _data = jsonDecode(await getData("post"));
+    setState(() {
+      _imagefiles = _data;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+    return SizedBox(
+      height: 200,
+      width: double.infinity,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
             width: double.infinity,
@@ -19,15 +48,21 @@ class Attachment extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            child: Row(children: [
-              Icon(Icons.attachment),
-              Text("2023-01-ct-result.pdf (552KB)",
-                  style: TextStyle(
-                    fontSize: 15,
-                  )),
-            ]),
-          )
+          _imagefiles != null
+              ? Wrap(
+                  children: _imagefiles!.map((imageone) {
+                    print(imageone);
+                    return Container(
+                        child: Card(
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        child: Image.file(File(imageone)),
+                      ),
+                    ));
+                  }).toList(),
+                )
+              : Container(),
         ],
       ),
     );
