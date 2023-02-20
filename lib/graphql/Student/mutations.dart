@@ -34,6 +34,7 @@ class Mutations {
     ){
     email
     password
+    name
   }
   }
 """;

@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:academi_portal/api/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 import './drawer_button.dart';
@@ -7,7 +10,32 @@ import '../../view/student_profile.dart';
 import '../../view/teacher_list.dart';
 import '../../view/sign_in_page.dart';
 
-class StudentDrawer extends StatelessWidget {
+class StudentDrawer extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _StudentDrawerState();
+  }
+}
+
+class _StudentDrawerState extends State<StudentDrawer> {
+  @override
+  void initState() {
+    super.initState();
+    _onInit();
+  }
+
+  String name = "";
+
+  Future _onInit() async {
+    var data = jsonDecode(await getData("user"));
+    setState(() {
+      name = data["studentLogin"]["name"];
+      // print(name);
+    });
+    // print(data);
+    // name = data.name;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -33,7 +61,7 @@ class StudentDrawer extends StatelessWidget {
                         SizedBox(
                           width: 130,
                           child: Text(
-                            "Moinur Rahman",
+                            name,
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -67,7 +95,7 @@ class StudentDrawer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  height: 340,
+                  height: 300,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -98,12 +126,6 @@ class StudentDrawer extends StatelessWidget {
                       DrawerButton(
                         icon: 0xe2eb,
                         buttonName: "Meeting",
-                        color: 0xFF000000,
-                        routeName: '',
-                      ),
-                      DrawerButton(
-                        icon: 0xefed,
-                        buttonName: "Notification",
                         color: 0xFF000000,
                         routeName: '',
                       ),

@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:academi_portal/api/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 import './drawer_button.dart';
@@ -5,7 +8,32 @@ import '../../view/teacher_dashboard.dart';
 import '../../view/create_post.dart';
 import '../../view/sign_in_page.dart';
 
-class TeacherDrawer extends StatelessWidget {
+class TeacherDrawer extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _TeacherDrawerState();
+  }
+}
+
+class _TeacherDrawerState extends State<TeacherDrawer> {
+  @override
+  void initState() {
+    super.initState();
+    _onInit();
+  }
+
+  String name = "";
+
+  Future _onInit() async {
+    var data = jsonDecode(await getData("user"));
+    setState(() {
+      name = data["teacherLogin"]["name"];
+      // print(name);
+    });
+    // print(data);
+    // name = data.name;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -31,7 +59,7 @@ class TeacherDrawer extends StatelessWidget {
                         SizedBox(
                           width: 130,
                           child: Text(
-                            "Sakir sir",
+                            name,
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -65,7 +93,7 @@ class TeacherDrawer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  height: 340,
+                  height: 160,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -78,6 +106,12 @@ class TeacherDrawer extends StatelessWidget {
                       DrawerButton(
                         icon: 0xf85d,
                         buttonName: "Create Post",
+                        color: 0xFF000000,
+                        routeName: CreatePost.routeName,
+                      ),
+                      DrawerButton(
+                        icon: 0xe2eb,
+                        buttonName: "Meeting",
                         color: 0xFF000000,
                         routeName: CreatePost.routeName,
                       ),
