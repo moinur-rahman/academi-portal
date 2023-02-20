@@ -33,7 +33,7 @@ class App extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => LandingPage(),
-        '/meeting': (context) => MeetingSchedule(),
+        MeetingSchedule.routeName: (context) => MeetingSchedule(),
         SignInPage.routeName: (context) => SignInPage(),
         CreateAccount.routeName: (context) => CreateAccount(),
         SignUpTeacher.routeName: (context) => SignUpTeacher(),

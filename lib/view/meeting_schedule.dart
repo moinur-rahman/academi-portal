@@ -7,7 +7,10 @@ import '../components/common/app_bar_widget.dart';
 import '../components/common/student_bottom_bar.dart';
 import '../graphql/Teacher/teacher_queries.dart';
 
+import 'package:link_text/link_text.dart';
+
 class MeetingSchedule extends StatefulWidget {
+  static const routeName = '/meeting-schedule';
   @override
   State<StatefulWidget> createState() {
     return _InputSectionState();

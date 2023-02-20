@@ -1,8 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:link_text/link_text.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../view/sign_in_page.dart';
 
 import 'package:http/http.dart' as http;
+
+import '../../graphql/meeting/meeting_queries.dart';
 
 class TeacherConversation extends StatefulWidget {
   @override
@@ -23,51 +30,14 @@ class _InputSectionState extends State<TeacherConversation> {
 
   List<String> _messageList = [];
 
+  String link = '';
   // write async function
   Future sendMeetingLink() async {
-    // create a Map<String, String> to store the data we want to submit
-    // Map<String, String> data = {
-    //   'message': _message!,
-    // };
-
-    const data = {
-      "topic": "test post ewe",
-      "type": 2,
-      "start_time": "2023-02-21T12:10:10Z",
-      "duration": "30",
-      "password": "123456",
-      "settings": {
-        "host_video": true,
-        "participant_video": true,
-        "join_before_host": true,
-        "mute_upon_entry": "true",
-        "watermark": "true",
-        "audio": "voip",
-        "auto_recording": "cloud"
-      }
-    };
-
-    // make POST request
-    http.Response response = await http.post(
-        Uri.parse('https://api.zoom.us/v2/users/me/meetings'),
-        body: data,
-        headers: {
-          // 'Content-Type': 'application/json',
-          // 'Accept': 'application/json',
-          'Authorization':
-              'Bearer eyJhbGciOiJIUzUxMiIsInYiOiIyLjAiLCJraWQiOiI2N2MxMTM0Yy1jZDM2LTQyOWMtODI2OC00NGI5ZjcwMjk4NTAifQ.eyJ2ZXIiOjgsImF1aWQiOiI0MzdiYjUzM2NmMTM1OTYyMTk2YjVjZDdlYzg5NTYyOCIsImNvZGUiOiI4Z3U0bmx5d084dnE5V0htbWZLU28yaFF3dnRONGg2RWciLCJpc3MiOiJ6bTpjaWQ6Z21sdmI1S09SaU9obllHNW1qcU1nIiwiZ25vIjowLCJ0eXBlIjowLCJ0aWQiOjAsImF1ZCI6Imh0dHBzOi8vb2F1dGguem9vbS51cyIsInVpZCI6InpSVUNoaERzUmVpTWZEZVlselZVYUEiLCJuYmYiOjE2NzY4NzMxMTcsImV4cCI6MTY3Njg3NjcxNywiaWF0IjoxNjc2ODczMTE3LCJhaWQiOiJzbUdYRlBSSFRBYWxsTTdjMEdtdmhBIiwianRpIjoiZTljZmQ0NTItYjM0NS00NjkzLThkZDctMGE5YmU1ZGJlOWI4In0.V7mKhqHmFM60KNYgtnPc5TQg9t6Pye7Drj8-mrKTXYHjPD3FOKt0D4LImmCKaADrIaieIt2fClcaRju7_jzuFA',
-        });
-
-    print(response);
-
-    // check the status code for the result
-    // int statusCode = response.statusCode;
-
-    // // this API passes back the id of the new item added to the body
-    // String body = response.body;
-
-    // print(body);
-    // print(statusCode);
+    var status = jsonDecode(await MeetingQueries().setMeeting());
+    setState(() {
+      link = status["getMeetingUrl"]["meetingUrl"];
+    });
+    // print(status["getMeetingUrl"]["meetingUrl"]);
   }
 
   @override
@@ -134,13 +104,23 @@ class _InputSectionState extends State<TeacherConversation> {
                   ElevatedButton.styleFrom(backgroundColor: Color(0xFF349053)),
             ),
           ),
-          // ..._messageList.map((tx) {
-          //   return Text(
-          //     tx,
-          //     style: TextStyle(),
-          //     textAlign: TextAlign.left,
-          //   );
-          // }).toList(),
+
+          TextButton(
+            onPressed: () async {
+              if (await canLaunchUrlString(link)) {
+                await launchUrlString(link);
+              } else {
+                throw 'Could not launch $link';
+              }
+            },
+            child: LinkText(
+              link,
+              textAlign: TextAlign.center,
+              // shouldTrimParams: true,
+            ),
+          ),
+
+          // Text(link)
         ],
       ),
     );

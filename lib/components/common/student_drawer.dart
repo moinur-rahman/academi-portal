@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:academi_portal/api/shared_preferences.dart';
 import 'package:academi_portal/view/help_and_support.dart';
+import 'package:academi_portal/view/meeting_schedule.dart';
 import 'package:flutter/material.dart';
 
 import './drawer_button.dart';
@@ -128,7 +129,7 @@ class _StudentDrawerState extends State<StudentDrawer> {
                         icon: 0xe2eb,
                         buttonName: "Meeting",
                         color: 0xFF000000,
-                        routeName: '',
+                        routeName: MeetingSchedule.routeName,
                       ),
                     ],
                   ),
