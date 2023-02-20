@@ -13,6 +13,7 @@ import './view/student_result.dart';
 import './view/student_profile.dart';
 import './view/teacher_dashboard.dart';
 import './view/teacher_details.dart';
+import './view/meeting_schedule.dart';
 
 void main() async {
   await dotenv.load(fileName: "assets/config/dev.env");
@@ -23,10 +24,12 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // home: LandingPage(),
+      // home: LandingPage(),r
+      theme: ThemeData(fontFamily: 'Raleway'),
       initialRoute: '/',
       routes: {
         '/': (context) => LandingPage(),
+        '/meeting': (context) => MeetingSchedule(),
         SignInPage.routeName: (context) => SignInPage(),
         CreateAccount.routeName: (context) => CreateAccount(),
         SignUpTeacher.routeName: (context) => SignUpTeacher(),
