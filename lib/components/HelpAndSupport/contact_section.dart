@@ -17,7 +17,7 @@ class ContactSection extends StatelessWidget {
               SizedBox(
                 child: Icon(
                   Icons.phone,
-                  color: Color(0xff349053),
+                  color: Color.fromARGB(255, 6, 14, 167),
                   size: 40.0,
                   semanticLabel: 'Text to announce in accessibility modes',
                 ),
@@ -25,7 +25,7 @@ class ContactSection extends StatelessWidget {
               SizedBox(
                 child: Icon(
                   Icons.open_with_outlined,
-                  color: Color(0xff349053),
+                  color: Color.fromARGB(255, 127, 214, 51),
                   size: 40.0,
                   semanticLabel: 'Text to announce in accessibility modes',
                 ),
@@ -41,7 +41,7 @@ class ContactSection extends StatelessWidget {
               SizedBox(
                 child: Icon(
                   Icons.live_help_outlined,
-                  color: Color(0xff349053),
+                  color: Color.fromARGB(255, 246, 206, 6),
                   size: 40.0,
                   semanticLabel: 'Text to announce in accessibility modes',
                 ),
@@ -62,7 +62,7 @@ class ContactSection extends StatelessWidget {
               SizedBox(
                 child: Icon(
                   Icons.settings_accessibility_outlined,
-                  color: Color(0xff349053),
+                  color: Color.fromARGB(255, 108, 82, 194),
                   size: 40.0,
                   semanticLabel: 'Text to announce in accessibility modes',
                 ),
@@ -70,7 +70,7 @@ class ContactSection extends StatelessWidget {
               SizedBox(
                 child: Icon(
                   Icons.chat_bubble_outline,
-                  color: Color(0xff349053),
+                  color: Color.fromARGB(255, 58, 203, 235),
                   size: 40.0,
                   semanticLabel: 'Text to announce in accessibility modes',
                 ),
@@ -78,7 +78,7 @@ class ContactSection extends StatelessWidget {
               SizedBox(
                 child: Icon(
                   Icons.other_houses_rounded,
-                  color: Color(0xff349053),
+                  color: Color.fromARGB(255, 56, 245, 119),
                   size: 40.0,
                   semanticLabel: 'Text to announce in accessibility modes',
                 ),
