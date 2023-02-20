@@ -61,7 +61,7 @@ class PostWidget extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: Text(
-                  convertDate(created),
+                  created,
                   style: TextStyle(
                     fontSize: 13,
                   ),

@@ -21,7 +21,7 @@ class InputSection extends StatefulWidget {
 enum UserType { Teacher, Student }
 
 class _InputSectionState extends State<InputSection> {
-  String? _email, _password;
+  String? _email, _password, _phone;
 
   UserType? _role = UserType.Student;
 
@@ -101,6 +101,19 @@ class _InputSectionState extends State<InputSection> {
             ),
             onChanged: ((String? value) {
               _email = value;
+            }),
+          ),
+          TextFormField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Enter your phone',
+              prefixIcon: Icon(
+                Icons.email,
+                color: Colors.grey,
+              ),
+            ),
+            onChanged: ((String? value) {
+              _phone = value;
             }),
           ),
           TextFormField(

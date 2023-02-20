@@ -32,6 +32,8 @@ class _LandingPageState extends State<LandingPage> {
                 autoPlay: true,
                 enlargeCenterPage: true,
                 viewportFraction: 1,
+                autoPlayAnimationDuration: Duration(milliseconds: 1000),
+                autoPlayInterval: Duration(milliseconds: 1000),
                 onPageChanged: (val, _) {
                   setState(() {
                     itemNo = val;

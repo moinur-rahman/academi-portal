@@ -1,6 +1,7 @@
 import 'package:academi_portal/components/MeetingPage/TeacherAvatar.dart';
 import 'package:academi_portal/components/MeetingPage/TeacherConversation.dart';
 import 'package:academi_portal/components/MeetingPage/TeacherMetadata.dart';
+import 'package:academi_portal/components/common/student_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import '../components/common/app_bar_widget.dart';
@@ -48,7 +49,7 @@ class _InputSectionState extends State<MeetingSchedule> {
     });
     return Scaffold(
       appBar: AppBarWidget('Schedule Meeting'),
-      drawer: StudentBottomBar(),
+      drawer: StudentDrawer(),
       bottomNavigationBar: StudentBottomBar(),
       body: SingleChildScrollView(
           child: Container(

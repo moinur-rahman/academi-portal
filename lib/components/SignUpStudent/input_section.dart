@@ -1,3 +1,4 @@
+import 'package:academi_portal/api/shared_preferences.dart';
 import 'package:academi_portal/graphql/Student/student_mutations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -44,7 +45,8 @@ class _InputSectionState extends State<InputSection> {
         phone: _phone,
       ),
     );
-    if (status == 'Success') {
+    if (status != 'Failed') {
+      await saveData("user", status);
       Navigator.pushNamed(context, StudentDashboard.routeName);
     }
   }

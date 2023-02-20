@@ -1,3 +1,4 @@
+import 'package:academi_portal/api/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 import './terms_conditions_section.dart';
@@ -33,7 +34,8 @@ class _InputSectionState extends State<InputSection> {
         phone: _phone,
       ),
     );
-    if (status == 'Success') {
+    if (status != 'Failed') {
+      await saveData("user", status);
       Navigator.pushNamed(context, TeacherDashboard.routeName);
     }
   }

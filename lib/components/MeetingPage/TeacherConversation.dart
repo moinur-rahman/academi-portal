@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:link_text/link_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -107,11 +108,17 @@ class _InputSectionState extends State<TeacherConversation> {
 
           TextButton(
             onPressed: () async {
-              if (await canLaunchUrlString(link)) {
-                await launchUrlString(link);
-              } else {
-                throw 'Could not launch $link';
-              }
+              // if (await canLaunchUrlString(link)) {
+              //   await launchUrlString(link);
+              // } else {
+              //   throw 'Could not launch $link';
+              // }
+              await Clipboard.setData(ClipboardData(text: link));
+              // ScaffoldMessenger.of(context).showSnackBar(
+              //   SnackBar(
+              //     content: Text('Copied to Clipboard'),
+              //   ),
+              // );
             },
             child: LinkText(
               link,
