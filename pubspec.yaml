@@ -36,6 +36,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   graphql: ^5.1.3
+  http: ^0.13.5
+
   toggle_switch: ^2.0.1
   carousel_slider: ^4.2.1
   shared_preferences: ^2.0.17
@@ -65,10 +67,22 @@ flutter_icons:
 
 # The following section is specific to Flutter packages.
 flutter:
+  uses-material-design: true
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Black.ttf
+        # - asset: assets/fonts/Roboto-BlackItalic.ttf
+        # - asset: assets/fonts/Roboto-Bold.ttf
+        # - asset: assets/fonts/Roboto-Italic.ttf
+        # - asset: assets/fonts/Roboto-Light.ttf
+        # - asset: assets/fonts/Roboto-LightItalic.ttf
+        # - asset: assets/fonts/Roboto-Regular.ttf
+        # - asset: assets/fonts/Roboto-Thin.ttf
+          weight: 700
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
-  uses-material-design: true
   assets:
     - assets/images/landing_page_image1.png
     - assets/images/landing_page_image2.png
@@ -82,9 +96,11 @@ flutter:
     - assets/images/profile_avatar.png
     - assets/images/student_profile.jpeg
     - assets/images/saki_sir.png
+    - assets/images/saki_sir_hq.png
     - assets/images/asad_sir.png
     - assets/images/tahmina_madam.png
     - assets/config/dev.env
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -101,17 +117,12 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
+
+  # - family: Trajan Pro
+  #   fonts:
+  #     - asset: fonts/TrajanPro.ttf
+  #     - asset: fonts/TrajanPro_Bold.ttf
+  #       weight: 700
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

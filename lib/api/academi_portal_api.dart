@@ -8,11 +8,11 @@ class AcademiPortalApi {
     return GraphQLClient(link: httpLink, cache: GraphQLCache());
   }
 
-  Future<Map<String, dynamic>?> runQuery(
-    GraphQLClient client,
-    String query,
-  ) async {
-    final QueryOptions options = QueryOptions(document: gql(query));
+  Future<Map<String, dynamic>?> runQuery(GraphQLClient client, String query,
+      {Map<String, dynamic>? variables}) async {
+    final QueryOptions options = variables != null
+        ? QueryOptions(document: gql(query), variables: variables)
+        : QueryOptions(document: gql(query));
     final QueryResult result = await client.query(options);
 
     if (result.hasException) {
