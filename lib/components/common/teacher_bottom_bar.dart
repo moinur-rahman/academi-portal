@@ -1,7 +1,8 @@
+import 'package:academi_portal/view/create_post.dart';
 import 'package:flutter/material.dart';
 
 import '../../view/teacher_list.dart';
-import '../../view/student_dashboard.dart';
+import '../../view/teacher_dashboard.dart';
 
 class TeacherBottomBar extends StatefulWidget {
   @override
@@ -21,7 +22,7 @@ class _TeacherBottomBarState extends State<TeacherBottomBar> {
         children: [
           TextButton(
             onPressed: () => {
-              Navigator.pushNamed(context, StudentDashboard.routeName),
+              Navigator.pushNamed(context, TeacherDashboard.routeName),
             },
             style: TextButton.styleFrom(
               foregroundColor: Colors.grey,
@@ -39,7 +40,7 @@ class _TeacherBottomBarState extends State<TeacherBottomBar> {
           ),
           TextButton(
             onPressed: () => {
-              Navigator.pushNamed(context, TeacherList.routeName),
+              Navigator.pushNamed(context, CreatePost.routeName),
             },
             style: TextButton.styleFrom(foregroundColor: Colors.grey),
             child: Container(
@@ -47,36 +48,8 @@ class _TeacherBottomBarState extends State<TeacherBottomBar> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.person),
-                  Text("Teacher"),
-                ],
-              ),
-            ),
-          ),
-          TextButton(
-            onPressed: () => {},
-            style: TextButton.styleFrom(foregroundColor: Colors.grey),
-            child: Container(
-              height: 40,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.doorbell_outlined),
-                  Text("Notification"),
-                ],
-              ),
-            ),
-          ),
-          TextButton(
-            onPressed: () => {},
-            style: TextButton.styleFrom(foregroundColor: Colors.grey),
-            child: Container(
-              height: 40,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.list_alt_rounded),
-                  Text("Result"),
+                  Icon(Icons.post_add),
+                  Text("Create post"),
                 ],
               ),
             ),

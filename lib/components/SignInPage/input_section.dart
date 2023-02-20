@@ -33,8 +33,10 @@ class _InputSectionState extends State<InputSection> {
         email: _email,
         password: _password,
       ));
-      if (status != 'Failed')
+      if (status != 'Failed') {
+        await saveData("user", status);
         Navigator.pushNamed(context, StudentDashboard.routeName);
+      }
     } else if (_role == UserType.Teacher) {
       String status = await TeacherMutations().teacherLogin(Teacher(
         email: _email,
@@ -42,7 +44,7 @@ class _InputSectionState extends State<InputSection> {
       ));
 
       if (status != 'Failed') {
-        saveData("user", status);
+        await saveData("user", status);
         Navigator.pushNamed(context, TeacherDashboard.routeName);
       }
     }
@@ -156,13 +158,14 @@ class _InputSectionState extends State<InputSection> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.green,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  side: BorderSide(
-                    color: Colors.green,
-                  )),
+                foregroundColor: Colors.green,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                side: BorderSide(
+                  color: Colors.green,
+                ),
+              ),
             ),
           ),
         ],

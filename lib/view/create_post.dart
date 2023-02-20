@@ -9,7 +9,6 @@ import '../components/common/student_drawer.dart';
 import '../view/teacher_dashboard.dart';
 import '../components/common/student_bottom_bar.dart';
 import '../graphql/Post/post_mutations.dart';
-import '../api/shared_preferences.dart';
 import '../models/post.dart';
 
 class CreatePost extends StatefulWidget {
@@ -25,6 +24,7 @@ class _CreatePostState extends State<CreatePost> {
   String? _title, _description;
   // File? _image;
   List<XFile>? _imagefiles;
+  List<String> _imagepaths = [];
   Future _onAttachFile() async {
     final ImagePicker _picker = ImagePicker();
 
@@ -132,7 +132,8 @@ class _CreatePostState extends State<CreatePost> {
               _imagefiles != null
                   ? Wrap(
                       children: _imagefiles!.map((imageone) {
-                        print(imageone.path);
+                        _imagepaths.add(imageone.path);
+                        // print(imageone.path);
                         return Container(
                             child: Card(
                           child: Container(
@@ -177,9 +178,10 @@ class _CreatePostState extends State<CreatePost> {
                       teacherId: data["teacherLogin"]["id"],
                     ));
 
+                    await saveData("post", jsonEncode(_imagepaths));
+                    print(await getData("post"));
                     if (status != 'Failed') {
                       Navigator.pushNamed(context, TeacherDashboard.routeName);
-                      await saveData("post", jsonEncode(_imagefiles));
                     }
                   },
                   child: const Text(

@@ -16,6 +16,7 @@ import './view/teacher_dashboard.dart';
 import './view/teacher_details.dart';
 import './view/create_post.dart';
 import './view/help_and_support.dart';
+import './view/developer_note.dart';
 
 void main() async {
   await dotenv.load(fileName: "assets/config/dev.env");
@@ -29,20 +30,22 @@ class App extends StatelessWidget {
       // home: LandingPage(),
       initialRoute: '/',
       routes: {
-        // '/': (context) => LandingPage(),
-        // SignInPage.routeName: (context) => SignInPage(),
-        // CreateAccount.routeName: (context) => CreateAccount(),
-        // SignUpTeacher.routeName: (context) => SignUpTeacher(),
-        // SignUpStudent.routeName: (context) => SignUpStudent(),
-        // StudentDashboard.routeName: (context) => StudentDashboard(),
-        // PostDetails.routeName: (context) => PostDetails(),
-        // TeacherList.routeName: (context) => TeacherList(),
-        // TeacherDashboard.routeName: (context) => TeacherDashboard(),
-        // CreatePost.routeName: (context) => CreatePost(),
-        // TeacherDetails.routeName: (context) => TeacherDetails(),
-        // StudentResult.routeName: (context) => StudentResult(),
-        // StudentProfile.routeName: (context) => StudentProfile(),
-        '/': (context) => HelpAndSupport(),
+        '/': (context) => LandingPage(),
+        SignInPage.routeName: (context) => SignInPage(),
+        CreateAccount.routeName: (context) => CreateAccount(),
+        SignUpTeacher.routeName: (context) => SignUpTeacher(),
+        SignUpStudent.routeName: (context) => SignUpStudent(),
+        StudentDashboard.routeName: (context) => StudentDashboard(),
+        PostDetails.routeName: (context) => PostDetails(),
+        TeacherList.routeName: (context) => TeacherList(),
+        TeacherDashboard.routeName: (context) => TeacherDashboard(),
+        CreatePost.routeName: (context) => CreatePost(),
+        TeacherDetails.routeName: (context) => TeacherDetails(),
+        StudentResult.routeName: (context) => StudentResult(),
+        StudentProfile.routeName: (context) => StudentProfile(),
+        StudentProfile.routeName: (context) => StudentProfile(),
+        HelpAndSupport.routeName: (context) => HelpAndSupport(),
+        DeveloperNote.routeName: (context) => DeveloperNote(),
       },
     );
   }

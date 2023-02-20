@@ -1,3 +1,4 @@
+import 'package:academi_portal/view/student_result.dart';
 import 'package:flutter/material.dart';
 
 import '../../view/teacher_list.dart';
@@ -62,13 +63,15 @@ class _StudentBottomBarState extends State<StudentBottomBar> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(Icons.doorbell_outlined),
-                  Text("Notification"),
+                  Text("Meeting"),
                 ],
               ),
             ),
           ),
           TextButton(
-            onPressed: () => {},
+            onPressed: () => {
+              Navigator.pushNamed(context, StudentResult.routeName),
+            },
             style: TextButton.styleFrom(foregroundColor: Colors.grey),
             child: Container(
               height: 40,

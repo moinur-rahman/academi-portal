@@ -11,6 +11,15 @@ class PostWidget extends StatelessWidget {
     required this.created,
     required this.description,
   });
+  String convertDate(String unixTimestamp) {
+    print(unixTimestamp);
+    DateTime dateTime =
+        DateTime.fromMillisecondsSinceEpoch(int.parse(unixTimestamp) * 1000)
+            .toLocal();
+
+    print(dateTime);
+    return dateTime.toString();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +61,7 @@ class PostWidget extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: Text(
-                  created,
+                  convertDate(created),
                   style: TextStyle(
                     fontSize: 13,
                   ),

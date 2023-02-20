@@ -7,7 +7,7 @@ import '../components/HelpAndSupport/question_portion.dart';
 import '../components/HelpAndSupport/search_box.dart';
 
 class HelpAndSupport extends StatelessWidget {
-  const HelpAndSupport({super.key});
+  static const routeName = '/help-and-support';
 
   @override
   Widget build(BuildContext context) {

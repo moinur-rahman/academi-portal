@@ -1,7 +1,6 @@
 import 'package:academi_portal/components/PostDetails/private_comment.dart';
 import 'package:flutter/material.dart';
 
-import '../components/PostDetails/post_widget.dart';
 import '../components/PostDetails/attachment.dart';
 import '../components/PostDetails/description.dart';
 import '../components/common/student_bottom_bar.dart';
@@ -22,7 +21,7 @@ class PostDetails extends StatelessWidget {
       bottomNavigationBar: StudentBottomBar(),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: 880,
+          height: 1200,
           child: Column(
             children: [
               // PostWidget(args),
