@@ -5,6 +5,7 @@ import '../../view/student_dashboard.dart';
 import '../../view/student_result.dart';
 import '../../view/student_profile.dart';
 import '../../view/teacher_list.dart';
+import '../../view/sign_in_page.dart';
 
 class StudentDrawer extends StatelessWidget {
   @override
@@ -133,7 +134,7 @@ class StudentDrawer extends StatelessWidget {
                         icon: 0xe243,
                         buttonName: "Log out",
                         color: 0xFFFF0000,
-                        routeName: '',
+                        routeName: SignInPage.routeName,
                       ),
                     ],
                   ),

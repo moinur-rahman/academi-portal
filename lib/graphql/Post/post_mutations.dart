@@ -21,7 +21,7 @@ class PostMutations {
     try {
       response =
           await helper.runMutation(client!, Mutations.createPost, variables);
-      print(response);
+  
       return jsonEncode(response);
     } catch (e) {
       return "Failed";

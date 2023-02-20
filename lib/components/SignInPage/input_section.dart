@@ -141,7 +141,7 @@ class _InputSectionState extends State<InputSection> {
                     email: _email,
                     password: _password,
                   ));
-
+              
                   if (status != 'Failed') {
                     saveData("user", status);
                     Navigator.pushNamed(context, TeacherDashboard.routeName);
@@ -161,7 +161,7 @@ class _InputSectionState extends State<InputSection> {
                     color: Colors.green,
                   )),
             ),
-          )
+          ),
         ],
       ),
     );
