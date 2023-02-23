@@ -61,30 +61,39 @@ class _InputSectionState extends State<InputSection> {
           SizedBox(
             width: 200,
             height: 150,
-            child: Column(
+            child: Row(
               children: [
-                ListTile(
-                  title: Text("Student"),
-                  leading: Radio(
-                    value: UserType.Student,
-                    groupValue: _role,
-                    onChanged: ((UserType? value) {
-                      setState(() {
-                        _role = value;
-                      });
-                    }),
+                SizedBox(
+                  width: 400,
+                  child: Row(
+                    children: [
+                      Radio(
+                        value: UserType.Student,
+                        groupValue: _role,
+                        onChanged: ((UserType? value) {
+                          setState(() {
+                            _role = value;
+                          });
+                        }),
+                      ),
+                      Text("Student"),
+                    ],
                   ),
                 ),
-                ListTile(
-                  title: Text("Teacher"),
-                  leading: Radio(
-                    value: UserType.Teacher,
-                    groupValue: _role,
-                    onChanged: ((UserType? value) {
-                      setState(() {
-                        _role = value;
-                      });
-                    }),
+                SizedBox(
+                  child: Row(
+                    children: [
+                      Radio(
+                        value: UserType.Teacher,
+                        groupValue: _role,
+                        onChanged: ((UserType? value) {
+                          setState(() {
+                            _role = value;
+                          });
+                        }),
+                      ),
+                      Text("Teacher"),
+                    ],
                   ),
                 ),
               ],
@@ -101,19 +110,6 @@ class _InputSectionState extends State<InputSection> {
             ),
             onChanged: ((String? value) {
               _email = value;
-            }),
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Enter your phone',
-              prefixIcon: Icon(
-                Icons.email,
-                color: Colors.grey,
-              ),
-            ),
-            onChanged: ((String? value) {
-              _phone = value;
             }),
           ),
           TextFormField(

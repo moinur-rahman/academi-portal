@@ -2,9 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:link_text/link_text.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../view/sign_in_page.dart';
 
@@ -120,11 +117,7 @@ class _InputSectionState extends State<TeacherConversation> {
               //   ),
               // );
             },
-            child: LinkText(
-              link,
-              textAlign: TextAlign.center,
-              // shouldTrimParams: true,
-            ),
+            child: Text(link),
           ),
 
           // Text(link)

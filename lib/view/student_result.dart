@@ -1,7 +1,4 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:toggle_switch/toggle_switch.dart';
 
 import '../components/common/app_bar_widget.dart';
 import '../components/common/student_drawer.dart';
