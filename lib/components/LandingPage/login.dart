@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import '../../view/sign_in_page.dart';
 
 class Login extends StatelessWidget {
+  const Login({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             "Existing Account?",
             style: TextStyle(
               fontSize: 15,
@@ -18,7 +20,7 @@ class Login extends StatelessWidget {
           TextButton(
             onPressed: () =>
                 {Navigator.pushNamed(context, SignInPage.routeName)},
-            child: Text(
+            child: const Text(
               "Login",
               style: TextStyle(
                 color: Colors.green,

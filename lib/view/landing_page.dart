@@ -4,79 +4,35 @@ import 'package:carousel_slider/carousel_slider.dart';
 import '../components/common/app_bar_widget.dart';
 import '../components/LandingPage/sign_up_button.dart';
 import '../components/LandingPage/login.dart';
-import '../components/LandingPage/CarouseItem.dart';
-import '../components/LandingPage/CarouselDot.dart';
+import '../components/LandingPage/Carousel.dart';
 
-class LandingPage extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _LandingPageState();
-  }
-}
+class LandingPage extends StatelessWidget {
+  const LandingPage({super.key});
 
-class _LandingPageState extends State<LandingPage> {
-  int itemNo = 0;
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBarWidget("AcademiPortal"),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            CarouselSlider(
-              options: CarouselOptions(
-                height: 350,
-                autoPlay: true,
-                enlargeCenterPage: true,
-                viewportFraction: 1,
-                autoPlayAnimationDuration: Duration(milliseconds: 1000),
-                autoPlayInterval: Duration(milliseconds: 1000),
-                onPageChanged: (val, _) {
-                  setState(() {
-                    itemNo = val;
-                  });
-                },
+      body: SingleChildScrollView(
+        child: SizedBox(
+          width: width,
+          height: 850,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Carousel(),
+              SizedBox(
+                child: Column(
+                  children: [
+                    SignUpButton(),
+                    Login(),
+                  ],
+                ),
               ),
-              items: [
-                CarouselItem(
-                  imageURL: 'assets/images/landing_page_image1.png',
-                  heading: "Student Progress",
-                  description:
-                      "Student and teacher can easily interact with each other and get update in a instant.",
-                ),
-                CarouselItem(
-                  imageURL: 'assets/images/landing_page_image2.png',
-                  heading: "Student Teacher Collaboration",
-                  description:
-                      "Student and teacher can easily interact with each  other and get update in a instant.",
-                ),
-                CarouselItem(
-                  imageURL: 'assets/images/landing_page_image3.png',
-                  heading: "Student Feed",
-                  description:
-                      "Student and teacher can easily interact with each other and get update in a instant.",
-                ),
-                CarouselItem(
-                  imageURL: 'assets/images/landing_page_image4.png',
-                  heading: "Student Teacher Interaction",
-                  description:
-                      "Student and teacher can easily interact with each other and get update in a instant.",
-                ),
-              ],
-            ),
-            CarouselDot(itemNo),
-            SizedBox(
-              child: Column(
-                children: [
-                  SignUpButton(),
-                  Login(),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

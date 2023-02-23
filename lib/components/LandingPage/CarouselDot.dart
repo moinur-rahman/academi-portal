@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CarouselDot extends StatelessWidget {
-  final itemNo;
-  CarouselDot(this.itemNo);
+  final int itemNo;
+  const CarouselDot(this.itemNo, {super.key});
   @override
   Widget build(BuildContext context) {
     return SizedBox(

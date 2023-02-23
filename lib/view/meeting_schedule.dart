@@ -8,8 +8,6 @@ import '../components/common/app_bar_widget.dart';
 import '../components/common/student_bottom_bar.dart';
 import '../graphql/Teacher/teacher_queries.dart';
 
-import 'package:link_text/link_text.dart';
-
 class MeetingSchedule extends StatefulWidget {
   static const routeName = '/meeting-schedule';
   @override
@@ -19,12 +17,6 @@ class MeetingSchedule extends StatefulWidget {
 }
 
 class _InputSectionState extends State<MeetingSchedule> {
-  Map<String, dynamic> _teacher = {
-    'id': '',
-    'email': '',
-    'phone': '',
-    'department': '',
-  };
 
   String? _email, _password;
 
@@ -40,12 +32,6 @@ class _InputSectionState extends State<MeetingSchedule> {
 
       print(response);
 
-      // setState(() {
-      //   _teacher['id'] = data['data']['studentLogin']['id'];
-      //   _teacher['email'] = data['data']['studentLogin']['email'];
-      //   _teacher['phone'] = data['data']['studentLogin']['phone'];
-      //   _teacher['department'] = data['data']['studentLogin']['department'];
-      // });
     });
     return Scaffold(
       appBar: AppBarWidget('Schedule Meeting'),
@@ -60,7 +46,7 @@ class _InputSectionState extends State<MeetingSchedule> {
             TeacherConversation()
           ],
         ),
-      )),
+      ),),
     );
   }
 }

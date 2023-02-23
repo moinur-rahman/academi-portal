@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class CarouselItem extends StatelessWidget {
   final String imageURL, description, heading;
 
-  CarouselItem({
+  const CarouselItem({
+    super.key,
     required this.imageURL,
     required this.heading,
     required this.description,
@@ -25,20 +26,22 @@ class CarouselItem extends StatelessWidget {
           SizedBox(
             child: Text(
               heading,
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           SizedBox(
             width: 300,
             child: Text(
               description,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 15,
               ),
               textAlign: TextAlign.center,
             ),
           ),
-          
         ],
       ),
     );
