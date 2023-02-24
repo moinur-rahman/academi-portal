@@ -35,7 +35,7 @@ class _InputSectionState extends State<TeacherConversation> {
     setState(() {
       link = status["getMeetingUrl"]["meetingUrl"];
     });
-    // print(status["getMeetingUrl"]["meetingUrl"]);
+
   }
 
   @override

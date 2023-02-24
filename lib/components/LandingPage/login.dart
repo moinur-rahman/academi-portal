@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../view/sign_in_page.dart';
+import '../../components/common/constant.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -23,7 +24,7 @@ class Login extends StatelessWidget {
             child: const Text(
               "Login",
               style: TextStyle(
-                color: Colors.green,
+                color: AppColors.green,
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),

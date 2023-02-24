@@ -20,7 +20,7 @@ class SignInPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           width: double.infinity,
-          height: 775,
+          height: 900,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

@@ -12,12 +12,12 @@ class PostWidget extends StatelessWidget {
     required this.description,
   });
   String convertDate(String unixTimestamp) {
-    print(unixTimestamp);
+
     DateTime dateTime =
         DateTime.fromMillisecondsSinceEpoch(int.parse(unixTimestamp) * 1000)
             .toLocal();
 
-    print(dateTime);
+
     return dateTime.toString();
   }
 
@@ -42,7 +42,7 @@ class PostWidget extends StatelessWidget {
         ),
         child: Container(
           height: 150,
-          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

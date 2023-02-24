@@ -24,18 +24,18 @@ class Mutations {
 """;
 
   static String studentLogin = """
-  mutation StudentLogin(
-   \$email: String!
-  \$password: String!
-  ){
-  studentLogin(
-    email:\$email,
-    password:\$password,
-    ){
-    email
-    password
-    name
-  }
-  }
+ mutation StudentLogin(
+    \$email: String!
+    \$password:String!
+){
+    studentLogin(
+        email:\$email
+        password:\$password
+        ){
+        id
+        email
+        password
+        }
+}
 """;
 }

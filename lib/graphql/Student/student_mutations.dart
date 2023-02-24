@@ -43,7 +43,7 @@ class StudentMutations {
           await helper.runMutation(client!, Mutations.studentLogin, variables);
       return jsonEncode(response);
     } catch (e) {
-      return "Failed";
+      throw Exception("Credential doesn't match");
     }
   }
 }

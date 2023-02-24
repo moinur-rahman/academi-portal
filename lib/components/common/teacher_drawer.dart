@@ -28,10 +28,9 @@ class _TeacherDrawerState extends State<TeacherDrawer> {
     var data = jsonDecode(await getData("user"));
     setState(() {
       name = data["teacherLogin"]["name"];
-      // print(name);
+
     });
-    // print(data);
-    // name = data.name;
+   
   }
 
   @override

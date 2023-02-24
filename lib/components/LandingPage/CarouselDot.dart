@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../components/common/constant.dart';
+
 class CarouselDot extends StatelessWidget {
   final int itemNo;
   const CarouselDot(this.itemNo, {super.key});
@@ -15,10 +17,10 @@ class CarouselDot extends StatelessWidget {
             height: 20,
             decoration: BoxDecoration(
               border: Border.all(
-                color: Colors.black,
+                color: AppColors.black,
               ),
               shape: BoxShape.circle,
-              color: itemNo == 0 ? Colors.black : Colors.white,
+              color: itemNo == 0 ? AppColors.black : AppColors.white,
             ),
           ),
           Container(
@@ -29,7 +31,7 @@ class CarouselDot extends StatelessWidget {
                 color: Colors.black,
               ),
               shape: BoxShape.circle,
-              color: itemNo == 1 ? Colors.black : Colors.white,
+              color: itemNo == 1 ? AppColors.black : AppColors.white,
             ),
           ),
           Container(
@@ -40,7 +42,7 @@ class CarouselDot extends StatelessWidget {
                 color: Colors.black,
               ),
               shape: BoxShape.circle,
-              color: itemNo == 2 ? Colors.black : Colors.white,
+              color: itemNo == 2 ? AppColors.black : AppColors.white,
             ),
           ),
           Container(
@@ -51,7 +53,7 @@ class CarouselDot extends StatelessWidget {
                 color: Colors.black,
               ),
               shape: BoxShape.circle,
-              color: itemNo == 3 ? Colors.black : Colors.white,
+              color: itemNo == 3 ? AppColors.black : AppColors.white,
             ),
           ),
         ],

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-import '../../components/common/app_bar_widget.dart';
-import '../../components/LandingPage/sign_up_button.dart';
-import '../../components/LandingPage/login.dart';
 import '../../components/LandingPage/CarouseItem.dart';
 import '../../components/LandingPage/CarouselDot.dart';
 

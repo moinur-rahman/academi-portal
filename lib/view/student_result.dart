@@ -20,7 +20,7 @@ class _StudentResultState extends State<StudentResult> {
   String? _dropdownTermValue = '1';
   String? _dropdownLevelValue = '1';
   String? _toggleResultType = 'course';
-  //print(stateIndex);
+
   List<Map<String, String>> _tableData = l1_t1['course']!;
 
   bool _selection = false;

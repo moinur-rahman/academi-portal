@@ -25,12 +25,12 @@ class _InputSectionState extends State<MeetingSchedule> {
   @override
   Widget build(BuildContext context) {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      print('hello');
+
 
       String response = await TeacherQueries()
           .getTeacherById("1cb68ecf-397d-41cb-a04f-b6dba011c3ab");
 
-      print(response);
+
 
     });
     return Scaffold(

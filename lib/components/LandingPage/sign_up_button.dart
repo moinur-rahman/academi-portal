@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../view/create_account_section.dart';
+import '../../components/common/constant.dart';
 
 class SignUpButton extends StatelessWidget {
   const SignUpButton({super.key});
@@ -14,9 +15,9 @@ class SignUpButton extends StatelessWidget {
         onPressed: () =>
             {Navigator.pushNamed(context, CreateAccount.routeName)},
         style: OutlinedButton.styleFrom(
-          foregroundColor: Colors.green,
+          foregroundColor: AppColors.green,
           side: const BorderSide(
-            color: Colors.green,
+            color: AppColors.green,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),

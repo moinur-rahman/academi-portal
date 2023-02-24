@@ -10,10 +10,10 @@ class PostWidget extends StatelessWidget {
   PostWidget(this.args);
 
   String convertDate(String unixTimestamp) {
-    print(unixTimestamp);
+
     DateTime dateTime =
         DateTime.fromMillisecondsSinceEpoch(int.parse(unixTimestamp) * 1000);
-    print(dateTime);
+
     return dateTime.toString();
   }
 

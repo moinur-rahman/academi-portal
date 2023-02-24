@@ -36,12 +36,7 @@ class _CreatePostState extends State<CreatePost> {
         _imagefiles = _pickedFiles;
       });
     }
-    // if (pickedFile != null) {
-    //   setState(() {
-    //     _image = File(pickedFile.path);
-    //     print(_image);
-    //   });
-    // }
+ 
   }
 
   @override
@@ -133,7 +128,7 @@ class _CreatePostState extends State<CreatePost> {
                   ? Wrap(
                       children: _imagefiles!.map((imageone) {
                         _imagepaths.add(imageone.path);
-                        // print(imageone.path);
+                     
                         return Container(
                             child: Card(
                           child: Container(
@@ -179,7 +174,7 @@ class _CreatePostState extends State<CreatePost> {
                     ));
 
                     await saveData("post", jsonEncode(_imagepaths));
-                    print(await getData("post"));
+           
                     if (status != 'Failed') {
                       Navigator.pushNamed(context, TeacherDashboard.routeName);
                     }

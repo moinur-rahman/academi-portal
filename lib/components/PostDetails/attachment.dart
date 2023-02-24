@@ -51,7 +51,7 @@ class _AttachmentState extends State<Attachment> {
           _imagefiles != null
               ? Wrap(
                   children: _imagefiles!.map((imageone) {
-                    print(imageone);
+                
                     return Container(
                         child: Card(
                       child: Container(

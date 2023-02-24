@@ -6,7 +6,7 @@ class TeacherMetadata extends StatelessWidget {
   final String yourData;
 
   TeacherMetadata(this.yourData) {
-    print(this.yourData);
+
   }
 
   @override

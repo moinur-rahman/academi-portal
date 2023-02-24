@@ -17,7 +17,7 @@ class TeacherQueries {
 
       return jsonEncode(response);
     } catch (e) {
-      print(e);
+
       return "Failed";
     }
   }
