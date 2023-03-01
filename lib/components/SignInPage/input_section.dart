@@ -1,6 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 import '../../view/student_dashboard.dart';
 import '../../view/teacher_dashboard.dart';
@@ -30,7 +29,7 @@ class _InputSectionState extends State<InputSection> {
 
   bool isChecked = false;
 
-  Future _onSubmit(BuildContext context) async {
+  Future<void> _onSubmit(BuildContext context) async {
     try {
       if (_role == UserType.Student) {
         String status = await StudentMutations().studentLogin(Student(
@@ -55,14 +54,34 @@ class _InputSectionState extends State<InputSection> {
         }
       }
     } catch (e) {
-      print(e);
+      return showDialog<void>(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text("Error"),
+              content: const SizedBox(
+                width: 200,
+                height: 50,
+                child: Text("Invalid email or password"),
+              ),
+              actions: [
+                TextButton(
+                  child: const Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    double width = min(MediaQuery.of(context).size.width, 400);
     return SizedBox(
-      width: 360,
+      width: width,
       height: 420,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -90,7 +109,7 @@ class _InputSectionState extends State<InputSection> {
                         "Student",
                         style: TextStyle(
                           color: (_role == UserType.Student)
-                              ? AppColors.black
+                              ? AppColors.green
                               : AppColors.grey,
                         ),
                       ),
@@ -115,7 +134,7 @@ class _InputSectionState extends State<InputSection> {
                         "Teacher",
                         style: TextStyle(
                           color: (_role == UserType.Teacher)
-                              ? AppColors.black
+                              ? AppColors.green
                               : AppColors.grey,
                         ),
                       ),
@@ -184,26 +203,28 @@ class _InputSectionState extends State<InputSection> {
                       });
                     },
                   ),
-                  const Text(
+                  Text(
                     "Remember Password",
                     style: TextStyle(
-                      color: Color(0xff6B6B6B),
+                      color: isChecked ? AppColors.green : AppColors.grey,
                       fontSize: 15,
                     ),
                   ),
                 ],
               ),
-              const Text(
-                "Forgot Password",
-                style: TextStyle(
-                  color: Colors.green,
-                  fontSize: 15,
-                ),
-              ),
+              TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    "Forgot Password",
+                    style: TextStyle(
+                      color: AppColors.grey,
+                      fontSize: 15,
+                    ),
+                  )),
             ],
           ),
           SizedBox(
-            width: 150,
+            width: width / 2,
             height: 50,
             child: OutlinedButton(
               onPressed: () async => await _onSubmit(context),
