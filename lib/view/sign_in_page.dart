@@ -11,24 +11,33 @@ import '../components/SignInPage/header_section.dart';
 class SignInPage extends StatelessWidget {
   static const routeName = '/login';
 
+  const SignInPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Color(0xFFFAFAFA),
       appBar: AppBarWidget("Sign In"),
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
-          height: 900,
+          height: 850,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              HeaderSection(),
-              DescriptionSection(),
-              LogoButtonSection(),
-              DividerSection(),
-              InputSection(),
+              SizedBox(
+                height: 200,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    HeaderSection(),
+                    DescriptionSection(),
+                    LogoButtonSection(),
+                  ],
+                ),
+              ),
+              const DividerSection(),
+              const InputSection(),
             ],
           ),
         ),

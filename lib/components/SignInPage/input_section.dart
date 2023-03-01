@@ -63,9 +63,9 @@ class _InputSectionState extends State<InputSection> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 360,
-      height: 480,
+      height: 420,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
             width: 250,
@@ -90,7 +90,7 @@ class _InputSectionState extends State<InputSection> {
                         "Student",
                         style: TextStyle(
                           color: (_role == UserType.Student)
-                              ? AppColors.green
+                              ? AppColors.black
                               : AppColors.grey,
                         ),
                       ),
@@ -111,7 +111,14 @@ class _InputSectionState extends State<InputSection> {
                           });
                         }),
                       ),
-                      const Text("Teacher"),
+                      Text(
+                        "Teacher",
+                        style: TextStyle(
+                          color: (_role == UserType.Teacher)
+                              ? AppColors.black
+                              : AppColors.grey,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -121,6 +128,15 @@ class _InputSectionState extends State<InputSection> {
           TextFormField(
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: AppColors.green,
+                  width: 2,
+                ),
+              ),
+              floatingLabelStyle: TextStyle(
+                color: AppColors.green,
+              ),
               labelText: 'Enter your email',
               prefixIcon: Icon(
                 Icons.email,
@@ -135,6 +151,15 @@ class _InputSectionState extends State<InputSection> {
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Enter your password',
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: AppColors.green,
+                  width: 2,
+                ),
+              ),
+              floatingLabelStyle: TextStyle(
+                color: AppColors.green,
+              ),
               prefixIcon: Icon(
                 Icons.lock,
                 color: Colors.grey,
