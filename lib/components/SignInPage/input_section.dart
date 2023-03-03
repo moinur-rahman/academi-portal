@@ -108,6 +108,8 @@ class _InputSectionState extends State<InputSection> {
                       Text(
                         "Student",
                         style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
                           color: (_role == UserType.Student)
                               ? AppColors.green
                               : AppColors.grey,
@@ -133,6 +135,8 @@ class _InputSectionState extends State<InputSection> {
                       Text(
                         "Teacher",
                         style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
                           color: (_role == UserType.Teacher)
                               ? AppColors.green
                               : AppColors.grey,
@@ -157,6 +161,10 @@ class _InputSectionState extends State<InputSection> {
                 color: AppColors.green,
               ),
               labelText: 'Enter your email',
+              labelStyle: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w500,
+              ),
               prefixIcon: Icon(
                 Icons.email,
                 color: Colors.grey,
@@ -170,6 +178,10 @@ class _InputSectionState extends State<InputSection> {
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Enter your password',
+              labelStyle: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w500,
+              ),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                   color: AppColors.green,
@@ -206,8 +218,9 @@ class _InputSectionState extends State<InputSection> {
                   Text(
                     "Remember Password",
                     style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
                       color: isChecked ? AppColors.green : AppColors.grey,
-                      fontSize: 15,
                     ),
                   ),
                 ],
@@ -217,7 +230,7 @@ class _InputSectionState extends State<InputSection> {
                   child: const Text(
                     "Forgot Password",
                     style: TextStyle(
-                      color: AppColors.grey,
+                      color: AppColors.green,
                       fontSize: 15,
                     ),
                   )),
@@ -239,7 +252,10 @@ class _InputSectionState extends State<InputSection> {
               ),
               child: const Text(
                 "Sign In",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),

@@ -22,10 +22,10 @@ class LandingPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Carousel(),
+              const Carousel(),
               SizedBox(
                 child: Column(
-                  children: [
+                  children: const [
                     SignUpButton(),
                     Login(),
                   ],

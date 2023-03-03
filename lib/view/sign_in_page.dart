@@ -30,8 +30,8 @@ class SignInPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    HeaderSection(),
-                    DescriptionSection(),
+                    const HeaderSection(),
+                    const DescriptionSection(),
                     LogoButtonSection(),
                   ],
                 ),
