@@ -9,14 +9,15 @@ import '../components/SignUpStudent/input_section.dart';
 
 class SignUpStudent extends StatelessWidget {
   static const routeName = '/sign-up-student';
+
+  const SignUpStudent({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Color(0xFFFAFAFA),
       appBar: AppBarWidget("Sign up as a student"),
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           height: 1060,
           child: Column(
