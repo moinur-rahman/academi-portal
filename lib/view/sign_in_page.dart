@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 import '../components/common/app_bar_widget.dart';
 import '../components/SignInPage/description_section.dart';

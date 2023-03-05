@@ -1,6 +1,6 @@
-import 'package:academi_portal/view/help_and_support.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:page_transition/page_transition.dart';
 
 import './view/landing_page.dart';
 import './view/sign_in_page.dart';
@@ -17,38 +17,88 @@ import './view/teacher_details.dart';
 import './view/meeting_schedule.dart';
 import './view/create_post.dart';
 import './view/help_and_support.dart';
-import './view/developer_note.dart';
 
 void main() async {
   await dotenv.load(fileName: "assets/config/dev.env");
-  runApp(App());
+  runApp(const App());
 }
 
 class App extends StatelessWidget {
+  const App({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // home: LandingPage(),r
-      theme: ThemeData(fontFamily: 'Raleway'),
-      initialRoute: '/',
+      initialRoute: LandingPage.routeName,
       routes: {
-        '/': (context) => LandingPage(),
-        MeetingSchedule.routeName: (context) => MeetingSchedule(),
-        SignInPage.routeName: (context) => SignInPage(),
-        CreateAccount.routeName: (context) => CreateAccount(),
-        SignUpTeacher.routeName: (context) => SignUpTeacher(),
-        SignUpStudent.routeName: (context) => SignUpStudent(),
-        StudentDashboard.routeName: (context) => StudentDashboard(),
-        PostDetails.routeName: (context) => PostDetails(),
-        TeacherList.routeName: (context) => TeacherList(),
-        TeacherDashboard.routeName: (context) => TeacherDashboard(),
-        CreatePost.routeName: (context) => CreatePost(),
-        TeacherDetails.routeName: (context) => TeacherDetails(),
-        StudentResult.routeName: (context) => StudentResult(),
-        StudentProfile.routeName: (context) => StudentProfile(),
-        StudentProfile.routeName: (context) => StudentProfile(),
-        HelpAndSupport.routeName: (context) => HelpAndSupport(),
-        DeveloperNote.routeName: (context) => DeveloperNote(),
+        LandingPage.routeName: (context) => const LandingPage(),
+      },
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case SignInPage.routeName:
+            return PageTransition(
+              child: const SignInPage(),
+              type: PageTransitionType.leftToRight,
+            );
+          case CreateAccount.routeName:
+            return PageTransition(
+              child: const CreateAccount(),
+              type: PageTransitionType.leftToRight,
+            );
+          case SignUpStudent.routeName:
+            return PageTransition(
+              child: const SignUpStudent(),
+              type: PageTransitionType.leftToRight,
+            );
+          case SignUpTeacher.routeName:
+            return PageTransition(
+              child: SignUpTeacher(),
+              type: PageTransitionType.leftToRight,
+            );
+          case StudentDashboard.routeName:
+            return PageTransition(
+              child: StudentDashboard(),
+              type: PageTransitionType.leftToRight,
+            );
+          case TeacherDashboard.routeName:
+            return PageTransition(
+              child: TeacherDashboard(),
+              type: PageTransitionType.leftToRight,
+            );
+          case PostDetails.routeName:
+            return PageTransition(
+              child: PostDetails(),
+              type: PageTransitionType.leftToRight,
+            );
+          case CreatePost.routeName:
+            return PageTransition(
+              child: CreatePost(),
+              type: PageTransitionType.leftToRight,
+            );
+          case TeacherList.routeName:
+            return PageTransition(
+              child: TeacherList(),
+              type: PageTransitionType.leftToRight,
+            );
+          case TeacherDetails.routeName:
+            return PageTransition(
+              child: TeacherDetails(),
+              type: PageTransitionType.leftToRight,
+            );
+          case MeetingSchedule.routeName:
+            return PageTransition(
+              child: MeetingSchedule(),
+              type: PageTransitionType.leftToRight,
+            );
+          case HelpAndSupport.routeName:
+            return PageTransition(
+              child: HelpAndSupport(),
+              type: PageTransitionType.leftToRight,
+            );
+
+          default:
+            return null;
+        }
       },
     );
   }

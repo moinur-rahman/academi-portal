@@ -7,6 +7,7 @@ import '../components/LandingPage/login.dart';
 import '../components/LandingPage/Carousel.dart';
 
 class LandingPage extends StatelessWidget {
+  static const routeName = '/';
   const LandingPage({super.key});
 
   @override

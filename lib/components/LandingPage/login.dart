@@ -16,11 +16,11 @@ class Login extends StatelessWidget {
             "Existing Account?",
             style: TextStyle(
               fontSize: 15,
+              fontWeight: FontWeight.w500,
             ),
           ),
           TextButton(
-            onPressed: () =>
-                {Navigator.pushNamed(context, SignInPage.routeName)},
+            onPressed: () => Navigator.pushNamed(context, SignInPage.routeName),
             child: const Text(
               "Login",
               style: TextStyle(
