@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TermsConditionsSection extends StatelessWidget {
+  const TermsConditionsSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -8,16 +10,30 @@ class TermsConditionsSection extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             "By creating account you agree to our", // Terms of Service and Privacy Policy.
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+            ),
             textAlign: TextAlign.center,
           ),
           Row(
             children: [
-              TextButton(onPressed: () {}, child: Text("Terms of Service")),
-              Text("and"),
-              TextButton(onPressed: () {}, child: Text("Privacy Policy")),
-              Text("."),
+              TextButton(
+                  onPressed: () {}, child: const Text("Terms of Service")),
+              const Text(
+                "and",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              TextButton(onPressed: () {}, child: const Text("Privacy Policy")),
+              const Text("."),
             ],
           ),
         ],

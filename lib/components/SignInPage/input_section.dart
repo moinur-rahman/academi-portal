@@ -55,25 +55,26 @@ class _InputSectionState extends State<InputSection> {
       }
     } catch (e) {
       return showDialog<void>(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text("Error"),
-              content: const SizedBox(
-                width: 200,
-                height: 50,
-                child: Text("Invalid email or password"),
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Error"),
+            content: const SizedBox(
+              width: 200,
+              height: 50,
+              child: Text("Invalid email or password"),
+            ),
+            actions: [
+              TextButton(
+                child: const Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
               ),
-              actions: [
-                TextButton(
-                  child: const Text("OK"),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            );
-          });
+            ],
+          );
+        },
+      );
     }
   }
 

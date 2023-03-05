@@ -1,5 +1,3 @@
-import 'package:academi_portal/api/shared_preferences.dart';
-import 'package:academi_portal/graphql/Student/student_mutations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -7,9 +5,12 @@ import '../../view/student_dashboard.dart';
 import './terms_conditions_section.dart';
 
 import '../../models/student.dart';
-import '../../graphql/Student/student_queries.dart';
+import '../../api/shared_preferences.dart';
+import '../../graphql/Student/student_mutations.dart';
 
 class InputSection extends StatefulWidget {
+  const InputSection({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return _InputSectionState();
@@ -33,7 +34,7 @@ class _InputSectionState extends State<InputSection> {
       _phone;
   int? _studentId;
 
-  Future _onSubmit() async {
+  Future<void> _onSubmit(BuildContext context) async {
     String status = await StudentMutations().createStudent(
       Student(
         email: _email,
@@ -45,24 +46,52 @@ class _InputSectionState extends State<InputSection> {
         phone: _phone,
       ),
     );
-    if (status != 'Failed') {
-      await saveData("user", status);
-      Navigator.pushNamed(context, StudentDashboard.routeName);
+    try {
+      if (mounted) {
+        await Navigator.pushNamed(context, StudentDashboard.routeName);
+        await saveData("user", status);
+      }
+    } catch (e) {
+      return showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Error"),
+            content: const SizedBox(
+              width: 200,
+              height: 50,
+              child: Text("Invalid email or password"),
+            ),
+            actions: [
+              TextButton(
+                child: const Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 340,
+      width: 400,
       height: 750,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           TextFormField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Enter your email',
+              labelStyle: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w500,
+              ),
               prefixIcon: Icon(
                 Icons.email,
                 color: Colors.grey,
@@ -73,9 +102,13 @@ class _InputSectionState extends State<InputSection> {
             },
           ),
           TextFormField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Your name',
+              labelStyle: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w500,
+              ),
               prefixIcon: Icon(
                 Icons.person,
                 color: Colors.grey,
@@ -86,9 +119,13 @@ class _InputSectionState extends State<InputSection> {
             },
           ),
           TextFormField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Enter your password',
+              labelStyle: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w500,
+              ),
               prefixIcon: Icon(
                 Icons.lock,
                 color: Colors.grey,
@@ -99,9 +136,13 @@ class _InputSectionState extends State<InputSection> {
             },
           ),
           TextFormField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Repeat password',
+              labelStyle: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w500,
+              ),
               prefixIcon: Icon(
                 Icons.lock,
                 color: Colors.grey,
@@ -112,9 +153,13 @@ class _InputSectionState extends State<InputSection> {
             },
           ),
           TextFormField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Phone Number',
+              labelStyle: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w500,
+              ),
               prefixIcon: Icon(
                 Icons.phone,
                 color: Colors.grey,
@@ -125,9 +170,13 @@ class _InputSectionState extends State<InputSection> {
             },
           ),
           TextFormField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'ID (e.g. 1704037)',
+              labelStyle: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w500,
+              ),
               prefixIcon: Icon(
                 Icons.wallet_membership,
                 color: Colors.grey,
@@ -144,19 +193,26 @@ class _InputSectionState extends State<InputSection> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
+                const Text(
                   "Department",
                   style: TextStyle(
                     fontSize: 16,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 DropdownButton(
-                  hint: Text("Select Department"),
+                  hint: const Text("Select Department"),
                   items: _departmentsList
                       .map<DropdownMenuItem<String>>((String department) {
                     return DropdownMenuItem<String>(
-                      child: Text(department),
                       value: department,
+                      child: Text(
+                        department,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     );
                   }).toList(),
                   value: _department,
@@ -174,19 +230,26 @@ class _InputSectionState extends State<InputSection> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
+                const Text(
                   "Section",
                   style: TextStyle(
                     fontSize: 16,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 DropdownButton(
-                  hint: Text("Select Section"),
+                  hint: const Text("Select Section"),
                   items: _sectionList
                       .map<DropdownMenuItem<String>>((String department) {
                     return DropdownMenuItem<String>(
-                      child: Text(department),
                       value: department,
+                      child: Text(
+                        department,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     );
                   }).toList(),
                   value: _section,
@@ -204,18 +267,18 @@ class _InputSectionState extends State<InputSection> {
             width: 200,
             height: 50,
             child: OutlinedButton(
-              onPressed: _onSubmit,
-              child: Text(
-                "Create Account",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
+              onPressed: () async => await _onSubmit(context),
               style: OutlinedButton.styleFrom(
                   foregroundColor: Colors.green,
-                  side: BorderSide(
+                  side: const BorderSide(
                     color: Colors.green,
                   ),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20))),
+              child: const Text(
+                "Create Account",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ],

@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 
+import '../common/constant.dart';
+
 class DividerSection extends StatelessWidget {
+  const DividerSection({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       child: Text(
         "OR",
         style: TextStyle(
-            color: Color(0xff6B6B6B),
-            fontSize: 20,
-            fontWeight: FontWeight.bold),
+          color: AppColors.green,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
