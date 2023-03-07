@@ -7,12 +7,13 @@ class DividerSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
+    double width = MediaQuery.of(context).size.width;
+    return SizedBox(
       child: Text(
         "OR",
         style: TextStyle(
           color: AppColors.green,
-          fontSize: 20,
+          fontSize: width * 0.045,
           fontWeight: FontWeight.bold,
         ),
       ),

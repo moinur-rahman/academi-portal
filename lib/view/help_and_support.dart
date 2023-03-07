@@ -11,8 +11,12 @@ class HelpAndSupport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBarWidget('Help & Support'),
+      appBar: AppBarWidget(
+        title: 'Help & Support',
+        height: height,
+      ),
       drawer: StudentDrawer(),
       bottomNavigationBar: StudentBottomBar(),
       body: SingleChildScrollView(

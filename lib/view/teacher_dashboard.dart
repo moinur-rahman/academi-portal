@@ -39,9 +39,13 @@ class _TeacherDashboardState extends State<TeacherDashboard> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBarWidget("Teacher Feed"),
+      appBar: AppBarWidget(
+        title: "Teacher Feed",
+        height: height,
+      ),
       drawer: TeacherDrawer(),
       bottomNavigationBar: TeacherBottomBar(),
       body: SingleChildScrollView(

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../components/common/app_bar_widget.dart';
@@ -14,23 +16,25 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBarWidget("Sign In"),
+      appBar: AppBarWidget(title: "Sign In", height: height),
       body: SingleChildScrollView(
         child: SizedBox(
-          width: double.infinity,
-          height: 850,
+          width: width,
+          height: max(height, 600),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(
-                height: 200,
+                height: height * 0.25,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const HeaderSection(),
-                    const DescriptionSection(),
+                  children: const [
+                    HeaderSection(),
+                    DescriptionSection(),
                     LogoButtonSection(),
                   ],
                 ),

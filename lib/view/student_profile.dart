@@ -15,9 +15,13 @@ class StudentProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: const Color(0xffF9F9F9),
-      appBar: AppBarWidget("Profile"),
+      appBar: AppBarWidget(
+        title: "Profile",
+        height: height,
+      ),
       drawer: StudentDrawer(),
       bottomNavigationBar: StudentBottomBar(),
       body: SingleChildScrollView(

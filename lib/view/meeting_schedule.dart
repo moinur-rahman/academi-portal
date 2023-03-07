@@ -33,8 +33,12 @@ class _InputSectionState extends State<MeetingSchedule> {
 
 
     });
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBarWidget('Schedule Meeting'),
+      appBar: AppBarWidget(
+        title: "Meeting Schedule",
+        height: height,
+      ),
       drawer: StudentDrawer(),
       bottomNavigationBar: StudentBottomBar(),
       body: SingleChildScrollView(

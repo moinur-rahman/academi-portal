@@ -36,13 +36,16 @@ class _CreatePostState extends State<CreatePost> {
         _imagefiles = _pickedFiles;
       });
     }
- 
   }
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBarWidget("Create Post"),
+      appBar: AppBarWidget(
+        title: "Create Post",
+        height: height,
+      ),
       drawer: StudentDrawer(),
       bottomNavigationBar: StudentBottomBar(),
       body: SingleChildScrollView(
@@ -128,7 +131,7 @@ class _CreatePostState extends State<CreatePost> {
                   ? Wrap(
                       children: _imagefiles!.map((imageone) {
                         _imagepaths.add(imageone.path);
-                     
+
                         return Container(
                             child: Card(
                           child: Container(
@@ -174,7 +177,7 @@ class _CreatePostState extends State<CreatePost> {
                     ));
 
                     await saveData("post", jsonEncode(_imagepaths));
-           
+
                     if (status != 'Failed') {
                       Navigator.pushNamed(context, TeacherDashboard.routeName);
                     }

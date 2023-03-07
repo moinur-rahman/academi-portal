@@ -12,15 +12,16 @@ class CarouselItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return SizedBox(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(
+          AspectRatio(
+            aspectRatio: 16 / 6,
             child: Image(
               image: AssetImage(imageURL),
-              width: 200,
-              height: 200,
             ),
           ),
           SizedBox(
@@ -37,7 +38,7 @@ class CarouselItem extends StatelessWidget {
             child: Text(
               description,
               style: const TextStyle(
-                fontSize: 15,
+                fontSize: 14,
               ),
               textAlign: TextAlign.center,
             ),

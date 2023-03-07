@@ -12,8 +12,12 @@ class CreateAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBarWidget("Create Account"),
+      appBar: AppBarWidget(
+        title: "Create Account",
+        height: height,
+      ),
       body: Center(
         child: Container(
           width: double.infinity,

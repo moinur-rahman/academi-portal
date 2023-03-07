@@ -21,9 +21,13 @@ class _DeveloperNoteState extends State<DeveloperNote> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBarWidget("Respective Teacher"),
+        appBar: AppBarWidget(
+          title: "Respective Teacher",
+          height: height,
+        ),
         drawer: StudentDrawer(),
         bottomNavigationBar: StudentBottomBar(),
         body: SingleChildScrollView(

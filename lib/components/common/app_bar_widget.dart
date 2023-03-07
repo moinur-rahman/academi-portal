@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 
+import '../../components/common/constant.dart';
+
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  AppBarWidget(this.title);
+  final double height;
 
-  Size get preferredSize => Size.fromHeight(60);
+  const AppBarWidget({
+    super.key,
+    required this.title,
+    required this.height,
+  });
+
+  @override
+  Size get preferredSize => Size.fromHeight(height * 0.08);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: AppColors.white,
       title: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.black,
           fontWeight: FontWeight.bold,
         ),
@@ -20,9 +29,9 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         onPressed: () => Scaffold.of(context).openDrawer(),
         icon: Image(
-          image: AssetImage('assets/images/profile_avatar.png'),
-          width: 40,
-          height: 40,
+          image: const AssetImage('assets/images/profile_avatar.png'),
+          width: height * 0.05,
+          height: height * 0.05,
         ),
       ),
       centerTitle: true,

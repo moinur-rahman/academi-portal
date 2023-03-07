@@ -39,9 +39,13 @@ class _StudentDashboardState extends State<StudentDashboard> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBarWidget("Student Feed"),
+      appBar: AppBarWidget(
+        title: "Student Feed",
+        height: height,
+      ),
       drawer: StudentDrawer(),
       bottomNavigationBar: StudentBottomBar(),
       body: SingleChildScrollView(

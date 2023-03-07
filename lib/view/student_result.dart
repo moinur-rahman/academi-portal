@@ -55,8 +55,12 @@ class _StudentResultState extends State<StudentResult> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBarWidget("Student Result"),
+      appBar: AppBarWidget(
+        title: "Student Result",
+        height: height,
+      ),
       drawer: StudentDrawer(),
       bottomNavigationBar: StudentBottomBar(),
       body: SingleChildScrollView(

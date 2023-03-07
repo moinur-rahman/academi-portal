@@ -80,36 +80,40 @@ class _InputSectionState extends State<InputSection> {
 
   @override
   Widget build(BuildContext context) {
-    double width = min(MediaQuery.of(context).size.width, 400);
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return SizedBox(
-      width: width,
-      height: 420,
+      width: max(width - 200, 340),
+      height: height * 0.52,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
-            width: 250,
-            height: 50,
+            height: height * 0.05,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: 120,
+                  width: width * 0.3,
                   child: Row(
                     children: [
-                      Radio(
-                        activeColor: const Color(0xff349053),
-                        value: UserType.Student,
-                        groupValue: _role,
-                        onChanged: ((UserType? value) {
-                          setState(() {
-                            _role = value;
-                          });
-                        }),
+                      Transform.scale(
+                        scale: height * 0.0012,
+                        child: Radio(
+                          activeColor: const Color(0xff349053),
+                          value: UserType.Student,
+                          groupValue: _role,
+                          onChanged: ((UserType? value) {
+                            setState(() {
+                              _role = value;
+                            });
+                          }),
+                        ),
                       ),
                       Text(
                         "Student",
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: height * 0.02,
                           fontWeight: FontWeight.w500,
                           color: (_role == UserType.Student)
                               ? AppColors.green
@@ -120,23 +124,26 @@ class _InputSectionState extends State<InputSection> {
                   ),
                 ),
                 SizedBox(
-                  width: 120,
+                  width: width * 0.4,
                   child: Row(
                     children: [
-                      Radio(
-                        activeColor: Colors.green,
-                        value: UserType.Teacher,
-                        groupValue: _role,
-                        onChanged: ((UserType? value) {
-                          setState(() {
-                            _role = value;
-                          });
-                        }),
+                      Transform.scale(
+                        scale: height * 0.0012,
+                        child: Radio(
+                          activeColor: Colors.green,
+                          value: UserType.Teacher,
+                          groupValue: _role,
+                          onChanged: ((UserType? value) {
+                            setState(() {
+                              _role = value;
+                            });
+                          }),
+                        ),
                       ),
                       Text(
                         "Teacher",
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: height * 0.02,
                           fontWeight: FontWeight.w500,
                           color: (_role == UserType.Teacher)
                               ? AppColors.green
@@ -149,97 +156,128 @@ class _InputSectionState extends State<InputSection> {
               ],
             ),
           ),
-          TextFormField(
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
+          SizedBox(
+            height: height * 0.07,
+            child: TextFormField(
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: height * 0.02,
+                ),
+                border: const OutlineInputBorder(),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppColors.grey,
+                    width: 1.5,
+                  ),
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppColors.green,
+                    width: 2,
+                  ),
+                ),
+                floatingLabelStyle: const TextStyle(
                   color: AppColors.green,
-                  width: 2,
+                ),
+                labelText: 'Enter your email',
+                labelStyle: TextStyle(
+                  fontSize: height * 0.02,
+                  fontWeight: FontWeight.w500,
+                ),
+                prefixIcon: Icon(
+                  Icons.email,
+                  color: Colors.grey,
+                  size: height * 0.027,
                 ),
               ),
-              floatingLabelStyle: TextStyle(
-                color: AppColors.green,
-              ),
-              labelText: 'Enter your email',
-              labelStyle: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w500,
-              ),
-              prefixIcon: Icon(
-                Icons.email,
-                color: Colors.grey,
-              ),
+              onChanged: ((String? value) {
+                _email = value;
+              }),
             ),
-            onChanged: ((String? value) {
-              _email = value;
-            }),
-          ),
-          TextFormField(
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Enter your password',
-              labelStyle: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w500,
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: AppColors.green,
-                  width: 2,
-                ),
-              ),
-              floatingLabelStyle: TextStyle(
-                color: AppColors.green,
-              ),
-              prefixIcon: Icon(
-                Icons.lock,
-                color: Colors.grey,
-              ),
-            ),
-            onChanged: ((String? value) {
-              _password = value;
-            }),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Checkbox(
-                    checkColor: Colors.white,
-                    fillColor: MaterialStateProperty.all(Colors.green),
-                    value: isChecked,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isChecked = value!;
-                      });
-                    },
-                  ),
-                  Text(
-                    "Remember Password",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: isChecked ? AppColors.green : AppColors.grey,
-                    ),
-                  ),
-                ],
-              ),
-              TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "Forgot Password",
-                    style: TextStyle(
-                      color: AppColors.green,
-                      fontSize: 15,
-                    ),
-                  )),
-            ],
           ),
           SizedBox(
-            width: width / 2,
-            height: 50,
+            height: height * 0.07,
+            child: TextFormField(
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: height * 0.02,
+                ),
+                border: const OutlineInputBorder(),
+                labelText: 'Enter your password',
+                labelStyle: TextStyle(
+                  fontSize: height * 0.02,
+                  fontWeight: FontWeight.w500,
+                ),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppColors.grey,
+                    width: 1.5,
+                  ),
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppColors.green,
+                    width: 2,
+                  ),
+                ),
+                floatingLabelStyle: const TextStyle(
+                  color: AppColors.green,
+                ),
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: Colors.grey,
+                  size: height * 0.027,
+                ),
+              ),
+              onChanged: ((String? value) {
+                _password = value;
+              }),
+            ),
+          ),
+          SizedBox(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Transform.scale(
+                      scale: height * 0.0012,
+                      child: Checkbox(
+                        checkColor: Colors.white,
+                        fillColor: MaterialStateProperty.all(Colors.green),
+                        value: isChecked,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            isChecked = value!;
+                          });
+                        },
+                      ),
+                    ),
+                    Text(
+                      "Remember Password",
+                      style: TextStyle(
+                        fontSize: height * 0.018,
+                        fontWeight: FontWeight.w500,
+                        color: isChecked ? AppColors.green : AppColors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+                TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Forgot Password",
+                      style: TextStyle(
+                        color: AppColors.green,
+                        fontSize: height * 0.018,
+                      ),
+                    )),
+              ],
+            ),
+          ),
+          SizedBox(
+            width: width * 0.5,
+            height: height * 0.07,
             child: OutlinedButton(
               onPressed: () async => await _onSubmit(context),
               style: OutlinedButton.styleFrom(
@@ -249,12 +287,13 @@ class _InputSectionState extends State<InputSection> {
                 ),
                 side: const BorderSide(
                   color: Colors.green,
+                  width: 1.5,
                 ),
               ),
-              child: const Text(
+              child: Text(
                 "Sign In",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: height * 0.027,
                   fontWeight: FontWeight.bold,
                 ),
               ),

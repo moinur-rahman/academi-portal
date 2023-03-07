@@ -13,9 +13,13 @@ class SignUpStudent extends StatelessWidget {
   const SignUpStudent({super.key});
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBarWidget("Sign up as a student"),
+      appBar: AppBarWidget(
+        title: "Sign up as a student",
+        height: height,
+      ),
       body: SingleChildScrollView(
         child: SizedBox(
           width: double.infinity,

@@ -14,9 +14,13 @@ class TeacherDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     var args = ModalRoute.of(context)!.settings.arguments as Teacher;
     return Scaffold(
-      appBar: AppBarWidget("Teacher Details"),
+      appBar: AppBarWidget(
+        title: "Teacher Details",
+        height: height,
+      ),
       drawer: StudentDrawer(),
       bottomNavigationBar: StudentBottomBar(),
       body: SingleChildScrollView(

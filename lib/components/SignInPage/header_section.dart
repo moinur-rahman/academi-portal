@@ -5,12 +5,13 @@ class HeaderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
+    double height = MediaQuery.of(context).size.height;
+    return SizedBox(
       child: Text(
         "Sign In",
         style: TextStyle(
           color: Colors.black,
-          fontSize: 35,
+          fontSize: height * 0.045,
           fontWeight: FontWeight.bold,
         ),
       ),

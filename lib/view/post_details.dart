@@ -14,9 +14,13 @@ class PostDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     final args = ModalRoute.of(context)!.settings.arguments as Post;
     return Scaffold(
-      appBar: AppBarWidget("Student Feed"),
+      appBar: AppBarWidget(
+        title: "Student Feed",
+        height: height,
+      ),
       drawer: StudentDrawer(),
       bottomNavigationBar: StudentBottomBar(),
       body: SingleChildScrollView(

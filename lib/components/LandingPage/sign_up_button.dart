@@ -18,6 +18,7 @@ class SignUpButton extends StatelessWidget {
           foregroundColor: AppColors.green,
           side: const BorderSide(
             color: AppColors.green,
+            width: 1.5,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),

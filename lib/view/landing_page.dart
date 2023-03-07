@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'dart:math';
 
 import '../components/common/app_bar_widget.dart';
 import '../components/LandingPage/sign_up_button.dart';
@@ -13,26 +13,35 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBarWidget("AcademiPortal"),
+      appBar: AppBarWidget(
+        title: "AcademiPortal",
+        height: height,
+      ),
       body: SingleChildScrollView(
         child: SizedBox(
           width: width,
-          height: 850,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              const Carousel(),
-              SizedBox(
-                child: Column(
-                  children: const [
-                    SignUpButton(),
-                    Login(),
-                  ],
-                ),
+          height: max(height - 100, 700),
+          child: Center(
+            child: SizedBox(
+              width: width,
+              height: 640,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Carousel(),
+                  SizedBox(
+                    child: Column(
+                      children: const [
+                        SignUpButton(),
+                        Login(),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

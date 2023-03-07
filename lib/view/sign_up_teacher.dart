@@ -12,10 +12,14 @@ class SignUpTeacher extends StatelessWidget {
   static const routeName = '/sign-up-teacher';
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xFFFAFAFA),
-      appBar: AppBarWidget("Sign up as a teacher"),
+      appBar: AppBarWidget(
+        title: "Sign up as a teacher",
+        height: height,
+      ),
       body: SingleChildScrollView(
         child: Container(
           width: double.infinity,
