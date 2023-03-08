@@ -44,15 +44,16 @@ class _CarouselState extends State<Carousel> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return SizedBox(
       width: width,
-      height: 470,
+      height: height * 0.55,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
-            height: 350,
             width: width,
+            height: height * 0.45,
             child: CarouselSlider(
               options: CarouselOptions(
                 // height: 350,

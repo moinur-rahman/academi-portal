@@ -1,3 +1,4 @@
+import 'package:academi_portal/components/common/constant.dart';
 import 'package:flutter/material.dart';
 
 class DescriptionSection extends StatelessWidget {
@@ -5,16 +6,14 @@ class DescriptionSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width - 80;
+    double width = MediaQuery.of(context).size.width;
     return SizedBox(
-      width: width,
+      width: width - 80,
       child: Text(
         "Welcome back! Sign in using your social account or continue as",
         style: TextStyle(
-          color: Colors.black,
-          fontSize: width * 0.04,
-          fontWeight: FontWeight.w500,
+          color: AppColors.black,
+          fontSize: width * 0.03,
         ),
         textAlign: TextAlign.center,
       ),

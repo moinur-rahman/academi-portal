@@ -7,14 +7,16 @@ class CarouselDot extends StatelessWidget {
   const CarouselDot(this.itemNo, {super.key});
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return SizedBox(
-      width: 100,
+      width: width * 0.25,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            width: 20,
-            height: 20,
+            width: height * 0.03,
+            height: height * 0.03,
             decoration: BoxDecoration(
               border: Border.all(
                 color: AppColors.black,
@@ -24,8 +26,8 @@ class CarouselDot extends StatelessWidget {
             ),
           ),
           Container(
-            width: 20,
-            height: 20,
+            width: height * 0.03,
+            height: height * 0.03,
             decoration: BoxDecoration(
               border: Border.all(
                 color: Colors.black,
@@ -35,8 +37,8 @@ class CarouselDot extends StatelessWidget {
             ),
           ),
           Container(
-            width: 20,
-            height: 20,
+            width: height * 0.03,
+            height: height * 0.03,
             decoration: BoxDecoration(
               border: Border.all(
                 color: Colors.black,
@@ -46,8 +48,8 @@ class CarouselDot extends StatelessWidget {
             ),
           ),
           Container(
-            width: 20,
-            height: 20,
+            width: height * 0.03,
+            height: height * 0.03,
             decoration: BoxDecoration(
               border: Border.all(
                 color: Colors.black,

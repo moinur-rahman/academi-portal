@@ -8,9 +8,11 @@ class SignUpButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return SizedBox(
-      width: 300,
-      height: 50,
+      width: width * 0.5,
+      height: height * 0.07,
       child: OutlinedButton(
         onPressed: () =>
             {Navigator.pushNamed(context, CreateAccount.routeName)},
@@ -24,9 +26,12 @@ class SignUpButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-        child: const Text(
+        child: Text(
           "Sign up",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: height * 0.025,
+          ),
         ),
       ),
     );

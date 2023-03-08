@@ -8,24 +8,25 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return SizedBox(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
+          Text(
             "Existing Account?",
             style: TextStyle(
-              fontSize: 15,
+              fontSize: height * 0.020,
               fontWeight: FontWeight.w500,
             ),
           ),
           TextButton(
             onPressed: () => Navigator.pushNamed(context, SignInPage.routeName),
-            child: const Text(
+            child: Text(
               "Login",
               style: TextStyle(
                 color: AppColors.green,
-                fontSize: 15,
+                fontSize: height * 0.025,
                 fontWeight: FontWeight.bold,
               ),
             ),

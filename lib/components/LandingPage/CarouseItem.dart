@@ -14,31 +14,33 @@ class CarouselItem extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
     return SizedBox(
+      width: width,
+      height: height,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          AspectRatio(
-            aspectRatio: 16 / 6,
-            child: Image(
-              image: AssetImage(imageURL),
-            ),
+          Image(
+            image: AssetImage(imageURL),
+            width: height * 0.25,
+            height: height * 0.25,
           ),
           SizedBox(
             child: Text(
               heading,
-              style: const TextStyle(
-                fontSize: 22,
+              style: TextStyle(
+                fontSize: height * 0.032,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
           SizedBox(
-            width: 300,
+            width: width * 0.8,
             child: Text(
               description,
-              style: const TextStyle(
-                fontSize: 14,
+              style: TextStyle(
+                fontSize: height * 0.020,
               ),
               textAlign: TextAlign.center,
             ),

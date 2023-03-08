@@ -19,28 +19,26 @@ class LandingPage extends StatelessWidget {
         title: "AcademiPortal",
         height: height,
       ),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          width: width,
-          height: max(height - 100, 700),
-          child: Center(
-            child: SizedBox(
-              width: width,
-              height: 640,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Carousel(),
-                  SizedBox(
-                    child: Column(
-                      children: const [
-                        SignUpButton(),
-                        Login(),
-                      ],
-                    ),
+      body: SizedBox(
+        width: width,
+        height: height,
+        child: Center(
+          child: SizedBox(
+            width: width,
+            height: height * 0.8,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Carousel(),
+                SizedBox(
+                  child: Column(
+                    children: const [
+                      SignUpButton(),
+                      Login(),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
