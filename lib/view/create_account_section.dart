@@ -13,21 +13,22 @@ class CreateAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBarWidget(
         title: "Create Account",
         height: height,
       ),
       body: Center(
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
-          height: 180,
+          height: height * 0.28,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                width: 300,
-                height: 50,
+                width: width * 0.7,
+                height: height * 0.08,
                 child: OutlinedButton(
                   onPressed: () =>
                       Navigator.pushNamed(context, SignUpTeacher.routeName),
@@ -40,28 +41,28 @@ class CreateAccount extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  child: const Text(
+                  child: Text(
                     "Sign up as a Teacher",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 17,
+                      fontSize: height * 0.026,
                     ),
                   ),
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 child: Text(
                   "OR",
                   style: TextStyle(
                     color: AppColors.black,
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: height * 0.026,
                   ),
                 ),
               ),
               SizedBox(
-                width: 300,
-                height: 50,
+                width: width * 0.7,
+                height: height * 0.08,
                 child: OutlinedButton(
                   onPressed: () =>
                       Navigator.pushNamed(context, SignUpStudent.routeName),
@@ -74,9 +75,12 @@ class CreateAccount extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  child: const Text(
+                  child: Text(
                     "Sign up as a Student",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: height * 0.026,
+                    ),
                   ),
                 ),
               ),
