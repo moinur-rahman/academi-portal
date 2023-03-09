@@ -1,7 +1,6 @@
-import 'package:academi_portal/api/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
-import './terms_conditions_section.dart';
+import '../../api/shared_preferences.dart';
 import '../../view/teacher_dashboard.dart';
 
 import '../../models/teacher.dart';
@@ -135,7 +134,6 @@ class _InputSectionState extends State<InputSection> {
               ],
             ),
           ),
-          TermsConditionsSection(),
           SizedBox(
             width: 200,
             height: 50,
