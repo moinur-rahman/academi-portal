@@ -6,8 +6,9 @@ class DescriptionSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return SizedBox(
-      width: 300,
+      width: width * 0.6,
       child: Text(
         "Sign up using your social account or continue as",
         style: TextStyle(
