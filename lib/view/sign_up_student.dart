@@ -17,7 +17,7 @@ class SignUpStudent extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBarWidget(
-        title: "Sign up as a student",
+        title: "Sign up",
         height: height,
       ),
       body: SingleChildScrollView(

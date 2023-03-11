@@ -21,9 +21,10 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: AppColors.white,
       title: Text(
         title,
-        style: const TextStyle(
+        style: TextStyle(
           color: Colors.black,
           fontWeight: FontWeight.bold,
+          fontSize: height * 0.03,
         ),
       ),
       leading: IconButton(

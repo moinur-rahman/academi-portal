@@ -20,7 +20,7 @@ class SignUpTeacher extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBarWidget(
-        title: "Sign up as a teacher",
+        title: "Sign up",
         height: height,
       ),
       body: SingleChildScrollView(
