@@ -48,7 +48,7 @@ class TermsConditionsSection extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   )),
-              Text("."),
+              const Text("."),
             ],
           ),
         ],

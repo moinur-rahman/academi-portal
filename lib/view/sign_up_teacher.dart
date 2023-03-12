@@ -26,11 +26,11 @@ class SignUpTeacher extends StatelessWidget {
       body: SingleChildScrollView(
         child: SizedBox(
           width: double.infinity,
-          height: max(height, 900),
+          height: max(height, 750),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const HeaderSection(),
+            children: const [
+              HeaderSection(),
               DescriptionSection(),
               LogoButtonSection(),
               DividerSection(),

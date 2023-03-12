@@ -13,7 +13,7 @@ class DividerSection extends StatelessWidget {
         "OR",
         style: TextStyle(
           color: AppColors.green,
-          fontSize: width * 0.045,
+          fontSize: width * 0.038,
           fontWeight: FontWeight.bold,
         ),
       ),

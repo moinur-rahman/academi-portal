@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../components/common/app_bar_widget.dart';
@@ -6,6 +8,7 @@ import '../components/SignUpStudent/logo_button_section.dart';
 import '../components/SignUpStudent/divider_section.dart';
 import '../components/SignUpStudent/header_section.dart';
 import '../components/SignUpStudent/input_section.dart';
+import '../components/SignUpStudent/terms_conditions_section.dart';
 
 class SignUpStudent extends StatelessWidget {
   static const routeName = '/sign-up-student';
@@ -23,23 +26,16 @@ class SignUpStudent extends StatelessWidget {
       body: SingleChildScrollView(
         child: SizedBox(
           width: double.infinity,
-          height: 1150,
+          height: max(height, 830),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                height: 200,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    HeaderSection(),
-                    DescriptionSection(),
-                    LogoButtonSection(),
-                  ],
-                ),
-              ),
+            children: const [
+              HeaderSection(),
+              DescriptionSection(),
+              LogoButtonSection(),
               DividerSection(),
               InputSection(),
+              TermsConditionsSection(),
             ],
           ),
         ),

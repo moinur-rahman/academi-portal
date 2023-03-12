@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-import '../../view/student_dashboard.dart';
-import './terms_conditions_section.dart';
-
-import '../../models/student.dart';
 import '../../api/shared_preferences.dart';
-import '../../graphql/Student/student_mutations.dart';
+import '../../view/teacher_dashboard.dart';
+
+import '../../models/teacher.dart';
+import '../../graphql/Teacher/teacher_mutations.dart';
+import '../common/constant.dart';
 
 class InputSection extends StatefulWidget {
   const InputSection({super.key});
@@ -18,7 +17,7 @@ class InputSection extends StatefulWidget {
 }
 
 class _InputSectionState extends State<InputSection> {
-  final List<String> _departmentsList = const <String>[
+  final List<String> _departmentList = const <String>[
     'CSE',
     'EEE',
     'ME',
@@ -30,254 +29,225 @@ class _InputSectionState extends State<InputSection> {
       _password,
       _repeatPassword,
       _department,
-      _section,
-      _phone;
-  int? _studentId;
+      _phone,
+      _section;
 
-  Future<void> _onSubmit(BuildContext context) async {
-    String status = await StudentMutations().createStudent(
-      Student(
+  final _textFormFieldHint = const <Map<String, dynamic>>[
+    {
+      'text': 'Enter your email',
+      'icon': Icons.email,
+    },
+    {
+      'text': 'Enter your name',
+      'icon': Icons.person,
+    },
+    {
+      'text': 'Enter your ID (e.g. 1704037)',
+      'icon': Icons.wallet_membership,
+    },
+    {
+      'text': 'Enter your password',
+      'icon': Icons.lock,
+    },
+    {
+      'text': 'Repeat your password',
+      'icon': Icons.lock,
+    },
+    {
+      'text': 'Enter your phone',
+      'icon': Icons.phone,
+    }
+  ];
+
+  final _dropdownField = const <Map<String, dynamic>>[
+    {
+      'text': 'Department',
+      'hint': 'Select Department',
+    },
+    {
+      'text': 'Section',
+      'hint': 'Select Section',
+    }
+  ];
+
+  Future _onSubmit() async {
+    String status = await TeacherMutations().createTeacher(
+      Teacher(
         email: _email,
         name: _name,
         password: _password,
-        studentId: _studentId,
         department: _department,
-        section: _section,
         phone: _phone,
       ),
     );
-    try {
-      if (mounted) {
-        await Navigator.pushNamed(context, StudentDashboard.routeName);
-        await saveData("user", status);
-      }
-    } catch (e) {
-      return showDialog<void>(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text("Error"),
-            content: const SizedBox(
-              width: 200,
-              height: 50,
-              child: Text("Invalid email or password"),
-            ),
-            actions: [
-              TextButton(
-                child: const Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
+    if (status != 'Failed') {
+      await saveData("user", status);
+      Navigator.pushNamed(context, TeacherDashboard.routeName);
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return SizedBox(
-      width: 400,
-      height: 750,
+      width: width - 85,
+      height: height * 0.82,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          TextFormField(
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Enter your email',
-              labelStyle: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w500,
-              ),
-              prefixIcon: Icon(
-                Icons.email,
-                color: Colors.grey,
-              ),
-            ),
-            onChanged: (String value) {
-              _email = value;
-            },
-          ),
-          TextFormField(
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Your name',
-              labelStyle: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w500,
-              ),
-              prefixIcon: Icon(
-                Icons.person,
-                color: Colors.grey,
-              ),
-            ),
-            onChanged: (String value) {
-              _name = value;
-            },
-          ),
-          TextFormField(
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Enter your password',
-              labelStyle: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w500,
-              ),
-              prefixIcon: Icon(
-                Icons.lock,
-                color: Colors.grey,
-              ),
-            ),
-            onChanged: (String value) {
-              _password = value;
-            },
-          ),
-          TextFormField(
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Repeat password',
-              labelStyle: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w500,
-              ),
-              prefixIcon: Icon(
-                Icons.lock,
-                color: Colors.grey,
-              ),
-            ),
-            onChanged: (String value) {
-              _repeatPassword = value;
-            },
-          ),
-          TextFormField(
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Phone Number',
-              labelStyle: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w500,
-              ),
-              prefixIcon: Icon(
-                Icons.phone,
-                color: Colors.grey,
-              ),
-            ),
-            onChanged: (String value) {
-              _phone = value;
-            },
-          ),
-          TextFormField(
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'ID (e.g. 1704037)',
-              labelStyle: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w500,
-              ),
-              prefixIcon: Icon(
-                Icons.wallet_membership,
-                color: Colors.grey,
-              ),
-            ),
-            keyboardType: TextInputType.name,
-            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            onChanged: (value) {
-              _studentId = int.parse(value);
-            },
-          ),
           SizedBox(
-            width: 340,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            height: height * 0.55,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "Department",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                DropdownButton(
-                  hint: const Text("Select Department"),
-                  items: _departmentsList
-                      .map<DropdownMenuItem<String>>((String department) {
-                    return DropdownMenuItem<String>(
-                      value: department,
-                      child: Text(
-                        department,
-                        style: const TextStyle(
-                          fontSize: 16,
+                ..._textFormFieldHint.map((Map<String, dynamic> hint) {
+                  return SizedBox(
+                    height: height * 0.07,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: height * 0.02,
+                        ),
+                        border: const OutlineInputBorder(),
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors.grey,
+                            width: 1.5,
+                          ),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors.green,
+                            width: 2,
+                          ),
+                        ),
+                        floatingLabelStyle: const TextStyle(
+                          color: AppColors.green,
+                        ),
+                        labelText: hint['text'],
+                        labelStyle: TextStyle(
+                          fontSize: height * 0.02,
                           fontWeight: FontWeight.w500,
                         ),
+                        prefixIcon: Icon(
+                          hint['icon'],
+                          color: Colors.grey,
+                          size: height * 0.027,
+                        ),
+                      ),
+                      onChanged: ((String? value) {
+                        switch (hint['text']) {
+                          case 'Enter your email':
+                            _email = value;
+                            break;
+                          case 'Enter your name':
+                            _name = value;
+                            break;
+                          case 'Enter your ID (e.g. 1704037)':
+                            _phone = value;
+                            break;
+                          case 'Enter your password':
+                            _password = value;
+                            break;
+                          case 'Repeat your password':
+                            _repeatPassword = value;
+                            break;
+                          case 'Enter your phone':
+                            _phone = value;
+                            break;
+                        }
+                      }),
+                    ),
+                  );
+                }),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: height * 0.17,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ..._dropdownField.map(
+                  (Map<String, dynamic> hint) {
+                    return SizedBox(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            hint['text'],
+                            style: TextStyle(
+                              fontSize: height * 0.02,
+                            ),
+                          ),
+                          DropdownButton(
+                            hint: Text(
+                              hint['hint'],
+                              style: TextStyle(
+                                fontSize: height * 0.02,
+                              ),
+                            ),
+                            items: hint['text'] == 'Department'
+                                ? _departmentList.map<DropdownMenuItem<String>>(
+                                    (String department) {
+                                    return DropdownMenuItem<String>(
+                                      value: department,
+                                      child: Text(
+                                        department,
+                                        style: TextStyle(
+                                          fontSize: height * 0.02,
+                                        ),
+                                      ),
+                                    );
+                                  }).toList()
+                                : _sectionList.map<DropdownMenuItem<String>>(
+                                    (String section) {
+                                    return DropdownMenuItem<String>(
+                                      value: section,
+                                      child: Text(
+                                        section,
+                                        style: TextStyle(
+                                          fontSize: height * 0.02,
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
+                            value: hint['text'] == 'Department'
+                                ? _department
+                                : _section,
+                            onChanged: (String? value) {
+                              setState(() {
+                                hint['text'] == 'Department'
+                                    ? _department = value
+                                    : _section = value;
+                              });
+                            },
+                          ),
+                        ],
                       ),
                     );
-                  }).toList(),
-                  value: _department,
-                  onChanged: (value) {
-                    setState(() {
-                      _department = value;
-                    });
                   },
                 ),
               ],
             ),
           ),
           SizedBox(
-            width: 340,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const Text(
-                  "Section",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                DropdownButton(
-                  hint: const Text("Select Section"),
-                  items: _sectionList
-                      .map<DropdownMenuItem<String>>((String department) {
-                    return DropdownMenuItem<String>(
-                      value: department,
-                      child: Text(
-                        department,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                  value: _section,
-                  onChanged: (value) {
-                    setState(() {
-                      _section = value;
-                    });
-                  },
-                ),
-              ],
-            ),
-          ),
-          TermsConditionsSection(),
-          SizedBox(
-            width: 200,
-            height: 50,
+            width: width * 0.45,
+            height: height * 0.07,
             child: OutlinedButton(
-              onPressed: () async => await _onSubmit(context),
+              onPressed: _onSubmit,
               style: OutlinedButton.styleFrom(
                   foregroundColor: Colors.green,
-                  side: const BorderSide(
-                    color: Colors.green,
-                  ),
+                  side: const BorderSide(color: Colors.green),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20))),
-              child: const Text(
+              child: Text(
                 "Create Account",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: height * 0.022,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),

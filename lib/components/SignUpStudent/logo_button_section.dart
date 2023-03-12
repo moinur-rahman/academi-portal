@@ -5,7 +5,11 @@ class LogoButtonSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    double buttonHeight = height * 0.065;
     return SizedBox(
+      width: width * 0.7,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -15,10 +19,10 @@ class LogoButtonSection extends StatelessWidget {
               side: const BorderSide(width: 1.5),
             ),
             onPressed: () {},
-            child: const Image(
-              image: AssetImage('assets/images/fb_logo.png'),
-              width: 50,
-              height: 50,
+            child: Image(
+              image: const AssetImage('assets/images/fb_logo.png'),
+              width: buttonHeight,
+              height: buttonHeight,
               fit: BoxFit.cover,
             ),
           ),
@@ -28,10 +32,10 @@ class LogoButtonSection extends StatelessWidget {
               side: const BorderSide(width: 1.5),
             ),
             onPressed: () {},
-            child: const Image(
-              image: AssetImage('assets/images/google_logo.png'),
-              width: 50,
-              height: 50,
+            child: Image(
+              image: const AssetImage('assets/images/google_logo.png'),
+              width: buttonHeight,
+              height: buttonHeight,
               fit: BoxFit.cover,
             ),
           ),
@@ -41,10 +45,10 @@ class LogoButtonSection extends StatelessWidget {
               side: const BorderSide(width: 1.5),
             ),
             onPressed: () {},
-            child: const Image(
-              image: AssetImage('assets/images/apple_logo.png'),
-              width: 50,
-              height: 50,
+            child: Image(
+              image: const AssetImage('assets/images/apple_logo.png'),
+              width: buttonHeight,
+              height: buttonHeight,
               fit: BoxFit.cover,
             ),
           ),

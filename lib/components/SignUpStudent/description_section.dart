@@ -5,14 +5,15 @@ class DescriptionSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      width: 300,
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return SizedBox(
+      width: width * 0.6,
       child: Text(
         "Sign up using your social account or continue as",
         style: TextStyle(
           color: Colors.black,
-          fontSize: 15,
-          fontWeight: FontWeight.w500,
+          fontSize: height * 0.02,
         ),
         textAlign: TextAlign.center,
       ),
