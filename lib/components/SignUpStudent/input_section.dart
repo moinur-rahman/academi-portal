@@ -91,7 +91,7 @@ class _InputSectionState extends State<InputSection> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return SizedBox(
-      width: width - 85,
+      width: width * 0.85,
       height: height * 0.82,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -165,13 +165,13 @@ class _InputSectionState extends State<InputSection> {
             ),
           ),
           SizedBox(
-            height: height * 0.17,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ..._dropdownField.map(
                   (Map<String, dynamic> hint) {
                     return SizedBox(
+                      height: height * 0.07,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [

@@ -8,7 +8,7 @@ import './view/sign_up_teacher.dart';
 import './view/sign_up_student.dart';
 import './view/student_dashboard.dart';
 import './view/post_details.dart';
-import './view/create_account_section.dart';
+import 'view/create_account.dart';
 import './view/teacher_list.dart';
 import './view/student_result.dart';
 import './view/student_profile.dart';

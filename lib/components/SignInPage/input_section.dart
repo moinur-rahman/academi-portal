@@ -82,7 +82,7 @@ class _InputSectionState extends State<InputSection> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return SizedBox(
-      width: width - 85,
+      width: width * 0.85,
       height: height * 0.52,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

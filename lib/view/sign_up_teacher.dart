@@ -26,7 +26,7 @@ class SignUpTeacher extends StatelessWidget {
       body: SingleChildScrollView(
         child: SizedBox(
           width: double.infinity,
-          height: max(height, 750),
+          height: height * 1.25,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: const [
