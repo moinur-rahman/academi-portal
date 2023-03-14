@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../api/shared_preferences.dart';
 import '../../view/teacher_dashboard.dart';
+import './input_field.dart';
+import './dropdown_field.dart';
+import './create_account_button.dart';
 
 import '../../models/teacher.dart';
 import '../../graphql/Teacher/teacher_mutations.dart';
-import '../common/constant.dart';
 
 class InputSection extends StatefulWidget {
   const InputSection({super.key});
@@ -49,20 +51,70 @@ class _InputSectionState extends State<InputSection> {
     }
   ];
 
-  Future _onSubmit() async {
-    String status = await TeacherMutations().createTeacher(
-      Teacher(
-        email: _email,
-        name: _name,
-        password: _password,
-        department: _department,
-        phone: _phone,
-      ),
-    );
-    if (status != 'Failed') {
+  Future _onSubmit(BuildContext context) async {
+    try {
+      String status = await TeacherMutations().createTeacher(
+        Teacher(
+          email: _email,
+          name: _name,
+          password: _password,
+          department: _department,
+          phone: _phone,
+        ),
+      );
+
+      if (!mounted) return;
+      await Navigator.pushNamed(context, TeacherDashboard.routeName);
       await saveData("user", status);
-      Navigator.pushNamed(context, TeacherDashboard.routeName);
+    } catch (e) {
+      showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("Error"),
+            content: const SizedBox(
+              width: 200,
+              height: 50,
+              child: Text("Invalid email or password"),
+            ),
+            actions: [
+              TextButton(
+                child: const Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
     }
+  }
+
+  void onInputFieldChange(String? value, String hint) {
+    switch (hint) {
+      case 'Enter your email':
+        _email = value;
+        break;
+      case 'Enter your name':
+        _name = value;
+        break;
+      case 'Enter your password':
+        _password = value;
+        break;
+      case 'Repeat your password':
+        _repeatPassword = value;
+        break;
+      case 'Enter your phone':
+        _phone = value;
+        break;
+    }
+  }
+
+  void onDropDownChange(String? value) {
+    setState(() {
+      _department = value;
+    });
   }
 
   @override
@@ -76,121 +128,18 @@ class _InputSectionState extends State<InputSection> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ..._textFormFieldHint.map((Map<String, dynamic> hint) {
-            return SizedBox(
-              height: height * 0.07,
-              child: TextFormField(
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: height * 0.02,
-                  ),
-                  border: const OutlineInputBorder(),
-                  enabledBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: AppColors.grey,
-                      width: 1.5,
-                    ),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: AppColors.green,
-                      width: 2,
-                    ),
-                  ),
-                  floatingLabelStyle: const TextStyle(
-                    color: AppColors.green,
-                  ),
-                  labelText: hint['text'],
-                  labelStyle: TextStyle(
-                    fontSize: height * 0.02,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  prefixIcon: Icon(
-                    hint['icon'],
-                    color: Colors.grey,
-                    size: height * 0.027,
-                  ),
-                ),
-                onChanged: ((String? value) {
-                  switch (hint['text']) {
-                    case 'Enter your email':
-                      _email = value;
-                      break;
-                    case 'Enter your name':
-                      _name = value;
-                      break;
-                    case 'Enter your password':
-                      _password = value;
-                      break;
-                    case 'Repeat your password':
-                      _repeatPassword = value;
-                      break;
-                    case 'Enter your phone':
-                      _phone = value;
-                      break;
-                  }
-                }),
-              ),
+            return InputField(
+              text: hint['text'],
+              icon: hint['icon'],
+              onInputFieldChange: onInputFieldChange,
             );
           }),
-          SizedBox(
-            width: 340,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  "Department",
-                  style: TextStyle(
-                    fontSize: height * 0.02,
-                  ),
-                ),
-                DropdownButton(
-                  hint: Text(
-                    "Select Department",
-                    style: TextStyle(
-                      fontSize: height * 0.02,
-                    ),
-                  ),
-                  items: _departmentList
-                      .map<DropdownMenuItem<String>>((String department) {
-                    return DropdownMenuItem<String>(
-                      value: department,
-                      child: Text(
-                        department,
-                        style: TextStyle(
-                          fontSize: height * 0.02,
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                  value: _department,
-                  onChanged: (String? value) {
-                    setState(() {
-                      _department = value;
-                    });
-                  },
-                ),
-              ],
-            ),
+          DropDownField(
+            departmentList: _departmentList,
+            department: _department,
+            onDropDownChange: onDropDownChange,
           ),
-          SizedBox(
-            width: width * 0.45,
-            height: height * 0.07,
-            child: OutlinedButton(
-              onPressed: _onSubmit,
-              style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.green,
-                  side: const BorderSide(color: Colors.green),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20))),
-              child: Text(
-                "Create Account",
-                style: TextStyle(
-                  fontSize: height * 0.022,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
+          CreateAccountButton(onSubmit: () => _onSubmit(context)),
         ],
       ),
     );
