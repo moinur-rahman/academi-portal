@@ -4,11 +4,13 @@ class DropDownField extends StatelessWidget {
   final List<String> departmentList;
   final String? department;
   final Function(String?) onDropDownChange;
-  const DropDownField(
-      {required this.departmentList,
-      required this.department,
-      required this.onDropDownChange,
-      super.key});
+
+  const DropDownField({
+    required this.departmentList,
+    required this.department,
+    required this.onDropDownChange,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 import '../../view/student_dashboard.dart';
 import '../../view/teacher_dashboard.dart';
 import '../../api/shared_preferences.dart';
+import './radio_button.dart';
+import './input_field.dart';
+import './sing_in_button.dart';
 
-import '../../components/common/constant.dart';
 import '../../graphql/Teacher/teacher_mutations.dart';
 import '../../graphql/Student/student_mutations.dart';
 import '../../models/teacher.dart';
 import '../../models/student.dart';
+import './forgot_password.dart';
+import './remember_password.dart';
 
 class InputSection extends StatefulWidget {
   const InputSection({super.key});
@@ -19,7 +23,10 @@ class InputSection extends StatefulWidget {
   }
 }
 
-enum UserType { Teacher, Student }
+enum UserType {
+  Student,
+  Teacher,
+}
 
 class _InputSectionState extends State<InputSection> {
   String? _email, _password;
@@ -27,6 +34,40 @@ class _InputSectionState extends State<InputSection> {
   UserType? _role = UserType.Student;
 
   bool isChecked = false;
+
+  final _textFormFieldHint = const <Map<String, dynamic>>[
+    {
+      'text': 'Enter your email',
+      'icon': Icons.email,
+    },
+    {
+      'text': 'Enter your password',
+      'icon': Icons.lock,
+    },
+  ];
+
+  void _onRadioChange(UserType? value) {
+    setState(() {
+      _role = value;
+    });
+  }
+
+  void onInputFieldChange(String? value, String hint) {
+    switch (hint) {
+      case 'Enter your email':
+        _email = value;
+        break;
+      case 'Enter your password':
+        _password = value;
+        break;
+    }
+  }
+
+  void _onRememberMeChange(bool? value) {
+    setState(() {
+      isChecked = value!;
+    });
+  }
 
   Future<void> _onSubmit(BuildContext context) async {
     try {
@@ -92,212 +133,36 @@ class _InputSectionState extends State<InputSection> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: width * 0.3,
-                  child: Row(
-                    children: [
-                      Transform.scale(
-                        scale: height * 0.0012,
-                        child: Radio(
-                          activeColor: const Color(0xff349053),
-                          value: UserType.Student,
-                          groupValue: _role,
-                          onChanged: ((UserType? value) {
-                            setState(() {
-                              _role = value;
-                            });
-                          }),
-                        ),
-                      ),
-                      Text(
-                        "Student",
-                        style: TextStyle(
-                          fontSize: height * 0.02,
-                          fontWeight: FontWeight.w500,
-                          color: (_role == UserType.Student)
-                              ? AppColors.green
-                              : AppColors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: width * 0.4,
-                  child: Row(
-                    children: [
-                      Transform.scale(
-                        scale: height * 0.0012,
-                        child: Radio(
-                          activeColor: Colors.green,
-                          value: UserType.Teacher,
-                          groupValue: _role,
-                          onChanged: ((UserType? value) {
-                            setState(() {
-                              _role = value;
-                            });
-                          }),
-                        ),
-                      ),
-                      Text(
-                        "Teacher",
-                        style: TextStyle(
-                          fontSize: height * 0.02,
-                          fontWeight: FontWeight.w500,
-                          color: (_role == UserType.Teacher)
-                              ? AppColors.green
-                              : AppColors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                ...UserType.values.map((UserType role) {
+                  return RadioButton(
+                    role: _role,
+                    value: role,
+                    onRadioChange: _onRadioChange,
+                  );
+                }).toList(),
               ],
             ),
           ),
-          SizedBox(
-            height: height * 0.07,
-            child: TextFormField(
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: height * 0.02,
-                ),
-                border: const OutlineInputBorder(),
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColors.grey,
-                    width: 1.5,
-                  ),
-                ),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColors.green,
-                    width: 2,
-                  ),
-                ),
-                floatingLabelStyle: const TextStyle(
-                  color: AppColors.green,
-                ),
-                labelText: 'Enter your email',
-                labelStyle: TextStyle(
-                  fontSize: height * 0.02,
-                  fontWeight: FontWeight.w500,
-                ),
-                prefixIcon: Icon(
-                  Icons.email,
-                  color: Colors.grey,
-                  size: height * 0.027,
-                ),
-              ),
-              onChanged: ((String? value) {
-                _email = value;
-              }),
-            ),
-          ),
-          SizedBox(
-            height: height * 0.07,
-            child: TextFormField(
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: height * 0.02,
-                ),
-                border: const OutlineInputBorder(),
-                labelText: 'Enter your password',
-                labelStyle: TextStyle(
-                  fontSize: height * 0.02,
-                  fontWeight: FontWeight.w500,
-                ),
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColors.grey,
-                    width: 1.5,
-                  ),
-                ),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColors.green,
-                    width: 2,
-                  ),
-                ),
-                floatingLabelStyle: const TextStyle(
-                  color: AppColors.green,
-                ),
-                prefixIcon: Icon(
-                  Icons.lock,
-                  color: Colors.grey,
-                  size: height * 0.027,
-                ),
-              ),
-              onChanged: ((String? value) {
-                _password = value;
-              }),
-            ),
-          ),
+          ..._textFormFieldHint.map((Map<String, dynamic> hint) {
+            return InputField(
+              text: hint['text'],
+              icon: hint['icon'],
+              onInputFieldChange: onInputFieldChange,
+            );
+          }).toList(),
           SizedBox(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Transform.scale(
-                      scale: height * 0.0012,
-                      child: Checkbox(
-                        checkColor: Colors.white,
-                        fillColor: MaterialStateProperty.all(Colors.green),
-                        value: isChecked,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isChecked = value!;
-                          });
-                        },
-                      ),
-                    ),
-                    Text(
-                      "Remember Password",
-                      style: TextStyle(
-                        fontSize: height * 0.018,
-                        fontWeight: FontWeight.w500,
-                        color: isChecked ? AppColors.green : AppColors.grey,
-                      ),
-                    ),
-                  ],
+                RememberPassword(
+                  isChecked: isChecked,
+                  onCheckBoxChange: _onRememberMeChange,
                 ),
-                TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Forgot Password",
-                      style: TextStyle(
-                        color: AppColors.green,
-                        fontSize: height * 0.018,
-                      ),
-                    )),
+                ForgotPassword(),
               ],
             ),
           ),
-          SizedBox(
-            width: width * 0.5,
-            height: height * 0.07,
-            child: OutlinedButton(
-              onPressed: () async => await _onSubmit(context),
-              style: OutlinedButton.styleFrom(
-                foregroundColor: Colors.green,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                side: const BorderSide(
-                  color: Colors.green,
-                  width: 1.5,
-                ),
-              ),
-              child: Text(
-                "Sign In",
-                style: TextStyle(
-                  fontSize: height * 0.027,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
+          SingInButton(onSubmit: () async => await _onSubmit(context)),
         ],
       ),
     );
