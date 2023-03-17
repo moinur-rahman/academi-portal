@@ -129,14 +129,14 @@ class _InputSectionState extends State<InputSection> {
         children: [
           ..._textFormFieldHint.map((Map<String, dynamic> hint) {
             return InputField(
-              text: hint['text'],
+              label: hint['text'],
               icon: hint['icon'],
               onInputFieldChange: onInputFieldChange,
             );
           }),
           DropDownField(
             departmentList: _departmentList,
-            department: _department,
+            department: _department!,
             onDropDownChange: onDropDownChange,
           ),
           CreateAccountButton(onSubmit: () => _onSubmit(context)),

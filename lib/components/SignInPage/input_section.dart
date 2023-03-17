@@ -145,7 +145,7 @@ class _InputSectionState extends State<InputSection> {
           ),
           ..._textFormFieldHint.map((Map<String, dynamic> hint) {
             return InputField(
-              text: hint['text'],
+              label: hint['text'],
               icon: hint['icon'],
               onInputFieldChange: onInputFieldChange,
             );

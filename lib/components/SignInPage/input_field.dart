@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import '../common/constant.dart';
 
 class InputField extends StatelessWidget {
-  final String text;
+  final String label;
   final IconData icon;
   final Function(String?, String) onInputFieldChange;
+
   const InputField({
-    required this.text,
+    required this.label,
     required this.icon,
     required this.onInputFieldChange,
     super.key,
@@ -39,7 +40,7 @@ class InputField extends StatelessWidget {
             floatingLabelStyle: const TextStyle(
               color: AppColors.green,
             ),
-            labelText: text,
+            labelText: label,
             labelStyle: TextStyle(
               fontSize: height * 0.02,
               fontWeight: FontWeight.w500,
@@ -51,7 +52,7 @@ class InputField extends StatelessWidget {
             ),
           ),
           onChanged: (String? value) {
-            onInputFieldChange(value, text);
+            onInputFieldChange(value, label);
           }),
     );
   }

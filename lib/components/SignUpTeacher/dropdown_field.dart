@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class DropDownField extends StatelessWidget {
+  final String department;
   final List<String> departmentList;
-  final String? department;
   final Function(String?) onDropDownChange;
 
   const DropDownField({

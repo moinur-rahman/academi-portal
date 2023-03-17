@@ -5,7 +5,9 @@ import '../../view/teacher_dashboard.dart';
 
 import '../../models/teacher.dart';
 import '../../graphql/Teacher/teacher_mutations.dart';
-import '../common/constant.dart';
+import './create_account_button.dart';
+import './input_field.dart';
+import './dropdown_field.dart';
 
 class InputSection extends StatefulWidget {
   const InputSection({super.key});
@@ -63,14 +65,51 @@ class _InputSectionState extends State<InputSection> {
     {
       'text': 'Department',
       'hint': 'Select Department',
+      'list': ['CSE', 'EEE', 'ME', 'Civil'],
     },
     {
       'text': 'Section',
       'hint': 'Select Section',
+      'list': ['A', 'B', 'C'],
     }
   ];
 
-  Future _onSubmit() async {
+  void onInputFieldChange(String? value, String hint) {
+    switch (hint) {
+      case 'Enter your email':
+        _email = value;
+        break;
+      case 'Enter your name':
+        _name = value;
+        break;
+      case 'Enter your password':
+        _password = value;
+        break;
+      case 'Repeat your password':
+        _repeatPassword = value;
+        break;
+      case 'Enter your phone':
+        _phone = value;
+        break;
+    }
+  }
+
+  void _onDropDownChange(String? value, String hint) {
+    switch (hint) {
+      case 'Department':
+        setState(() {
+          _department = value;
+        });
+        break;
+      case 'Section':
+        setState(() {
+          _section = value;
+        });
+        break;
+    }
+  }
+
+  Future _onSubmit(BuildContext context) async {
     String status = await TeacherMutations().createTeacher(
       Teacher(
         email: _email,
@@ -102,63 +141,10 @@ class _InputSectionState extends State<InputSection> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ..._textFormFieldHint.map((Map<String, dynamic> hint) {
-                  return SizedBox(
-                    height: height * 0.07,
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: height * 0.02,
-                        ),
-                        border: const OutlineInputBorder(),
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: AppColors.grey,
-                            width: 1.5,
-                          ),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: AppColors.green,
-                            width: 2,
-                          ),
-                        ),
-                        floatingLabelStyle: const TextStyle(
-                          color: AppColors.green,
-                        ),
-                        labelText: hint['text'],
-                        labelStyle: TextStyle(
-                          fontSize: height * 0.02,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        prefixIcon: Icon(
-                          hint['icon'],
-                          color: Colors.grey,
-                          size: height * 0.027,
-                        ),
-                      ),
-                      onChanged: ((String? value) {
-                        switch (hint['text']) {
-                          case 'Enter your email':
-                            _email = value;
-                            break;
-                          case 'Enter your name':
-                            _name = value;
-                            break;
-                          case 'Enter your ID (e.g. 1704037)':
-                            _phone = value;
-                            break;
-                          case 'Enter your password':
-                            _password = value;
-                            break;
-                          case 'Repeat your password':
-                            _repeatPassword = value;
-                            break;
-                          case 'Enter your phone':
-                            _phone = value;
-                            break;
-                        }
-                      }),
-                    ),
+                  return InputField(
+                    label: hint['text'],
+                    icon: hint['icon'],
+                    onInputFieldChange: onInputFieldChange,
                   );
                 }),
               ],
@@ -170,87 +156,21 @@ class _InputSectionState extends State<InputSection> {
               children: [
                 ..._dropdownField.map(
                   (Map<String, dynamic> hint) {
-                    return SizedBox(
-                      height: height * 0.07,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            hint['text'],
-                            style: TextStyle(
-                              fontSize: height * 0.02,
-                            ),
-                          ),
-                          DropdownButton(
-                            hint: Text(
-                              hint['hint'],
-                              style: TextStyle(
-                                fontSize: height * 0.02,
-                              ),
-                            ),
-                            items: hint['text'] == 'Department'
-                                ? _departmentList.map<DropdownMenuItem<String>>(
-                                    (String department) {
-                                    return DropdownMenuItem<String>(
-                                      value: department,
-                                      child: Text(
-                                        department,
-                                        style: TextStyle(
-                                          fontSize: height * 0.02,
-                                        ),
-                                      ),
-                                    );
-                                  }).toList()
-                                : _sectionList.map<DropdownMenuItem<String>>(
-                                    (String section) {
-                                    return DropdownMenuItem<String>(
-                                      value: section,
-                                      child: Text(
-                                        section,
-                                        style: TextStyle(
-                                          fontSize: height * 0.02,
-                                        ),
-                                      ),
-                                    );
-                                  }).toList(),
-                            value: hint['text'] == 'Department'
-                                ? _department
-                                : _section,
-                            onChanged: (String? value) {
-                              setState(() {
-                                hint['text'] == 'Department'
-                                    ? _department = value
-                                    : _section = value;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
+                    return DropDownField(
+                      name: hint['text'],
+                      value:
+                          hint['text'] == 'Department' ? _department : _section,
+                      hint: hint['hint'],
+                      list: hint['list'],
+                      onDropDownChange: (String? value) =>
+                          _onDropDownChange(value, hint['text']),
                     );
                   },
                 ),
               ],
             ),
           ),
-          SizedBox(
-            width: width * 0.45,
-            height: height * 0.07,
-            child: OutlinedButton(
-              onPressed: _onSubmit,
-              style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.green,
-                  side: const BorderSide(color: Colors.green),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20))),
-              child: Text(
-                "Create Account",
-                style: TextStyle(
-                  fontSize: height * 0.022,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
+          CreateAccountButton(onSubmit: () => _onSubmit(context)),
         ],
       ),
     );
