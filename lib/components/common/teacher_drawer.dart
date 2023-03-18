@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:academi_portal/api/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
-import './drawer_button.dart';
+import 'StudentDrawer/drawer_button.dart';
 import '../../view/teacher_dashboard.dart';
 import '../../view/create_post.dart';
 import '../../view/sign_in_page.dart';
@@ -28,9 +28,7 @@ class _TeacherDrawerState extends State<TeacherDrawer> {
     var data = jsonDecode(await getData("user"));
     setState(() {
       name = data["teacherLogin"]["name"];
-
     });
-   
   }
 
   @override
@@ -96,24 +94,21 @@ class _TeacherDrawerState extends State<TeacherDrawer> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      DrawerButton(
-                        icon: 0xe1b1,
-                        buttonName: "Dashboard",
-                        color: 0xFF000000,
-                        routeName: TeacherDashboard.routeName,
-                      ),
-                      DrawerButton(
-                        icon: 0xf85d,
-                        buttonName: "Create Post",
-                        color: 0xFF000000,
-                        routeName: CreatePost.routeName,
-                      ),
-                      DrawerButton(
-                        icon: 0xe2eb,
-                        buttonName: "Meeting",
-                        color: 0xFF000000,
-                        routeName: CreatePost.routeName,
-                      ),
+                      // DrawerButton(
+                      //   icon: 0xe1b1,
+                      //   buttonName: "Dashboard",
+                      //   routeName: TeacherDashboard.routeName,
+                      // ),
+                      // DrawerButton(
+                      //   icon: 0xf85d,
+                      //   buttonName: "Create Post",
+                      //   routeName: CreatePost.routeName,
+                      // ),
+                      // DrawerButton(
+                      //   icon: 0xe2eb,
+                      //   buttonName: "Meeting",
+                      //   routeName: CreatePost.routeName,
+                      // ),
                     ],
                   ),
                 ),
@@ -125,24 +120,21 @@ class _TeacherDrawerState extends State<TeacherDrawer> {
                         color: Colors.black,
                         thickness: 1,
                       ),
-                      DrawerButton(
-                        icon: 0xe302,
-                        buttonName: "Help & Support",
-                        color: 0xFF000000,
-                        routeName: '',
-                      ),
-                      DrawerButton(
-                        icon: 0xe1c5,
-                        buttonName: "Developer Note",
-                        color: 0xFF000000,
-                        routeName: '',
-                      ),
-                      DrawerButton(
-                        icon: 0xe243,
-                        buttonName: "Log out",
-                        color: 0xFFFF0000,
-                        routeName: SignInPage.routeName,
-                      ),
+                      // DrawerButton(
+                      //   icon: 0xe302,
+                      //   buttonName: "Help & Support",
+                      //   routeName: '',
+                      // ),
+                      // DrawerButton(
+                      //   icon: 0xe1c5,
+                      //   buttonName: "Developer Note",
+                      //   routeName: '',
+                      // ),
+                      // DrawerButton(
+                      //   icon: 0xe243,
+                      //   buttonName: "Log out",
+                      //   routeName: SignInPage.routeName,
+                      // ),
                     ],
                   ),
                 ),

@@ -1,37 +1,42 @@
 import 'package:flutter/material.dart';
 
+import '../constant.dart';
+
 class DrawerButton extends StatelessWidget {
   final String buttonName, routeName;
-  final int icon;
-  final int color;
-  DrawerButton({
+  final IconData icon;
+
+  const DrawerButton({
     required this.icon,
     required this.buttonName,
-    required this.color,
     required this.routeName,
+    super.key,
   });
+
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return TextButton(
       onPressed: () {
         Navigator.pushNamed(context, routeName);
       },
-      child: Container(
-        width: 200,
+      child: SizedBox(
+        width: width * 0.55,
         child: Row(
           children: [
             Icon(
-              IconData(icon, fontFamily: 'MaterialIcons'),
-              color: Color(color),
+              icon,
+              color: AppColors.black,
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+              padding: EdgeInsets.fromLTRB(height * 0.03, 0, 0, 0),
               child: Text(
                 buttonName,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: height * 0.025,
                   fontWeight: FontWeight.bold,
-                  color: Color(color),
+                  color: AppColors.drawerButton,
                 ),
               ),
             ),

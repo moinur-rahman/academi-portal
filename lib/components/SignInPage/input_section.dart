@@ -158,7 +158,7 @@ class _InputSectionState extends State<InputSection> {
                   isChecked: isChecked,
                   onCheckBoxChange: _onRememberMeChange,
                 ),
-                ForgotPassword(),
+                const ForgotPassword(),
               ],
             ),
           ),

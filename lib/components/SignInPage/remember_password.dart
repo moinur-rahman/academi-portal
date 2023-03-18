@@ -15,14 +15,17 @@ class RememberPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return SizedBox(
+      width: width * 0.4,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Transform.scale(
             scale: height * 0.0012,
             child: Checkbox(
               checkColor: Colors.white,
-              fillColor: MaterialStateProperty.all(Colors.green),
+              fillColor: MaterialStateProperty.all(AppColors.green),
               value: isChecked,
               onChanged: onCheckBoxChange,
             ),

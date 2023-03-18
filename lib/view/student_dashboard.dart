@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:academi_portal/components/common/constant.dart';
 import 'package:flutter/material.dart';
 
 import '../components/common/student_drawer.dart';
@@ -46,14 +47,14 @@ class _StudentDashboardState extends State<StudentDashboard> {
         title: "Student Feed",
         height: height,
       ),
-      drawer: StudentDrawer(),
+      drawer: const StudentDrawer(),
       bottomNavigationBar: StudentBottomBar(),
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -61,7 +62,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
                       width: 280,
                       height: 40,
                       child: TextFormField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Search',
                           prefixIcon: Icon(
@@ -75,9 +76,10 @@ class _StudentDashboardState extends State<StudentDashboard> {
                       height: 40,
                       child: ElevatedButton(
                         onPressed: () => {},
-                        child: Icon(Icons.search),
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF349053)),
+                          backgroundColor: AppColors.green,
+                        ),
+                        child: const Icon(Icons.search),
                       ),
                     )
                   ],

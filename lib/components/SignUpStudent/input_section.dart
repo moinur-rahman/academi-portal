@@ -1,3 +1,4 @@
+import 'package:academi_portal/view/student_dashboard.dart';
 import 'package:flutter/material.dart';
 
 import '../../api/shared_preferences.dart';
@@ -121,8 +122,8 @@ class _InputSectionState extends State<InputSection> {
     );
     if (status != 'Failed') {
       await saveData("user", status);
-      Navigator.pushNamed(context, TeacherDashboard.routeName);
     }
+    Navigator.pushNamed(context, StudentDashboard.routeName);
   }
 
   @override
